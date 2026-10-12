@@ -1,0 +1,4 @@
+interface:
+  display_name: "YouTube-research för teknikvideor"
+  short_description: "Från aktuella videofynd till manus och thumbnail"
+  default_prompt: "Använd $youtube-research för att undersöka aktuella YouTube-videor kring min idé och ta fram en brief för engelskt manus, titel och thumbnail."

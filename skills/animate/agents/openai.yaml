@@ -1,0 +1,4 @@
+interface:
+  display_name: "Animate"
+  short_description: "Create and revise saved diagram animations"
+  default_prompt: "Use $animate to create or update an educational animation in this repo, save it in the animation library, and deliver a preview and video."
