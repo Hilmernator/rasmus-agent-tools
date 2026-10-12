@@ -1,4 +1,0 @@
-interface:
-  display_name: "YouTube-manus från textdump"
-  short_description: "Gör råa jobbberättelser till korta YouTube-manus"
-  default_prompt: "Använd $youtube-story-script för att göra min textdump till ett tydligt, kort YouTube-manus på engelska med en naturlig hjälteresa."

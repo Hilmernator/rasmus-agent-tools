@@ -1,4 +1,0 @@
-interface:
-  display_name: "Architecture Review"
-  short_description: "Review and repair animation architecture"
-  default_prompt: "Use $architecture-review to check the selected animation against primary sources and propose corrections without editing it."
