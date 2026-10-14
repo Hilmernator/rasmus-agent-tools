@@ -1,53 +1,54 @@
 ---
 name: code-validation
-description: Granska ocommittade kodändringar med git diff inför commit, utan att ändra kod. Använd vid code validation, pre-commit review eller begäran att hitta fel i staged och unstaged ändringar. Ger prioriterade fynd och åtgärdsförslag i ord; utför inga rättningar.
+description: Review uncommitted changes before commit without changing code. Use for pre-commit review, code validation, or finding defects in staged, unstaged, and relevant new files.
 ---
 
 # Code Validation
 
-Hitta konkreta problem före commit. Användaren kan ha testat ändringarna och uppleva att allt fungerar; granska ändå kontrakt, normal användning och relevanta kantfall. Att något ännu inte testats är inte i sig ett bevis på ett fel.
+Find concrete defects before commit. Inspect contracts, normal use, and relevant edge cases even when the user reports success. An untested path alone is not proof of a defect.
 
-## Avgränsning
+## Scope
 
-- Analysera endast. Ändra inte kod, tester, konfiguration eller Git-index. Gör ingen commit, stash, reset, automatisk formatering eller rättning.
-- Ge åtgärdsförslag i ord, utan patchar eller ersättningskod. Skriv rapporten i svaret om användaren inte bett om en fil.
-- Granska ocommittade ändringar i det avsedda repot. Läs omgivande kod, anropare, typer och tester när det behövs för att bedöma ändringen; utöka inte uppdraget till en allmän repo-audit.
-- Följ användarens språk; svenska är standard.
+- Analyze only. Preserve code, tests, configuration, the index, and working files. Do not commit, stash, reset, format, or apply fixes.
+- Describe fixes in words. Return the report in chat unless the user requests a file.
+- Review the requested repository and diff. Read callers, types, and tests as needed to assess impact. Keep repository-wide audits separate.
+- Write in English unless the user requests another language.
 
-## Underlag
+## Gather evidence
 
-1. Läs tillämpliga repo-instruktioner och fastställ reporoten med `git rev-parse --show-toplevel`. Om arbetsmappen inte är ett Git-repo, lokalisera användarens avsedda repo eller fråga efter sökvägen. Initiera inte Git.
-2. Läs `git status --short --untracked-files=all`, `git diff --no-ext-diff --no-textconv` och `git diff --cached --no-ext-diff --no-textconv`. Både unstaged och staged ändringar ingår om användaren inte avgränsat granskningen.
-3. Granska även relevanta nya, ospårade källfiler: de syns inte i vanlig `git diff`. Lägg inte till dem i index. Hantera namnbyten, borttagningar och eventuella konflikter uttryckligen. Läs inte genererade filer, binärer eller hemligheter slentrianmässigt; ange betydelsefulla granskningsluckor.
-4. Om samma fil har både staged och unstaged ändringar, skilj indexversionen från arbetskopian. Kontrollera indexversionen med `git show :sökväg` när skillnaden påverkar ett fynd. Anta inte att allt i arbetskopian kommer med i nästa commit.
-5. Följ ändrade importvägar, API-kontrakt, datamodeller och anrop tills ett möjligt fel antingen styrks eller kan avfärdas. Hänvisa till den version och de rader som faktiskt granskats.
+1. Read applicable repository instructions. Use `git rev-parse --show-toplevel` to locate the repository. If needed, locate the intended repository or ask for its path. Do not initialize Git.
+2. Read `git status --short --untracked-files=all`, `git diff --no-ext-diff --no-textconv`, and `git diff --cached --no-ext-diff --no-textconv`. Include staged and unstaged changes unless the user limits scope.
+3. Inspect relevant untracked source files without staging them. Account for renames, deletions, and conflicts. Avoid generated files, binaries, and secret values; disclose material coverage gaps.
+4. If a file has staged and unstaged edits, distinguish both versions. Use `git show :path` when the index version affects a finding. The next commit may not include the working copy.
+5. Follow changed imports, contracts, data models, and callers until each suspected issue is supported or dismissed. Cite the version and lines actually inspected.
 
-Om inget har ändrats, säg det. Om diffen är för stor eller vissa filer inte går att granska, redovisa omfattningen och luckorna i stället för att hävda en fullständig granskning.
+If there are no changes, say so. If the diff is too large or files are unavailable, report coverage and gaps without claiming a complete review.
 
-## Granskningsprioriteringar
+## Review priorities
 
-1. **Kritiska stoppfel:** krascher, importfel, brutna API-kontrakt, runtime-fel, datamodeller som inte stämmer överens och antaganden som bryter normal användning.
-2. **Oväntat beteende:** logikfel, kantfall, felaktiga standardvärden, tysta fel och bristande felhantering.
-3. **Kodkvalitet:** duplicering, onödig komplexitet, missvisande namn och filer eller funktioner med för många ansvar. Rapportera konkreta underhållsproblem, inte personlig stilsmak.
-4. **Prestanda:** onödigt upprepat dyrt arbete, hantering av stora filer och blockerande operationer som påverkar faktisk API- eller MVP-användning. Beskriv utlösande belastning; hitta inte på mätresultat eller föreslå spekulativ optimering.
+1. **Blocking failures:** crashes, import failures, broken contracts, runtime errors, and incompatible data models.
+2. **Unexpected behavior:** logic defects, edge cases, incorrect defaults, silent failures, and missing error handling.
+3. **Maintainability:** duplication, unnecessary complexity, misleading names, and excessive responsibility. Report concrete costs rather than style preferences.
+4. **Performance:** repeated expensive work, large-file handling, and blocking operations that affect actual use. State the triggering workload. Separate measurements from hypotheses.
 
-Prioriteten anger granskningsordning; fyndens allvar bestäms av konsekvensen. Ett prestandafel som gör normal användning omöjlig kan vara ett stoppfel.
+This order guides inspection. Severity follows impact; a performance defect can block normal use.
 
-## Belägg och verifiering
+## Verification
 
-- Lyft fynd som orsakas eller blottläggs av ändringarna och har ett konkret felscenario. Skilj bekräftade fel från frågor och osäkerheter. Kontrollera skydd i omgivande kod innan ett fel rapporteras.
-- Statisk analys är standard. Kör endast befintliga, relevanta kontroller om du har fastställt att de inte ändrar arbetsfiler, index, snapshots, databaser eller externa system. Installera inget och kör inte auto-fix. Om säker verifiering saknas, redovisa det i rapporten.
-- Hävd inte att ett test har körts, att ett fel reproducerats eller att all kod fungerar utan belägg. Ingen funnen bugg är ingen garanti om felfrihet.
+- Report issues introduced or exposed by the change with a concrete failure scenario. Check surrounding safeguards before reporting.
+- Separate confirmed defects, questions, and uncertainty.
+- Static analysis is the default. Run existing relevant checks only after establishing that they will not change working files, the index, snapshots, databases, or external systems. Install nothing and use no auto-fix mode.
+- State exactly which checks ran. A clean review is not proof that all behavior is correct.
 
-## Svar
+## Report
 
-Börja med fynden, sorterade efter allvar. Varje fynd innehåller:
+Lead with findings ordered by severity. Each finding includes:
 
-- **Allvar och konkret rubrik:** kritisk, hög, medel eller låg.
-- **Plats:** fil och kort radreferens, gärna klickbar. Ange indexversion/staged eller arbetskopia om det spelar roll. För borttagen kod: ange att referensen gäller den gamla versionen.
-- **Problem och konsekvens:** vad som händer, vilket scenario som utlöser det och varför det spelar roll.
-- **Föreslagen rättning:** en kort beskrivning i ord.
+- Severity and a concrete title: critical, high, medium, or low.
+- File and short line reference. Identify staged or working-copy evidence when relevant. Mark references to deleted code as the old version.
+- Trigger, observed or traced failure, and impact.
+- A short proposed correction in words.
 
-Slå ihop fynd med samma grundorsak. Lägg eventuella öppna frågor efter fynden. Avsluta kort med granskad omfattning, utförda kontroller och betydelsefulla begränsningar.
+Group findings with the same root cause. Follow with open questions, inspected scope, checks, and material limitations.
 
-Om inga kritiska fel hittats, skriv uttryckligen **”Inga kritiska problem identifierades i de granskade ändringarna.”** Om inga fynd alls finns, säg det utan att fylla ut med påhittade förbättringar. Använd motsvarande formulering på användarens språk.
+If no critical issues were found, state: **No critical issues were identified in the reviewed changes.** If there are no findings, say so without inventing improvements.

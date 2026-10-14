@@ -1,0 +1,8 @@
+{
+  "source": "https://semgrep.dev/c/p/security-audit",
+  "sha256": "b109a039df712f30c6d3e25e1e8358053fd0f1c91b92d0e8d2871cd141fe602f",
+  "license": "Semgrep-Rules-License-1.0",
+  "license_url": "https://semgrep.dev/legal/rules-license/",
+  "usage": "own internal business purposes only; no redistribution or service to others",
+  "reviewed": "2026-09-17"
+}

@@ -1,0 +1,11 @@
+{
+  "name": "rai-security-local-tools",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "eslint": "10.10.0",
+    "eslint-plugin-security": "4.0.1",
+    "@typescript-eslint/parser": "8.70.0",
+    "typescript": "5.9.3"
+  }
+}

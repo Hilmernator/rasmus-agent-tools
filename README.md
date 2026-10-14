@@ -1,23 +1,69 @@
-# rasmus-plugins
+# Rasmus Plugins
 
-Delbara skills för Codex och Claude Code. Repot innehåller endast **code-validation**.
+A personal collection for iterative software development: build a small step, test it, inspect the result, and adjust.
 
-## Code Validation
+All skill instructions and repository documentation are in English. The collection does not require a specification or interview before normal work.
 
-[Skill-instruktioner](skills/code-validation/SKILL.md) för granskning av ocommittade kodändringar före commit.
+## Skills
 
-- Granskar staged, unstaged och relevanta nya filer.
-- Prioriterar stoppfel, oväntat beteende, kodkvalitet och prestanda.
-- Ger fynd med fil/rad, konsekvens och rättningsförslag i ord.
-- Ändrar inte kod och gör ingen commit.
+| Skill | Use it for | Source |
+| --- | --- | --- |
+| [ponytail](skills/ponytail/SKILL.md) | Small, complete changes with limited complexity | Ponytail 5.2.0 |
+| [tdd](skills/tdd/SKILL.md) | One behavior and one failing test at a time | Adapted installed Pocock skill |
+| [diagnosing-bugs](skills/diagnosing-bugs/SKILL.md) | Reproduce, isolate, fix, and verify a defect | Installed Pocock skill |
+| [prototype](skills/prototype/SKILL.md) | Answer a design question with a disposable experiment | Adapted installed Pocock skill |
+| [code-validation](skills/code-validation/SKILL.md) | Review an uncommitted diff without edits | Existing custom skill, translated |
+| [qa-only](skills/qa-only/SKILL.md) | Exercise behavior and report failures without fixes | Local workflow inspired by gstack |
+| [doubt-driven-development](skills/doubt-driven-development/SKILL.md) | Independently challenge a difficult claim | Adapted Osmani workflow |
+| [local-security-review](skills/local-security-review/SKILL.md) | Combined SAST, dependency, and secret review | Installed RAI security plugin |
+| [asd-ste100](skills/asd-ste100/SKILL.md) | Clear technical English with preserved meaning | danyuchn/asd-ste100-skill |
 
-## Användning
+## Daily use
 
-- Codex: `$code-validation`
-- Claude Code: `/code-validation`
+Use Ponytail as the coding style. Use TDD for the next behavior and diagnosis when a failure needs investigation. Use a prototype when an experiment can answer an unresolved question.
 
-Lokalt finns repot i `~/rasmus-plugins`. Mapparna `~/.codex/skills/code-validation` och `~/.claude/skills/code-validation` länkar till `skills/code-validation` här. Redigera den gemensamma källan i repot.
+Run code validation before commit and QA when runtime behavior needs verification. Use doubt-driven development for difficult claims rather than every small edit. Run local security review for security coverage.
 
-På en annan dator: klona repot och länka eller kopiera `skills/code-validation` till respektive verktygs personliga skillmapp. Kontrollera befintliga installationer innan de ersätts.
+These workflows complement each other. Avoid running several equivalent reviews on the same unchanged artifact.
 
-Övriga personliga skills underhålls lokalt utanför detta repo.
+## Use the collection
+
+Clone this repository. Copy the selected complete skill directories into the skill directory supported by your agent. Each skill includes its local references and scripts. Preserve an existing installation until you have compared it.
+
+For Codex, personal skills can live under `~/.agents/skills/<name>`. For Claude Code, they can live under `~/.claude/skills/<name>`. Invoke a skill by its displayed name; Codex supports `$tdd`, and Claude Code supports `/tdd` for these directory names.
+
+The root `plugin.json` describes the portable skills plugin. Compatibility manifests in `.codex-plugin/` and `.claude-plugin/` expose the same collection to those hosts. This repository is the source of truth; no installation, cache replacement, or global configuration change is performed by cloning it. Copy only the selected directories to avoid duplicates with the original plugins.
+
+## Security: one entry point
+
+Use `local-security-review`. It contains the full scanner runners, locked toolchain definitions, coverage references, and setup procedures. The other security commands are internal scripts and reference documents, not separate discoverable skills.
+
+The default scope is full. Optional suffixes are `diff`, `commit [SHA]`, and `release`. See the skill for precise scope and permission boundaries.
+
+Python 3.10+ is required. Setup supports macOS and Linux; Windows requires WSL. The locked ESLint toolchain requires Node `^20.19.0 || ^22.13.0 || >=24`. Scanner binaries, advisory databases, and reviewed rules remain machine-local and are not committed here. Setup checks and permissioned installation remain part of the workflow.
+
+Review the [scanner licensing boundaries](skills/local-security-review/references/licensing.md) before setup. The collection preserves the installed RAI security engine code and tests. It relocates setup instructions so they resolve within the single skill.
+
+## Local adaptations
+
+- TDD chooses existing public test boundaries without a mandatory approval interview. It confirms ambiguous behavior and material contract changes when needed.
+- TDD allows small refactoring steps after tests pass.
+- Prototypes can use a backend script. They retain a minimal check and data-safety boundaries. Branches and issue publication are not automatic.
+- Doubt-driven development uses a bounded independent review. Repeated cross-provider prompts and upstream persona dependencies are removed.
+- QA is a standalone implementation of report-only verification, not the full gstack installation.
+- ASD-STE100 uses the danyuchn implementation. Its structural linter does not certify compliance with ASD's licensed dictionary.
+- Ponytail's skill is included; the upstream plugin's automatic activation hooks and optional audit commands are not bundled. Invoke Ponytail explicitly.
+
+## Verification
+
+Run the package checks and bundled security regression tests with a supported Python interpreter (Python 3.14 is used below):
+
+```sh
+python3 scripts/validate_package.py
+python3.14 -m unittest discover -s test -v
+python3 skills/asd-ste100/scripts/ste-lint.py --selftest
+```
+
+Security integration tests can skip when real scanners or databases are absent. Unit tests and package checks do not establish live scanner coverage or agent behavior. Real scans must follow the security skill's scope and permissions.
+
+See [SOURCES.md](SOURCES.md) for provenance, adaptation details, and licenses.
