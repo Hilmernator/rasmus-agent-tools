@@ -14,6 +14,7 @@ All skill instructions and repository documentation are in English. The collecti
 | [diagnosing-bugs](skills/diagnosing-bugs/SKILL.md) | Reproduce, isolate, fix, and verify a defect | Installed Pocock skill |
 | [prototype](skills/prototype/SKILL.md) | Answer a design question with a disposable experiment | Adapted installed Pocock skill |
 | [code-validation](skills/code-validation/SKILL.md) | Review an uncommitted diff without edits | Existing custom skill, translated |
+| [review-bugs](skills/review-bugs/SKILL.md) | Explore edge cases, failure paths, and recovery without fixes | Installed RAI code quality plugin |
 | [qa-only](skills/qa-only/SKILL.md) | Exercise behavior and report failures without fixes | Local workflow inspired by gstack |
 | [doubt-driven-development](skills/doubt-driven-development/SKILL.md) | Independently challenge a difficult claim | Adapted Osmani workflow |
 | [local-security-review](skills/local-security-review/SKILL.md) | Combined SAST, dependency, and secret review | Installed RAI security plugin |
@@ -25,7 +26,7 @@ Use interview-me when you need an overall product direction. It produces a livin
 
 Use Ponytail as the coding style. Use TDD for the next behavior and diagnosis when a failure needs investigation. Use a prototype when an experiment can answer an unresolved question.
 
-Run code validation before commit and QA when runtime behavior needs verification. Use doubt-driven development for difficult claims rather than every small edit. Run local security review for security coverage.
+Run code validation before commit and QA when runtime behavior needs verification. Use review-bugs to probe edge cases, invalid inputs, concurrency, and recovery in an uncommitted diff or selected flow; it reports findings without changing source files. Use doubt-driven development for difficult claims rather than every small edit. Run local security review for security coverage.
 
 These workflows complement each other. Avoid running several equivalent reviews on the same unchanged artifact.
 
@@ -55,6 +56,7 @@ Review the [scanner licensing boundaries](skills/local-security-review/reference
 - TDD allows small refactoring steps after tests pass.
 - Prototypes can use a backend script. They retain a minimal check and data-safety boundaries. Branches and issue publication are not automatic.
 - Doubt-driven development uses a bounded independent review. Repeated cross-provider prompts and upstream persona dependencies are removed.
+- Review-bugs includes its review contract locally and points broad pre-commit reviews to code-validation. Its exploratory, report-only behavior is unchanged.
 - QA is a standalone implementation of report-only verification, not the full gstack installation.
 - ASD-STE100 uses the danyuchn implementation. Its structural linter does not certify compliance with ASD's licensed dictionary.
 - Ponytail's skill is included; the upstream plugin's automatic activation hooks and optional audit commands are not bundled. Invoke Ponytail explicitly.

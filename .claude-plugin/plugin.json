@@ -1,6 +1,6 @@
 {
   "name": "rasmus-plugins",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Personal skills for iterative development, verification, security review, and clear technical writing.",
   "author": {
     "name": "Rasmus Hilmersson"

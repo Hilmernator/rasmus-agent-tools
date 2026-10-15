@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 EXPECTED = {
     'asd-ste100', 'code-validation', 'diagnosing-bugs',
     'doubt-driven-development', 'local-security-review', 'ponytail',
-    'prototype', 'qa-only', 'tdd', 'interview-me',
+    'prototype', 'qa-only', 'tdd', 'interview-me', 'review-bugs',
 }
 
 
