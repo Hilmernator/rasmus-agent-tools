@@ -8,6 +8,7 @@ All skill instructions and repository documentation are in English. The collecti
 
 | Skill | Use it for | Source |
 | --- | --- | --- |
+| [interview-me](skills/interview-me/SKILL.md) | Clarify product direction and the next experiment | Adapted Osmani workflow |
 | [ponytail](skills/ponytail/SKILL.md) | Small, complete changes with limited complexity | Ponytail 5.2.0 |
 | [tdd](skills/tdd/SKILL.md) | One behavior and one failing test at a time | Adapted installed Pocock skill |
 | [diagnosing-bugs](skills/diagnosing-bugs/SKILL.md) | Reproduce, isolate, fix, and verify a defect | Installed Pocock skill |
@@ -19,6 +20,8 @@ All skill instructions and repository documentation are in English. The collecti
 | [asd-ste100](skills/asd-ste100/SKILL.md) | Clear technical English with preserved meaning | danyuchn/asd-ste100-skill |
 
 ## Daily use
+
+Use interview-me when you need an overall product direction. It produces a living brief with requirements, hypotheses, open questions, and the next experiment. Small clear features can proceed directly to implementation.
 
 Use Ponytail as the coding style. Use TDD for the next behavior and diagnosis when a failure needs investigation. Use a prototype when an experiment can answer an unresolved question.
 
@@ -45,6 +48,8 @@ Python 3.10+ is required. Setup supports macOS and Linux; Windows requires WSL. 
 Review the [scanner licensing boundaries](skills/local-security-review/references/licensing.md) before setup. The collection preserves the installed RAI security engine code and tests. It relocates setup instructions so they resolve within the single skill.
 
 ## Local adaptations
+
+- Interview-me is a short product conversation. It asks one question at a time, uses a bounded question count, and keeps assumptions separate from requirements. It does not require a confidence score or a specification before implementation.
 
 - TDD chooses existing public test boundaries without a mandatory approval interview. It confirms ambiguous behavior and material contract changes when needed.
 - TDD allows small refactoring steps after tests pass.

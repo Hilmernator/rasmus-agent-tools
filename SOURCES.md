@@ -7,6 +7,7 @@ This collection contains vendored source and local adaptations. It does not fetc
 | TDD, diagnosis, prototype | Installed local copies from mattpocock/skills, captured 2026-10-14; exact installed commit unavailable | [MIT](licenses/pocock.txt) |
 | Ponytail | DietrichGebert/ponytail 5.2.0 | [MIT](licenses/ponytail.txt) |
 | Doubt-driven development | addyosmani/agent-skills `aeac41d4d005999432bb7312f7ff06383a91d59d` | [MIT](licenses/osmani.txt), adapted |
+| Interview me | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills/blob/main/skills/interview-me/SKILL.md), inspected 2026-10-15 | [MIT](licenses/osmani.txt), adapted for bounded product discovery |
 | ASD-STE100 | danyuchn/asd-ste100-skill `3944283c183eea13fe5bd902b572da3b4de8bf44` | [MIT](licenses/asd-ste100.txt), portable frontmatter adaptation |
 | Local security review and tests | stampen-media/rai-security-plugin `2fc0d6d414d220e920cd7f13ef9953ab1201559f`; installed cache 0.1.0+codex.20260922120756 | User-requested copy; no upstream repository license found. No new license is asserted for this source. |
 | QA only | Original local workflow, inspired by garrytan/gstack report-only QA | No gstack runtime or source copied |

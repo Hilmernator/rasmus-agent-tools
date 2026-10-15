@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "rasmus-plugins",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Personal skills for iterative development, verification, security review, and clear technical writing.",
   "author": {
     "name": "Rasmus Hilmersson"
