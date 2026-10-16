@@ -39,7 +39,7 @@ class ReviewTests(unittest.TestCase):
 @unittest.skipUnless(shutil.which("semgrep") and shutil.which("git"), "real Semgrep and Git required")
 class RealSemgrepTests(unittest.TestCase):
     def setUp(self):
-        self.temporary = tempfile.TemporaryDirectory(prefix="rai-semgrep-test-")
+        self.temporary = tempfile.TemporaryDirectory(prefix="rasmus-semgrep-test-")
         self.addCleanup(self.temporary.cleanup)
         self.root = Path(self.temporary.name)
         self.repo = self.root / "repo with spaces"

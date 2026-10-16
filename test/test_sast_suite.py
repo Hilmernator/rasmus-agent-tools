@@ -46,7 +46,7 @@ class LicenseTests(unittest.TestCase):
                      "explicitly installed locked Bandit/ESLint toolchain required")
 class LocalToolsTests(unittest.TestCase):
     def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(prefix="rai-suite-test-")
+        self.temp = tempfile.TemporaryDirectory(prefix="rasmus-suite-test-")
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name).resolve()
         self.repo = self.root / "repo with spaces"

@@ -119,10 +119,10 @@ class DeepSecretsTests(unittest.TestCase):
             before = self.git(repo, "show-ref")
             # Actual native fetch, local transport only; GitHub URL validation is tested separately.
             secrets_deep.fetch_github(mirror, str(repo), secrets_deep.git_env(), time.monotonic() + 30)
-            refs = self.git(mirror, "for-each-ref", "--format=%(refname)", "refs/rai-github/")
-            self.assertIn("refs/rai-github/pull/42/head", refs)
-            self.assertIn("refs/rai-github/tags/release", refs)
-            self.assertIn("refs/rai-github/heads/", refs)
+            refs = self.git(mirror, "for-each-ref", "--format=%(refname)", "refs/rasmus-github/")
+            self.assertIn("refs/rasmus-github/pull/42/head", refs)
+            self.assertIn("refs/rasmus-github/tags/release", refs)
+            self.assertIn("refs/rasmus-github/heads/", refs)
             self.assertEqual(before, self.git(repo, "show-ref"))
             with self.assertRaisesRegex(ValueError, "namespace"):
                 secrets_deep.fetch_github(mirror, str(repo), secrets_deep.git_env(), time.monotonic() + 30)

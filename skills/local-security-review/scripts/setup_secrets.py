@@ -21,7 +21,7 @@ HASHES = {
     "linux_arm64": "e4a487ee7ccd7d3a7f7ec08657610aa3606637dab924210b3aee62570fb4b080",
     "linux_x64": "551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb",
 }
-CACHE = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "rai-security/secrets"
+CACHE = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "rasmus-security/secrets"
 LIMIT = 64 * 1024 * 1024
 
 
@@ -115,7 +115,7 @@ def fixture(target):
 def verify():
     import scan
     checked_executable()
-    with tempfile.TemporaryDirectory(prefix="rai-secrets-verify-") as temporary:
+    with tempfile.TemporaryDirectory(prefix="rasmus-secrets-verify-") as temporary:
         target = Path(temporary)
         token = fixture(target)
         args = argparse.Namespace(scanner="secrets", target=str(target), allow_network=False,

@@ -67,7 +67,7 @@ def execute(args):
         raise ValueError("Target must be a directory and timeout must be positive")
     if getattr(args, "iac_path", None) and (args.commit or args.diff):
         raise ValueError("--iac-path requires full/release mode")
-    output = Path(tempfile.mkdtemp(prefix="rai-security-all-")).resolve()
+    output = Path(tempfile.mkdtemp(prefix="rasmus-security-all-")).resolve()
     if output.is_relative_to(target):
         output.rmdir()
         raise ValueError("Target contains temporary directory; choose a narrower target")

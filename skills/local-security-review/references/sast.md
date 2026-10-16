@@ -43,7 +43,7 @@ full-repo fallback. Surface excluded submodules/directories from the report.
 
 Read [licensing.md](licensing.md) before setup, rule changes, or external use.
 The default Semgrep configuration is the locally installed security-audit rule snapshot at
-`${XDG_CACHE_HOME:-~/.cache}/rai-security/semgrep/security-audit.yaml`.
+`${XDG_CACHE_HOME:-~/.cache}/rasmus-security/semgrep/security-audit.yaml`.
 Its checksum must match the bundled license policy; changing cached rules requires
 review. `--semgrep-config <file-or-directory> --custom-rules-license-reviewed`
 overrides it only after the user's custom rules have been license-reviewed.

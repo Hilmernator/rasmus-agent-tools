@@ -130,13 +130,13 @@ class IacTests(unittest.TestCase):
         self.assertEqual(report["coverage"]["diagnostic_warnings_or_errors"], 1)
 
 
-@unittest.skipUnless(os.environ.get("RAI_IAC_TEST_BINARY"), "explicit verified Trivy fixture binary required")
+@unittest.skipUnless(os.environ.get("AGENT_TOOLS_IAC_TEST_BINARY"), "explicit verified Trivy fixture binary required")
 class RealIacTests(unittest.TestCase):
     run_scan = IacTests.run_scan
 
     def setUp(self):
         IacTests.setUp(self)
-        self.binary = Path(os.environ["RAI_IAC_TEST_BINARY"]).resolve()
+        self.binary = Path(os.environ["AGENT_TOOLS_IAC_TEST_BINARY"]).resolve()
         patcher = patch.object(iac, "checked_executable", return_value=str(self.binary))
         patcher.start()
         self.addCleanup(patcher.stop)

@@ -33,7 +33,7 @@ dependencies. It does not resolve manifests, install packages, execute build scr
 or run Go/Rust call analysis. Only lockfile/SBOM extractors are enabled. Repository
 vulnerability/package suppressions are overridden; file ignores still apply.
 
-Setup installs in `${XDG_CACHE_HOME:-~/.cache}/rai-security/sca`. Every default scan
+Setup installs in `${XDG_CACHE_HOME:-~/.cache}/rasmus-security/sca`. Every default scan
 uses OSV's `--download-offline-databases` with local advisory matching: the scanner
 checks the published database checksum for each scanned ecosystem and downloads
 changed/missing archives. No package identifiers or source code are uploaded.

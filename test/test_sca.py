@@ -17,7 +17,7 @@ import render_review
 
 
 class ScaTests(unittest.TestCase):
-    @unittest.skipUnless(os.environ.get("RAI_SCA_TEST_NETWORK") == "1", "Explicit network test opt-in required")
+    @unittest.skipUnless(os.environ.get("AGENT_TOOLS_SCA_TEST_NETWORK") == "1", "Explicit network test opt-in required")
     def test_real_default_scan_refreshes_then_matches_locally(self):
         with tempfile.TemporaryDirectory() as temporary:
             setup_sca.fixture(Path(temporary))

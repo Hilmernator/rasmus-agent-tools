@@ -1,8 +1,18 @@
-# Rasmus Plugins
+# Rasmus Agent Tools
 
 A personal collection for iterative software development: build a small step, test it, inspect the result, and adjust.
 
 All skill instructions and repository documentation are in English. The collection does not require a specification or interview before normal work.
+
+## How I like to work
+
+I work in small, complete steps: build something useful, try it, inspect the result, and adjust. A clear task is enough to start. For a new product, I prefer a short conversation that establishes its purpose and the next experiment, then a living brief that evolves with what we learn.
+
+I want an agent to act like a capable colleague: use the repository and the conversation, make routine reversible decisions, and carry authorized work through implementation and verification. Ask focused questions when missing information changes the outcome or a wrong assumption is costly. Reuse answers I have already given, and make any necessary approval concrete and easy to review.
+
+I prefer the smallest solution that fully works. Reuse existing code and platform features, keep interfaces simple, and avoid speculative abstractions and dependencies. Small changes still need appropriate validation, error handling, security, and accessibility.
+
+Evidence guides the next step: a failing test, a reproducible bug, a working prototype, or an exercised user flow. Use the review that answers the actual uncertainty. Explain the result in plain language: what changed, how it was checked, and what remains uncertain.
 
 ## Skills
 
@@ -14,10 +24,10 @@ All skill instructions and repository documentation are in English. The collecti
 | [diagnosing-bugs](skills/diagnosing-bugs/SKILL.md) | Reproduce, isolate, fix, and verify a defect | Installed Pocock skill |
 | [prototype](skills/prototype/SKILL.md) | Answer a design question with a disposable experiment | Adapted installed Pocock skill |
 | [code-validation](skills/code-validation/SKILL.md) | Review an uncommitted diff without edits | Existing custom skill, translated |
-| [review-bugs](skills/review-bugs/SKILL.md) | Explore edge cases, failure paths, and recovery without fixes | Installed RAI code quality plugin |
+| [review-bugs](skills/review-bugs/SKILL.md) | Explore edge cases, failure paths, and recovery without fixes | Adapted code quality plugin; see SOURCES.md |
 | [qa-only](skills/qa-only/SKILL.md) | Exercise behavior and report failures without fixes | Local workflow inspired by gstack |
 | [doubt-driven-development](skills/doubt-driven-development/SKILL.md) | Independently challenge a difficult claim | Adapted Osmani workflow |
-| [local-security-review](skills/local-security-review/SKILL.md) | Combined SAST, dependency, and secret review | Installed RAI security plugin |
+| [local-security-review](skills/local-security-review/SKILL.md) | Combined SAST, dependency, and secret review | Adapted security plugin; see SOURCES.md |
 | [asd-ste100](skills/asd-ste100/SKILL.md) | Clear technical English with preserved meaning | danyuchn/asd-ste100-skill |
 
 ## Daily use
@@ -32,7 +42,7 @@ These workflows complement each other. Avoid running several equivalent reviews 
 
 ## Use the collection
 
-Clone this repository. Copy the selected complete skill directories into the skill directory supported by your agent. Each skill includes its local references and scripts. Preserve an existing installation until you have compared it.
+Clone [rasmus-agent-tools](https://github.com/Hilmernator/rasmus-agent-tools). Copy the selected complete skill directories into the skill directory supported by your agent. Each skill includes its local references and scripts. Preserve an existing installation until you have compared it.
 
 For Codex, personal skills can live under `~/.agents/skills/<name>`. For Claude Code, they can live under `~/.claude/skills/<name>`. Invoke a skill by its displayed name; Codex supports `$tdd`, and Claude Code supports `/tdd` for these directory names.
 
@@ -46,7 +56,13 @@ The default scope is full. Optional suffixes are `diff`, `commit [SHA]`, and `re
 
 Python 3.10+ is required. Setup supports macOS and Linux; Windows requires WSL. The locked ESLint toolchain requires Node `^20.19.0 || ^22.13.0 || >=24`. Scanner binaries, advisory databases, and reviewed rules remain machine-local and are not committed here. Setup checks and permissioned installation remain part of the workflow.
 
-Review the [scanner licensing boundaries](skills/local-security-review/references/licensing.md) before setup. The collection preserves the installed RAI security engine code and tests. It relocates setup instructions so they resolve within the single skill.
+Review the [scanner licensing boundaries](skills/local-security-review/references/licensing.md) before setup. The collection preserves the vendored security engine and regression tests, with collection-specific names. It relocates setup instructions so they resolve within the single skill.
+
+## Upgrade notes for 0.5.0
+
+The collection and plugin manifests now use `rasmus-agent-tools`. Update installations that refer to the previous plugin identity. Existing installed copies are not updated by a repository rename.
+
+Security setup now uses `${XDG_CACHE_HOME:-~/.cache}/rasmus-security/`. Existing caches are left intact; run the documented setup checks and approve any needed installation before scanning. Test opt-ins are `AGENT_TOOLS_IAC_TEST_BINARY` and `AGENT_TOOLS_SCA_TEST_NETWORK`. Dependency versions and integrity pins are unchanged.
 
 ## Local adaptations
 

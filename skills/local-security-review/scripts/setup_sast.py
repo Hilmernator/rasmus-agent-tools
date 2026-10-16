@@ -36,7 +36,7 @@ def lock_digest():
 
 def toolchain():
     cache = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache"))
-    return cache.expanduser().resolve() / "rai-security/toolchains" / lock_digest()
+    return cache.expanduser().resolve() / "rasmus-security/toolchains" / lock_digest()
 
 
 def license_allowed(expression):
@@ -157,7 +157,7 @@ def check():
     ready = all(item["status"] == "available" for item in checks.values())
     return {"status": "prerequisites-ready" if ready else "needs-setup", "checks": checks,
             "installation_tools": {tool: shutil.which(tool) for tool in ("uv", "npm")},
-            "next_step": "Run --verify" if ready else "Use $rai-security-plugin:setup-sast; install only missing components after approval"}
+            "next_step": "Run --verify" if ready else "Follow references/setup-sast.md in the local-security-review skill; install only missing components after approval"}
 
 
 def fetch_rules():
@@ -192,7 +192,7 @@ def verify():
         return preflight
     import sast
 
-    with tempfile.TemporaryDirectory(prefix="rai-sast-setup-") as temporary:
+    with tempfile.TemporaryDirectory(prefix="rasmus-sast-setup-") as temporary:
         target = Path(temporary).resolve()
         env = {k: v for k, v in os.environ.items() if not k.startswith("GIT_")}
         env.update(GIT_CONFIG_NOSYSTEM="1", GIT_CONFIG_GLOBAL=os.devnull)

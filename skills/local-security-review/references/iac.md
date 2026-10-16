@@ -65,7 +65,7 @@ resource values and messages are discarded; only projected metadata reaches AI.
 ## Setup
 
 Follow `setup-sast`. `setup_sast.py --check` includes Trivy; `--install-iac`
-downloads only the pinned binary archive into the per-user `rai-security/iac`
+downloads only the pinned binary archive into the per-user `rasmus-security/iac`
 cache. It validates SHA-256 before extracting the exact regular binary/LICENSE
 members and verifies installed bytes against that archive. macOS/Linux arm64/x64
 are supported. Existing/corrupt installations are preserved for inspection.

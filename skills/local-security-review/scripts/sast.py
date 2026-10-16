@@ -141,7 +141,7 @@ def execute(args):
     target = Path(args.target).expanduser().resolve(strict=True)
     if getattr(args, "iac_path", None) and (args.commit or args.diff):
         raise ValueError("--iac-path requires a full working-tree scan, not a commit/diff")
-    output = Path(tempfile.mkdtemp(prefix="rai-sast-")).resolve()
+    output = Path(tempfile.mkdtemp(prefix="rasmus-sast-")).resolve()
     if output.is_relative_to(target):
         output.rmdir()
         raise ValueError("Target contains report directory; choose a narrower target")

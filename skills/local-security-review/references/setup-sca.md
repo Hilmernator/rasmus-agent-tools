@@ -8,7 +8,7 @@ are supported (Windows needs WSL). The wrapper has no third-party Python depende
 1. Run `python3 <setup-script> --check`. It does not install or download anything.
 2. For a missing pinned binary, run `python3 <setup-script> --install`. It downloads
    official OSV-Scanner 2.6.0 from GitHub, checks the bundled SHA-256 and saves it in
-   `${XDG_CACHE_HOME:-~/.cache}/rai-security/sca/2.6.0`. No package manager, PATH
+   `${XDG_CACHE_HOME:-~/.cache}/rasmus-security/sca/2.6.0`. No package manager, PATH
    edits or replacement of existing system tools. A changed/corrupt cached binary
    blocks setup; do not delete it or bypass its checksum automatically.
 3. For missing databases or a requested refresh, run `python3 <setup-script> --update-db`.

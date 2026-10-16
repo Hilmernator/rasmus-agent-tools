@@ -15,7 +15,7 @@ import tarfile
 
 TOOLS = {"sast": "semgrep", "sca": "osv-scanner", "secrets": "gitleaks"}
 MAX_REPORT_BYTES = 32 * 1024 * 1024
-DEFAULT_RULES = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "rai-security/semgrep/security-audit.yaml"
+DEFAULT_RULES = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "rasmus-security/semgrep/security-audit.yaml"
 
 
 def sca_command(binary, target, raw, config, allow_network, refresh=False):
@@ -154,7 +154,7 @@ def diff_snapshot(args, target, temporary, env, report):
     # Only the disposable clone gets an index and synthetic commit. Force-add
     # preserves tracked files that now match an ignore rule; inventory was filtered above.
     git(snapshot, env, "add", "--all", "--force", "--", ".")
-    git(snapshot, env, "-c", "user.name=RAI Scanner", "-c", "user.email=scanner@example.invalid",
+    git(snapshot, env, "-c", "user.name=Agent Tools Scanner", "-c", "user.email=scanner@example.invalid",
         "-c", "commit.gpgsign=false", "-c", "core.hooksPath=/dev/null",
         "commit", "--quiet", "--allow-empty", "-m", "Temporary working-tree scan snapshot")
     report.update(scope="working-tree-diff", baseline=args.baseline,
@@ -204,7 +204,7 @@ def execute(args):
         raise ValueError("--commit and --diff are currently supported only for SAST")
     args.baseline = None
     # Output outside the source tree avoids self-scanning and accidental commits.
-    output = Path(tempfile.mkdtemp(prefix="rai-security-")).resolve()
+    output = Path(tempfile.mkdtemp(prefix="rasmus-security-")).resolve()
     if output.is_relative_to(target):
         output.rmdir()
         raise ValueError("target contains the temporary directory; choose a narrower target")

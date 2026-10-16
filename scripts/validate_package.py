@@ -13,7 +13,7 @@ EXPECTED = {
 
 def validate(root):
     manifest = json.loads((root / 'plugin.json').read_text())
-    assert manifest['name'] == 'rasmus-plugins'
+    assert manifest['name'] == 'rasmus-agent-tools'
     assert re.fullmatch(r'\d+\.\d+\.\d+', manifest['version'])
     for host in ('.codex-plugin', '.claude-plugin'):
         overlay = json.loads((root / host / 'plugin.json').read_text())

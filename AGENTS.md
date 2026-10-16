@@ -1,4 +1,4 @@
-# Rasmus Plugins
+# Rasmus Agent Tools
 
 Maintain this repository as the source of truth for the personal skill collection.
 

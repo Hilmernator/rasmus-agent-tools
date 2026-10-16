@@ -69,7 +69,7 @@ def github_remote(repo, env, deadline):
 
 
 def fetch_github(repo, url, env, deadline):
-    if git(repo, env, deadline, "for-each-ref", "--format=%(refname)", "refs/rai-github/").strip():
+    if git(repo, env, deadline, "for-each-ref", "--format=%(refname)", "refs/rasmus-github/").strip():
         raise ValueError("Fetch namespace already exists; preserve local refs instead of replacing them")
     # Use existing gh authentication for HTTPS without reading tokens into Python.
     auth = []
@@ -79,8 +79,8 @@ def fetch_github(repo, url, env, deadline):
     shallow = git(repo, env, deadline, "rev-parse", "--is-shallow-repository").strip() == b"true"
     git(repo, env, deadline, *auth, "fetch", "--quiet", "--no-tags", "--no-recurse-submodules",
         *(["--unshallow"] if shallow else []), "--", url,
-        "+refs/heads/*:refs/rai-github/heads/*", "+refs/tags/*:refs/rai-github/tags/*",
-        "+refs/pull/*:refs/rai-github/pull/*")
+        "+refs/heads/*:refs/rasmus-github/heads/*", "+refs/tags/*:refs/rasmus-github/tags/*",
+        "+refs/pull/*:refs/rasmus-github/pull/*")
 
 
 def history_blobs(repo, env, deadline, coverage, max_bytes):
@@ -219,7 +219,7 @@ def execute(args):
     target = Path(args.target).expanduser().resolve(strict=True)
     if not target.is_dir() or args.timeout < 1 or args.max_history_mib < 1 or args.max_archive_mib < 1:
         raise ValueError("Target must be a directory and limits must be positive")
-    output = Path(tempfile.mkdtemp(prefix="rai-secrets-deep-")).resolve()
+    output = Path(tempfile.mkdtemp(prefix="rasmus-secrets-deep-")).resolve()
     if output.is_relative_to(target):
         output.rmdir()
         raise ValueError("Target contains the temporary directory; choose a narrower target")
@@ -265,7 +265,7 @@ def execute(args):
                 try:
                     url, coverage["github_repository"] = github_remote(target, env, deadline)
                     fetch_github(mirror, url, env, deadline)
-                    refs = git(mirror, env, deadline, "for-each-ref", "--format=%(refname) %(objectname)", "refs/rai-github/")
+                    refs = git(mirror, env, deadline, "for-each-ref", "--format=%(refname) %(objectname)", "refs/rasmus-github/")
                     coverage["github_refs"] = refs.decode().splitlines()
                     coverage["remote_refresh"] = "succeeded"
                 except (OSError, ValueError, subprocess.TimeoutExpired):

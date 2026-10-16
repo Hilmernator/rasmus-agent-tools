@@ -20,7 +20,7 @@ HASHES = {
     "linux_arm64": "2c71403eb443d05891c4f268c3ad771cf4f16e5443463fd7851ef8f454d3c7e4",
     "linux_amd64": "ca69b3d3cd08f889a49dc0a383122f71cc528b83803671df5fd874d97485b108",
 }
-CACHE = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "rai-security/sca"
+CACHE = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "rasmus-security/sca"
 DB = CACHE / "databases"
 ECOSYSTEMS = ("npm", "PyPI")
 
@@ -109,8 +109,8 @@ def install():
 
 def fixture(target):
     (target / "package-lock.json").write_text(json.dumps({
-        "name": "rai-sca-smoke", "lockfileVersion": 3, "packages": {
-            "": {"name": "rai-sca-smoke", "dependencies": {"lodash": "4.17.20"}},
+        "name": "rasmus-sca-smoke", "lockfileVersion": 3, "packages": {
+            "": {"name": "rasmus-sca-smoke", "dependencies": {"lodash": "4.17.20"}},
             "node_modules/lodash": {"version": "4.17.20"}}}))
     (target / "requirements.txt").write_text("urllib3==1.26.4\n")
 
@@ -119,7 +119,7 @@ def verify(update=False):
     # Only synthetic lockfiles; no packages are installed and no project code runs.
     import scan
     binary = checked_executable()
-    with tempfile.TemporaryDirectory(prefix="rai-sca-verify-") as temporary:
+    with tempfile.TemporaryDirectory(prefix="rasmus-sca-verify-") as temporary:
         target = Path(temporary)
         fixture(target)
         raw = target / "raw.json"

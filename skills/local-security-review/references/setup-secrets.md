@@ -9,7 +9,7 @@ reference directory. Requires Python 3.10+, macOS/Linux arm64/x64; Windows uses 
    `python3 <setup-script> --install` with authorization. This fetches Gitleaks
    8.30.1 from its official GitHub release, checks the pinned archive SHA-256,
    and installs only the binary, retained archive and MIT license into
-   `${XDG_CACHE_HOME:-~/.cache}/rai-security/secrets/8.30.1/<platform>`.
+   `${XDG_CACHE_HOME:-~/.cache}/rasmus-security/secrets/8.30.1/<platform>`.
    Existing system tools/PATH and consumer files are untouched. Reuse existing
    installation authorization; honor tool-level permissions. A scan-only request
    does not authorize installation. Integrity failures stop setup: preserve the

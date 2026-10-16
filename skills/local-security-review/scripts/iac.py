@@ -18,7 +18,7 @@ HASHES = {
     "Linux-ARM64": "b94ce1976bbf3c15b514b605ee88be7c6d94a29be2302847ff01cb794d47aad5",
     "Linux-64bit": "2ae6fe3ee734b7fdf11335663e18c75ea12dccc76062f09f164a3b0f8be4371a",
 }
-CACHE = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "rai-security/iac"
+CACHE = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "rasmus-security/iac"
 ARCHIVE_LIMIT = 128 * 1024 * 1024
 MEMBER_LIMIT = 256 * 1024 * 1024
 FILE_LIMIT = 1024 * 1024
