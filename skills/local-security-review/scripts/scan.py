@@ -15,11 +15,48 @@ import tarfile
 
 TOOLS = {"sast": "semgrep", "sca": "osv-scanner", "secrets": "gitleaks"}
 MAX_REPORT_BYTES = 32 * 1024 * 1024
-DEFAULT_RULES = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "rasmus-security/semgrep/security-audit.yaml"
+RULES_DIR = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "rasmus-security/semgrep/packs"
+BUNDLED_RULES = Path(__file__).resolve().parents[1] / "assets/semgrep"
+# Build output and dependency trees: generated keys/hashes there are noise; their sources are scanned.
+SKIP_DIRS = ("node_modules", "target", ".next", ".nuxt", ".svelte-kit", ".turbo", ".venv", "venv",
+             "__pycache__", ".mypy_cache", ".pytest_cache", ".tox", ".gradle")
+MANIFEST_LOCKS = {"Cargo.toml": ("Cargo.lock",),
+                  "package.json": ("package-lock.json", "pnpm-lock.yaml", "yarn.lock", "bun.lock", "bun.lockb"),
+                  "pyproject.toml": ("uv.lock", "poetry.lock", "pdm.lock", "Pipfile.lock", "requirements.txt"),
+                  "go.mod": ("go.sum",), "Gemfile": ("Gemfile.lock",), "composer.json": ("composer.lock",)}
+
+
+def rule_configs():
+    """Installed registry packs (from their download manifest) plus bundled rules."""
+    manifest = json.loads((RULES_DIR / "manifest.json").read_text())
+    return [RULES_DIR / f"{pack}.yaml" for pack in manifest["packs"]] + sorted(BUNDLED_RULES.glob("*.yaml"))
+
+
+def manifests_without_lockfiles(target, env):
+    """Dependency manifests SCA cannot evaluate because no lockfile sits next to them.
+
+    Cargo/npm workspaces keep one lockfile at the workspace root, so any ancestor counts.
+    """
+    try:
+        names = set(git(target, env, "ls-files", "--cached", "--others", "--exclude-standard", "-z").split("\0")) - {""}
+    except (OSError, ValueError, subprocess.SubprocessError):
+        return []
+    gaps = []
+    for name in sorted(names):
+        path = Path(name)
+        if path.name not in MANIFEST_LOCKS or any(part in SKIP_DIRS for part in path.parts):
+            continue
+        folders = [path.parent, *path.parent.parents]
+        if not any((target / folder / lock).is_file() for folder in folders for lock in MANIFEST_LOCKS[path.name]):
+            gaps.append(name)
+    return gaps
 
 
 def sca_command(binary, target, raw, config, allow_network, refresh=False):
-    return [str(binary), "scan", "source", "--recursive", "--no-resolve",
+    # --no-ignore: Git-ignored lockfiles (e.g. Cargo.lock in older Rust .gitignores) still pin real versions;
+    # build/dependency trees are excluded explicitly (rust-analyzer keeps lockfile copies under target/).
+    return [str(binary), "scan", "source", "--recursive", "--no-resolve", "--no-ignore",
+            "--experimental-exclude", "r:(^|/)(" + "|".join(name.replace(".", r"\.") for name in SKIP_DIRS) + ")(/|$)",
             "--no-call-analysis=all", "--all-packages", "--all-vulns", "--format=json", "--verbosity=warn",
             "--experimental-no-default-plugins", "--experimental-plugins=lockfile,sbom",
             "--config", str(config), "--output-file", str(raw),
@@ -29,16 +66,18 @@ def sca_command(binary, target, raw, config, allow_network, refresh=False):
 
 def command(args, target, raw):
     if args.scanner == "sast":
-        config = args.semgrep_config or (str(DEFAULT_RULES) if DEFAULT_RULES.is_file() else None)
-        if config:
-            config = Path(config).expanduser().resolve(strict=True)
+        if args.semgrep_config:
+            configs = [Path(args.semgrep_config).expanduser().resolve(strict=True)]
+        elif (RULES_DIR / "manifest.json").is_file():
+            configs = rule_configs()
         elif args.allow_network:
-            config = "p/security-audit"
+            configs = ["p/default", *sorted(BUNDLED_RULES.glob("*.yaml"))]
         else:
-            raise ValueError("SAST needs --semgrep-config with reviewed local rules, or --allow-network")
+            raise ValueError("SAST needs installed rule packs (setup_sast.py --fetch-rules), --semgrep-config or --allow-network")
         baseline = ["--baseline-commit", args.baseline] if args.baseline else []
-        return ["semgrep", "scan", "--oss-only", "--config", str(config),
-                "--metrics=off", "--disable-version-check", "--strict", "--error",
+        # No --strict: one unparsable file must not discard every other result.
+        return ["semgrep", "scan", "--oss-only", *[arg for config in configs for arg in ("--config", str(config))],
+                "--metrics=off", "--disable-version-check", "--error",
                 "--disable-nosem", "--verbose", "--no-rewrite-rule-ids",
                 "--json", "--output", str(raw), *baseline, "."], (0, 1)
     if args.scanner == "sca":
@@ -48,7 +87,10 @@ def command(args, target, raw):
         return sca_command(args.sca_binary, target, raw, config, args.allow_network,
                            not args.allow_network and not getattr(args, "offline", False)), (0, 1)
     config = raw.parent / "gitleaks.toml"
-    config.write_text("[extend]\nuseDefault = true\n")
+    skipped = "|".join(name.replace(".", r"\.") for name in SKIP_DIRS)
+    config.write_text("[extend]\nuseDefault = true\n\n[[allowlists]]\n"
+                      'description = "build output and dependency trees"\n'
+                      f"paths = ['''(^|/)({skipped})/''']\n")
     ignore = raw.parent / ".gitleaksignore"
     ignore.write_text("")
     return [args.secrets_binary, "git" if args.history else "dir", str(target),
@@ -71,25 +113,36 @@ def project(scanner, data):
                  "scanner_severity": "unspecified"} for index, item in enumerate(data, 1)], {
                      "scanned_files": None, "note": "Gitleaks JSON does not include a scanned-file inventory."}
     if scanner == "sast":
-        findings = [{"id": f"SAST-{index:04d}",
-                     "rule": item["check_id"], "path": item["path"],
-                     "line": item["start"]["line"],
-                     "end_line": item.get("end", item["start"])["line"],
-                     "scanner_severity": item["extra"]["severity"],
-                     "ai_disposition": "unreviewed",
-                     "metadata": {key: value for key, value in item["extra"].get("metadata", {}).items()
-                                  if key in ("cwe", "owasp", "confidence", "references")}}
-                    for index, item in enumerate(data["results"], 1)]
+        findings, seen = [], set()
+        for item in data["results"]:
+            # Several packs ship the same rule; keep one result per rule and span.
+            key = (item["check_id"], item["path"], item["start"]["line"], item["start"].get("col"),
+                   item.get("end", item["start"])["line"], item.get("end", item["start"]).get("col"))
+            if key in seen:
+                continue
+            seen.add(key)
+            findings.append({"id": f"SAST-{len(findings) + 1:04d}",
+                             "rule": item["check_id"], "path": item["path"],
+                             "line": item["start"]["line"],
+                             "end_line": item.get("end", item["start"])["line"],
+                             "scanner_severity": item["extra"]["severity"],
+                             "ai_disposition": "unreviewed",
+                             "metadata": {key: value for key, value in item["extra"].get("metadata", {}).items()
+                                          if key in ("cwe", "owasp", "confidence", "references")}})
+        errors = [{key: item[key] for key in ("type", "code", "level", "path") if key in item}
+                  for item in data.get("errors", [])]
+        # A partially parsed file is a coverage note; engine and rule errors still fail the scan.
         return findings, {"scanned_files": len(data["paths"]["scanned"]),
                           "scanned_paths": data["paths"]["scanned"],
                           "skipped": [{key: item[key] for key in ("path", "reason") if key in item}
                                       for item in data["paths"].get("skipped", [])],
-                          "scanner_errors": len(data.get("errors", [])),
-                          "errors": [{key: item[key] for key in ("type", "code", "level", "path") if key in item}
-                                     for item in data.get("errors", [])]}
+                          "scanner_errors": sum(item.get("level") != "warn" for item in errors),
+                          "parse_warnings": sum(item.get("level") == "warn" for item in errors),
+                          "errors": errors}
     findings = []
     packages = 0
     sources = []
+    first_by_alias = {}
     for source in data["results"]:
         sources.append({"path": source["source"]["path"],
                         "type": source["source"].get("type", "unknown"),
@@ -97,10 +150,25 @@ def project(scanner, data):
         for item in source["packages"]:
             packages += 1
             for vuln in item.get("vulnerabilities", []):
-                findings.append({"id": f"SCA-{len(findings) + 1:04d}", "engine": "osv-scanner",
+                fixed = sorted({event["fixed"] for affected in vuln.get("affected", [])
+                                if affected.get("package", {}).get("name") == item["package"].get("name")
+                                for ranges in affected.get("ranges", []) for event in ranges.get("events", [])
+                                if "fixed" in event})
+                finding_id = f"SCA-{len(findings) + 1:04d}"
+                # Same advisory under another database ID (e.g. RUSTSEC and GHSA): keep both, point at the first.
+                keys = [(source["source"]["path"], item["package"].get("name"), item["package"].get("version"), alias)
+                        for alias in (vuln["id"], *vuln.get("aliases", []))]
+                duplicate_of = next((first_by_alias[key] for key in keys if key in first_by_alias), None)
+                for key in keys:
+                    first_by_alias.setdefault(key, duplicate_of or finding_id)
+                findings.append({"id": finding_id, "engine": "osv-scanner",
                                  "rule": vuln["id"], "path": source["source"]["path"],
                                  "package": item["package"],
                                  "aliases": vuln.get("aliases", []),
+                                 "fixed_versions": fixed,
+                                 **({"duplicate_of": duplicate_of} if duplicate_of else {}),
+                                 # Advisory summaries are third-party text: evidence, never instructions.
+                                 "summary": str(vuln.get("summary", ""))[:200],
                                  "advisory_url": f"https://osv.dev/vulnerability/{vuln['id']}",
                                  "modified": vuln.get("modified"), "withdrawn": vuln.get("withdrawn"),
                                  "ai_disposition": "unreviewed",
@@ -283,10 +351,9 @@ def execute(args):
                 report["rules"] = {"source": "installed Gitleaks bundled rules; no consumer overrides",
                                    "wrapper_config_sha256": hashlib.sha256(config.read_bytes()).hexdigest()}
             if args.scanner == "sast":
-                config = Path(argv[argv.index("--config") + 1])
-                report["rules"] = {"source": str(config), "sha256": None}
-                if config.is_file():
-                    report["rules"]["sha256"] = hashlib.sha256(config.read_bytes()).hexdigest()
+                configs = [Path(argv[index + 1]) for index, arg in enumerate(argv) if arg == "--config"]
+                report["rules"] = {"sources": {str(config): hashlib.sha256(config.read_bytes()).hexdigest()
+                                               if config.is_file() else None for config in configs}}
                 report["coverage_notes"] = [
                     "CE analysis is not a proof of security; supported languages and configured rules limit detection.",
                     "Git/Semgrep ignores, size limits and unsupported files may exclude source; inspect coverage.skipped.",
@@ -306,11 +373,27 @@ def execute(args):
             report["exit_code"] = result.returncode
             if args.scanner == "sca":
                 report["advisory_databases"] = setup_sca.databases()
+                # OSV exits 128 when no lockfile/SBOM exists: nothing to match, not a crash.
+                if result.returncode == 128 and not raw.is_file():
+                    missing = manifests_without_lockfiles(scan_target, env)
+                    report["coverage"] = {"scanned_packages": 0, "sources": [], "manifests_without_lockfiles": missing}
+                    report["database_refresh"] = {"status": "not-needed"}
+                    report["status"] = "not-applicable"
+                    report["reason"] = ("Manifests without lockfiles; versions are unknown, generate a lockfile to enable SCA"
+                                        if missing else "No lockfiles or SBOMs in scope")
+                    return finish(output, report)
             if not raw.is_file() or raw.stat().st_size > MAX_REPORT_BYTES:
                 raise ValueError("Scanner report missing or exceeds 32 MiB; narrow the scan scope")
             with raw.open() as file:
                 data = json.load(file)
             report["findings"], report["coverage"] = project(args.scanner, data)
+            if args.scanner in ("sca", "secrets"):
+                # OSV and Gitleaks report absolute paths; keep them repository-relative like SAST.
+                for item in report["findings"] + report["coverage"].get("sources", []):
+                    location = Path(item["path"])
+                    if location.is_absolute() and location.is_relative_to(scan_target):
+                        item["path"] = str(location.relative_to(scan_target))
+                report["coverage"]["manifests_without_lockfiles"] = manifests_without_lockfiles(scan_target, env)
             if args.scanner in ("sca", "secrets"):
                 diagnostics = (Path(temporary) / "process.log").stat().st_size
                 report["coverage"]["diagnostic_bytes"] = diagnostics
@@ -339,6 +422,10 @@ def execute(args):
         report["error"] = str(error) if type(error) is ValueError else type(error).__name__
         if report.get("database_refresh", {}).get("status") == "pending":
             report["database_refresh"]["status"] = "failed-or-unverified"
+    return finish(output, report)
+
+
+def finish(output, report):
     report_path = output / "report.json"
     descriptor = os.open(report_path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
     with os.fdopen(descriptor, "w") as file:
@@ -368,7 +455,7 @@ def main():
         parser.error(str(error))
     print(json.dumps({"report": str(path), "status": report["status"],
                       "candidates": len(report["findings"])}))
-    return {"no-findings": 0, "findings": 1, "incomplete": 2}[report["status"]]
+    return {"no-findings": 0, "not-applicable": 0, "findings": 1, "incomplete": 2}[report["status"]]
 
 
 if __name__ == "__main__":

@@ -131,7 +131,7 @@ class LocalToolsTests(unittest.TestCase):
             self.assertEqual(len(ids), len(set(ids)))
             merged = render_review.merge(report, [])
             self.assertEqual(merged["counts"]["unreviewed"], len(ids))
-            self.assertIn("Semgrep rules missing/unapproved", render_review.markdown(merged))
+            self.assertIn("Semgrep rule packs missing or changed", render_review.markdown(merged))
             self.assertEqual(index, (self.repo / ".git/index").read_bytes())
             self.assertEqual(before, self.git("status", "--porcelain"))
             self.assertEqual(list(path.parent.iterdir()), [path])

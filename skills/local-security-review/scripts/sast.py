@@ -4,7 +4,6 @@
 import argparse
 import copy
 from datetime import datetime, timezone
-import hashlib
 import json
 import os
 from pathlib import Path
@@ -169,9 +168,13 @@ def execute(args):
             semgrep_args.scanner, semgrep_args.history = "sast", False
             semgrep_args.commit, semgrep_args.diff = ("HEAD" if args.commit or args.diff else None), False
             policy = json.loads((SCRIPTS.parent / "assets/semgrep-policy.json").read_text())
-            config = Path(args.semgrep_config).expanduser().resolve() if args.semgrep_config else scan.DEFAULT_RULES
-            allowed = args.custom_rules_license_reviewed if args.semgrep_config else (
-                config.is_file() and hashlib.sha256(config.read_bytes()).hexdigest() == policy["sha256"])
+            if args.semgrep_config:
+                allowed = args.custom_rules_license_reviewed
+            else:
+                try:
+                    allowed = setup_sast.rules_status()["status"] == "available"
+                except (OSError, ValueError, KeyError):
+                    allowed = False
             if allowed:
                 path, semgrep = scan.execute(semgrep_args)
                 # Keep projected results in the aggregate, not extra report trees.
@@ -179,7 +182,7 @@ def execute(args):
                 path.parent.rmdir()
             else:
                 semgrep = {"tool": "semgrep", "status": "incomplete", "findings": [],
-                           "error": "Semgrep rules missing/unapproved: use the reviewed snapshot or explicitly reviewed custom rules"}
+                           "error": "Semgrep rule packs missing or changed: run setup_sast.py --fetch-rules"}
             semgrep["license_policy"] = {"custom_rules": "user-reviewed; not validated by plugin"} if args.semgrep_config else policy
             semgrep.pop("target", None)
             report["engines"].append(semgrep)

@@ -136,5 +136,52 @@ class RealSemgrepTests(unittest.TestCase):
         self.assertEqual(self.scan("--commit", "HEAD")["status"], "no-findings")
 
 
+
+RUST_BAD = """
+async fn read(Path((alias, path)): Path<(String, String)>, pool: PgPool, cmd: String) {
+    let full = PathBuf::from("uploads").join(alias).join(path);
+    for entry in fs::read_dir(full).unwrap() {}
+    fs::remove_dir_all(PathBuf::from("uploads").join(cmd.clone())).unwrap();
+    sqlx::query(&format!("SELECT * FROM t WHERE n = '{}'", cmd)).fetch_all(&pool).await.unwrap();
+    Command::new(cmd).spawn().unwrap();
+    let mut v = Validation::new(Algorithm::HS256);
+    v.insecure_disable_signature_validation();
+    let cors = CorsLayer::new().allow_origin(Any);
+    let r = Response::builder().header(header::CONTENT_DISPOSITION, format!("attachment; filename={}", path));
+    let field = multipart.next_field().await.unwrap();
+}
+"""
+RUST_GOOD = """
+async fn safe(pool: PgPool, name: String) {
+    sqlx::query("SELECT * FROM t WHERE n = $1").bind(name).fetch_all(&pool).await.unwrap();
+    Command::new("git").arg("status").spawn().unwrap();
+    std::fs::read(PathBuf::from("uploads").join("fixed.txt")).unwrap();
+    let cors = CorsLayer::new().allow_origin("https://example.com".parse::<HeaderValue>().unwrap());
+    let value: Config = serde_json::from_str(TEXT).unwrap();
+}
+"""
+
+
+@unittest.skipUnless(shutil.which("semgrep"), "real Semgrep required")
+class BundledRustRuleTests(unittest.TestCase):
+    def test_rules_flag_dangerous_sinks_and_ignore_safe_variants(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "bad.rs").write_text(RUST_BAD)
+            (root / "good.rs").write_text(RUST_GOOD)
+            output = root / "out.json"
+            subprocess.run(["semgrep", "scan", "--oss-only", "--metrics=off", "--disable-version-check",
+                            "--config", str(SCRIPTS.parent / "assets/semgrep/rust.yaml"), "--no-git-ignore",
+                            "--json", "--output", str(output), "bad.rs", "good.rs"],
+                           cwd=root, capture_output=True, timeout=300)
+            data = json.loads(output.read_text())
+        self.assertEqual(data["errors"], [])
+        hits = {(item["path"], item["check_id"].rsplit(".", 1)[-1]) for item in data["results"]}
+        self.assertEqual({rule for path, rule in hits if path == "good.rs"}, set())
+        self.assertEqual({rule for path, rule in hits if path == "bad.rs"}, {
+            "path-join-to-filesystem", "sql-built-with-format", "command-non-literal-program",
+            "jwt-validation-disabled", "cors-any-origin", "content-disposition-from-input", "unwrap-on-request-input"})
+
+
 if __name__ == "__main__":
     unittest.main()

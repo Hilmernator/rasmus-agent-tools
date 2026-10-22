@@ -2,6 +2,7 @@
 """Explicitly install the locked local SAST tools; scans never install packages."""
 
 import argparse
+from datetime import datetime, timezone
 import hashlib
 import json
 import os
@@ -14,7 +15,7 @@ import tarfile
 import tempfile
 import urllib.request
 
-from scan import DEFAULT_RULES
+from scan import RULES_DIR
 import iac
 
 
@@ -117,9 +118,20 @@ def node_supported(version):
     return major >= 24 or (major == 22 and (minor, patch) >= (13, 0)) or (major == 20 and (minor, patch) >= (19, 0))
 
 
-def rules_match(data):
+def rules_status():
+    """Installed packs must match the policy list and the hashes recorded at download."""
     policy = json.loads(RULE_POLICY.read_text())
-    return hashlib.sha256(data).hexdigest() == policy["sha256"]
+    manifest = json.loads((RULES_DIR / "manifest.json").read_text())
+    missing = [pack for pack in policy["packs"] if pack not in manifest.get("packs", {})]
+    if missing:
+        return {"status": "missing", "missing_packs": missing, "path": str(RULES_DIR)}
+    for pack in policy["packs"]:
+        path = RULES_DIR / f"{pack}.yaml"
+        if path.is_symlink() or hashlib.sha256(path.read_bytes()).hexdigest() != manifest["packs"][pack]["sha256"]:
+            return {"status": "changed", "error": f"Rule pack {pack} differs from its download record; rerun --fetch-rules",
+                    "path": str(RULES_DIR)}
+    return {"status": "available", "path": str(RULES_DIR), "fetched_at": manifest["fetched_at"],
+            "packs": policy["packs"]}
 
 
 def check():
@@ -147,8 +159,7 @@ def check():
                                 "versions": {p["name"]: p["version"] for p in receipt["packages"]
                                              if p["name"] in ("bandit", "eslint", "eslint-plugin-security", "@typescript-eslint/parser")}}
             else:
-                data = DEFAULT_RULES.read_bytes()
-                checks[name] = {"status": "available" if rules_match(data) else "unapproved", "path": str(DEFAULT_RULES)}
+                checks[name] = rules_status()
         except (OSError, ValueError, KeyError, TypeError, subprocess.SubprocessError) as error:
             checks[name] = {"status": "missing" if isinstance(error, FileNotFoundError) else "error",
                             "error": str(error) if type(error) is ValueError else type(error).__name__}
@@ -157,32 +168,48 @@ def check():
     ready = all(item["status"] == "available" for item in checks.values())
     return {"status": "prerequisites-ready" if ready else "needs-setup", "checks": checks,
             "installation_tools": {tool: shutil.which(tool) for tool in ("uv", "npm")},
-            "next_step": "Run --verify" if ready else "Follow references/setup-sast.md in the local-security-review skill; install only missing components after approval"}
+            "next_step": "Ready to scan (--verify runs a functional self-test)" if ready else "Run security.py --setup (see references/setup.md)"}
 
 
-def fetch_rules():
-    """Explicit HTTPS download; pin check and exclusive publication preserve caches."""
-    if DEFAULT_RULES.exists() or DEFAULT_RULES.is_symlink():
-        if DEFAULT_RULES.is_file() and rules_match(DEFAULT_RULES.read_bytes()):
-            return {"status": "already-present", "path": str(DEFAULT_RULES)}
-        raise ValueError("Existing rules differ from policy; inspect them with the plugin maintainer, do not overwrite")
+def fetch_rules(refresh=False):
+    """Explicit HTTPS download of the policy's packs; scans never download rules.
+
+    The registry URLs are mutable, so content is recorded (sha256, time) at download
+    rather than pinned in advance. Rerunning with refresh replaces the whole set.
+    """
+    try:
+        if not refresh and rules_status()["status"] == "available":
+            return {"status": "already-present", "path": str(RULES_DIR)}
+    except (OSError, ValueError, KeyError):
+        pass
     policy = json.loads(RULE_POLICY.read_text())
     if not policy["source"].startswith("https://"):
         raise ValueError("Rule source must use HTTPS")
-    with urllib.request.urlopen(policy["source"], timeout=60) as response:
-        if not response.geturl().startswith("https://"):
-            raise ValueError("Rule download redirected outside HTTPS")
-        data = response.read(MAX_RULE_BYTES + 1)
-    if len(data) > MAX_RULE_BYTES or not rules_match(data):
-        raise ValueError("Downloaded rules do not match reviewed policy; maintainer review/update required, no rules saved")
-    DEFAULT_RULES.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
-    # An atomic hard-link publishes a complete file, refusing even a concurrent
-    # writer's destination. The temporary file is on the same filesystem.
-    with tempfile.NamedTemporaryFile(dir=DEFAULT_RULES.parent, prefix=".rules-") as temporary:
-        temporary.write(data)
-        temporary.flush()
-        os.link(temporary.name, DEFAULT_RULES)
-    return {"status": "installed", "path": str(DEFAULT_RULES), "sha256": policy["sha256"]}
+    RULES_DIR.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+    staging = Path(tempfile.mkdtemp(dir=RULES_DIR.parent, prefix=".packs-"))
+    try:
+        manifest = {"source": policy["source"], "license": policy["license"], "packs": {},
+                    "fetched_at": datetime.now(timezone.utc).isoformat()}
+        for pack in policy["packs"]:
+            with urllib.request.urlopen(policy["source"].format(pack=pack), timeout=120) as response:
+                if not response.geturl().startswith("https://"):
+                    raise ValueError("Rule download redirected outside HTTPS")
+                data = response.read(MAX_RULE_BYTES + 1)
+            if len(data) > MAX_RULE_BYTES or not data.startswith(b"rules:"):
+                raise ValueError(f"Rule pack {pack} is oversized or not a Semgrep rule file; nothing replaced")
+            (staging / f"{pack}.yaml").write_bytes(data)
+            manifest["packs"][pack] = {"sha256": hashlib.sha256(data).hexdigest(), "bytes": len(data)}
+        (staging / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+        # Swap complete sets only, so a failed download never leaves a mixed directory.
+        previous = RULES_DIR.with_name(staging.name + "-previous")
+        if RULES_DIR.exists():
+            RULES_DIR.rename(previous)
+        staging.rename(RULES_DIR)
+        shutil.rmtree(previous, ignore_errors=True)
+    finally:
+        shutil.rmtree(staging, ignore_errors=True)
+    return {"status": "installed", "path": str(RULES_DIR), "packs": list(manifest["packs"]),
+            "fetched_at": manifest["fetched_at"]}
 
 
 def verify():
@@ -200,6 +227,7 @@ def verify():
                        check=True, capture_output=True, timeout=30)
         (target / "unsafe.py").write_text("from urllib.request import urlopen\nurlopen(input())\neval(input())  # nosec\n")
         (target / "unsafe.ts").write_text("const value: string = process.argv[2]; eval(value);\n")
+        (target / "unsafe.rs").write_text("fn main() { let p = std::env::args().nth(1).unwrap(); std::process::Command::new(p).spawn().unwrap(); }\n")
         (target / "safe.py").write_text("print('setup fixture')\n")
         (target / "Dockerfile").write_text("FROM alpine:3.20\nUSER root\n")
         (target / "template.yaml").write_text("AWSTemplateFormatVersion: '2010-09-09'\nResources:\n  Bucket:\n    Type: AWS::S3::Bucket\n    Properties:\n      AccessControl: PublicRead\n")
@@ -251,13 +279,14 @@ def main():
     mode.add_argument("--verify", action="store_true", help="run all engines on temporary synthetic fixtures, offline")
     mode.add_argument("--install", action="store_true", help="explicitly install locked Bandit/ESLint outside repositories")
     mode.add_argument("--install-iac", action="store_true", help="install checksum-pinned Trivy after separate tool license review")
-    mode.add_argument("--fetch-rules", action="store_true", help="explicitly download checksum-pinned rules; never overwrite")
+    mode.add_argument("--fetch-rules", action="store_true", help="download the policy's Semgrep packs if missing")
+    mode.add_argument("--refresh-rules", action="store_true", help="re-download every Semgrep pack (explicit update)")
     args = parser.parse_args()
     try:
         if args.install:
             install()
             return 0
-        result = iac.install() if args.install_iac else fetch_rules() if args.fetch_rules else verify() if args.verify else check()
+        result = iac.install() if args.install_iac else fetch_rules(args.refresh_rules) if args.fetch_rules or args.refresh_rules else verify() if args.verify else check()
         print(json.dumps(result, indent=2))
         return 0 if result["status"] in ("prerequisites-ready", "ready", "already-present", "already-installed", "installed") else 2
     except (OSError, ValueError, KeyError, TypeError, tarfile.TarError, subprocess.SubprocessError) as error:

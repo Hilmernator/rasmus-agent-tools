@@ -1,4 +1,4 @@
 interface:
   display_name: "Local Security Review"
-  short_description: "Check setup, run all scanners and review every finding"
-  default_prompt: "Use $local-security-review to check setup, prepare missing scanners with approval, then run a full SAST, SCA and secret review of this repository."
+  short_description: "Scan, investigate every finding for impact, return a fix plan"
+  default_prompt: "Use $local-security-review on this repository: prepare scanners if needed, scan, investigate every finding for real impact, hunt for what scanners miss, and give me a fix plan."

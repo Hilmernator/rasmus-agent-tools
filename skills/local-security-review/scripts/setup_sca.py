@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Set up pinned OSV-Scanner and npm/PyPI databases outside consumer repositories."""
+"""Set up pinned OSV-Scanner and npm/PyPI/crates.io databases outside consumer repositories."""
 
 import argparse
 from datetime import datetime, timezone
@@ -22,7 +22,7 @@ HASHES = {
 }
 CACHE = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "rasmus-security/sca"
 DB = CACHE / "databases"
-ECOSYSTEMS = ("npm", "PyPI")
+ECOSYSTEMS = ("npm", "PyPI", "crates.io")
 
 
 def artifact():
@@ -113,6 +113,8 @@ def fixture(target):
             "": {"name": "rasmus-sca-smoke", "dependencies": {"lodash": "4.17.20"}},
             "node_modules/lodash": {"version": "4.17.20"}}}))
     (target / "requirements.txt").write_text("urllib3==1.26.4\n")
+    (target / "Cargo.lock").write_text('version = 3\n\n[[package]]\nname = "smallvec"\nversion = "1.6.0"\n'
+                                       'source = "registry+https://github.com/rust-lang/crates.io-index"\n')
 
 
 def verify(update=False):
@@ -136,7 +138,7 @@ def verify(update=False):
         findings, coverage = scan.project("sca", json.loads(raw.read_text()))
         detected = {item["package"]["ecosystem"] for item in findings}
         if detected != set(ECOSYSTEMS):
-            raise ValueError("Smoke scan must detect vulnerable dependencies in both npm and PyPI")
+            raise ValueError("Smoke scan must detect vulnerable dependencies in npm, PyPI and crates.io")
         if not all(item["present"] and item["bytes"] for item in databases()):
             raise ValueError("Smoke scan did not leave both offline databases available")
         return {"status": "ready", "version": VERSION, "detected_ecosystems": sorted(detected),
