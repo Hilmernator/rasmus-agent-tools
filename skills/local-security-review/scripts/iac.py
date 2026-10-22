@@ -119,6 +119,30 @@ def candidate(name):
             or path.name.lower().endswith((".dockerfile", ".containerfile")))
 
 
+def likely_iac(name):
+    path = Path(name)
+    return (path.suffix.lower() in {".tf", ".tofu", ".tfvars", ".template"} or "dockerfile" in path.name.lower()
+            or "containerfile" in path.name.lower())
+
+
+MODULE_BLOCK = re.compile(rb'(?m)^\s*module\s+"[^"]*"\s*\{')
+MODULE_SOURCE = re.compile(rb'(?m)^\s*source\s*=\s*"([^"]*)"')
+
+
+def remote_modules(name, data):
+    """True when a module block may resolve outside the repository (registry, git, http)."""
+    if name.endswith(".json"):
+        blocks = json.loads(data).get("module") or {}
+        sources = [str(body.get("source", "")) for body in (blocks.values() if isinstance(blocks, dict) else [])
+                   if isinstance(body, dict)]
+        return bool(blocks) and not all(source.startswith(("./", "../")) for source in sources)
+    if not MODULE_BLOCK.search(data):
+        return False
+    # ponytail: any non-local source line in a module-bearing file counts, even outside the module block.
+    sources = MODULE_SOURCE.findall(data)
+    return not sources or not all(source.startswith((b"./", b"../")) for source in sources)
+
+
 def extra_files(target, paths):
     """Explicit full-scan inputs may include Git-ignored synthesized templates."""
     files = set()
@@ -201,7 +225,8 @@ def run(target, names, excluded, temporary, env, timeout, changed=None, paths=()
             report.update(status="not-applicable", reason="No changed files")
             return report
         coverage["exclusions"] = [entry for entry in excluded if candidate(entry["path"])]
-        if coverage["exclusions"]:
+        # Large lockfiles/data JSON match the candidate suffixes; only real IaC exclusions are gaps.
+        if any(likely_iac(entry["path"]) for entry in coverage["exclusions"]):
             gaps.append("IaC candidates excluded by file, size or symlink policy")
         if cdk and not paths:
             gaps.append("CDK sources need current synthesized CloudFormation: full scan with --iac-path; synth/AWS execution is not automatic")
@@ -228,9 +253,10 @@ def run(target, names, excluded, temporary, env, timeout, changed=None, paths=()
                 gaps.append(f"Helm rendering is not enabled: {name}; supply rendered Kubernetes manifests")
             contents[name] = data
         terraform = {name for name in contents if name.endswith((".tf", ".tf.json", ".tofu", ".tofu.json"))}
-        # ponytail: reject module-bearing Terraform rather than implementing an HCL parser;
-        # use a native disable-downloads flag if Trivy exposes one in a future release.
-        modules = any(("module" in json.loads(contents[name]) if name.endswith(".json") else b"module" in contents[name]) for name in terraform)
+        # ponytail: regex over HCL, not a parser. Local "./" sources need no download; any other
+        # source could make Trivy fetch, so that Terraform set is skipped. Use a native
+        # disable-downloads flag if Trivy exposes one in a future release.
+        modules = any(remote_modules(name, contents[name]) for name in terraform)
         if modules:
             gaps.append("Terraform module declarations require a separately prepared plan; no module downloads or partial-source evaluation")
             for name in sorted(terraform):
@@ -271,9 +297,18 @@ def run(target, names, excluded, temporary, env, timeout, changed=None, paths=()
             raise ValueError("IaC diagnostics exceed 32 MiB")
         # Trivy can log parse/evaluation errors and still exit zero. Keep their presence,
         # never the diagnostic text. The embedded-check fallback is expected offline.
-        warnings = [line for line in log_path.read_bytes().splitlines() if re.search(rb"\b(?:WARN|ERROR)\b", line)
-                    and b"Falling back to embedded checks" not in line]
+        diagnostics = [line for line in log_path.read_bytes().splitlines() if re.search(rb"\b(?:WARN|ERROR)\b", line)
+                       and b"Falling back to embedded checks" not in line]
+        # Terraform without tfvars is normal; Trivy still evaluates with defaults/unknowns.
+        unset = [line for line in diagnostics if b"Variable values were not found" in line]
+        warnings = [line for line in diagnostics if line not in unset]
+        if unset:
+            coverage["notes"] = ["Terraform variables without values were evaluated as defaults/unknown; "
+                                 "checks that depend on them may be missed"]
         coverage["diagnostic_warnings_or_errors"] = len(warnings)
+        # Component tags such as "[terraform parser]" say where to look without echoing file content.
+        coverage["diagnostic_sources"] = sorted({tag.decode(errors="replace") for line in warnings
+                                                 for tag in re.findall(rb"\[([a-z][a-z /-]{1,40})\]", line)})
         if warnings or result.returncode:
             gaps.append("Trivy reported scan/evaluation diagnostics or a process failure; raw messages withheld")
         if coverage["check_counts"]["exceptions"]:

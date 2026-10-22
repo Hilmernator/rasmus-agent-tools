@@ -27,7 +27,7 @@ Evidence guides the next step: a failing test, a reproducible bug, a working pro
 | [review-bugs](skills/review-bugs/SKILL.md) | Explore edge cases, failure paths, and recovery without fixes | Adapted code quality plugin; see SOURCES.md |
 | [qa-only](skills/qa-only/SKILL.md) | Exercise behavior and report failures without fixes | Local workflow inspired by gstack |
 | [doubt-driven-development](skills/doubt-driven-development/SKILL.md) | Independently challenge a difficult claim | Adapted Osmani workflow |
-| [local-security-review](skills/local-security-review/SKILL.md) | Combined SAST, dependency, and secret review | Adapted security plugin; see SOURCES.md |
+| [local-security-review](skills/local-security-review/SKILL.md) | Local security review: scanners, impact investigation, hunt, fix plan | Adapted security plugin; see SOURCES.md |
 | [asd-ste100](skills/asd-ste100/SKILL.md) | Clear technical English with preserved meaning | danyuchn/asd-ste100-skill |
 
 ## Daily use
@@ -50,13 +50,17 @@ The root `plugin.json` describes the portable skills plugin. Compatibility manif
 
 ## Security: one entry point
 
-Use `local-security-review`. It contains the full scanner runners, locked toolchain definitions, coverage references, and setup procedures. The other security commands are internal scripts and reference documents, not separate discoverable skills.
+Use `local-security-review`. The agent prepares the scanners with one command (`security.py --setup`), scans, maps the target, investigates every finding for reachability and impact (confirming it with a local regression test where practical), hunts for issues scanners miss, and returns a fix plan. Say "fix it" afterwards to apply the plan.
 
-The default scope is full. Optional suffixes are `diff`, `commit [SHA]`, and `release`. See the skill for precise scope and permission boundaries.
+The default scope is full. Optional suffixes are `diff`, `commit [SHA]`, and `release`. Languages: Python, JavaScript/TypeScript and Rust source; npm, PyPI and crates.io dependencies; Terraform, CloudFormation, Dockerfile and Kubernetes; secrets in any file.
 
-Python 3.10+ is required. Setup supports macOS and Linux; Windows requires WSL. The locked ESLint toolchain requires Node `^20.19.0 || ^22.13.0 || >=24`. Scanner binaries, advisory databases, and reviewed rules remain machine-local and are not committed here. Setup checks and permissioned installation remain part of the workflow.
+Python 3.10+ is required. Setup supports macOS and Linux; Windows requires WSL. The locked ESLint toolchain requires Node `^20.19.0 || ^22.13.0 || >=24`. Scanner binaries, advisory databases, and rule packs remain machine-local and are not committed here.
 
-Review the [scanner licensing boundaries](skills/local-security-review/references/licensing.md) before setup. The collection preserves the vendored security engine and regression tests, with collection-specific names. It relocates setup instructions so they resolve within the single skill.
+Review the [scanner licensing boundaries](skills/local-security-review/references/licensing.md) before setup.
+
+## Upgrade notes for 0.6.0
+
+Security review: Semgrep now uses several registry packs plus bundled Rust rules instead of one checksum-pinned `security-audit` snapshot (that pin no longer matched the mutable registry URL, so setup failed on new machines). Run `security.py --setup` once to download the packs and the crates.io database. Rendering reads `assessments.json`, `groups.json` and `agent_findings.json` from the report folder and may be rerun. Setup and coverage references are merged into `setup.md` and `engines.md`.
 
 ## Upgrade notes for 0.5.0
 

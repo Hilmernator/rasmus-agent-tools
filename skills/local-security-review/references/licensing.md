@@ -1,9 +1,6 @@
-# Local SAST license boundary
+# License boundary
 
-For OSV-Scanner setup and advisory-data terms, use the separate [SCA boundary](sca.md).
-For Gitleaks and its bundled rules, use the [secrets boundary](secrets.md).
-
-Technical review dated 2026-09-17, for scanning the organization's own repositories
+Technical review dated 2026-09-17 (Semgrep rule packs updated 2026-10-22), for scanning the organization's own repositories
 internally. This is not company legal approval or a guarantee of compliance.
 Customer scanning, external services, redistribution and changed dependencies or
 rules require a new assessment. AI-provider data-handling terms are separate.
@@ -39,21 +36,41 @@ and its observed version is recorded in every scan.
 ## IaC scanner
 
 Trivy is a separately downloaded binary, not part of the Bandit/ESLint package
-allowlist or inventory. Its engine is Apache-2.0 and checks are MIT, but bundled
-dependencies include MPL-2.0 (HCL). Read [the IaC boundary](iac.md#licensing-and-updates)
-and confirm platform-policy approval before permanent installation. Do not describe
-the complete binary as permissive-only or silently weaken the existing allowlist.
+allowlist or inventory. Its [engine](https://github.com/aquasecurity/trivy/blob/v0.74.0/LICENSE)
+is Apache-2.0 and its [checks](https://github.com/aquasecurity/trivy-checks/blob/main/LICENSE)
+are MIT, but bundled dependencies include MPL-2.0 (HCL). Confirm platform-policy
+approval before permanent installation. Do not describe the complete binary as
+permissive-only or silently weaken the existing allowlist. Checksum matching is
+integrity evidence, not proof of a trustworthy build; keep
+[upstream supply-chain advisories](https://github.com/aquasecurity/trivy/security/advisories/GHSA-69fq-xp46-6x23)
+in the update review. No Trivy GitHub Action, `latest` installer or image is used.
+
+## SCA scanner and advisory data
+
+[OSV-Scanner](https://github.com/google/osv-scanner/blob/v2.6.0/LICENSE) is Apache-2.0.
+Advisory data is licensed separately: the GitHub Advisory Database and PyPA
+advisory database use CC-BY-4.0 (attribution when sharing adapted data); RustSec is
+CC0-1.0. Keep advisory IDs and links when sharing reports. OSV aggregates sources;
+do not assume one license covers future feeds.
+
+## Secret scanner
+
+[Gitleaks](https://github.com/gitleaks/gitleaks/blob/v8.30.1/LICENSE) and its bundled
+rules are MIT. This does not cover the separately licensed Gitleaks GitHub Action.
+Upstream describes Gitleaks as feature-complete with security-patch releases;
+migrating to another engine is a separate evaluation.
 
 ## Semgrep engine versus rules
 
 Semgrep CE's LGPL-2.1 engine and Semgrep Rules License 1.0 are distinct. SRL permits
 own internal business purposes but prohibits distributing rules or making them
-available to others as a service. We retain the existing locally downloaded
-security-audit snapshot and pin its checksum/source in `../assets/semgrep-policy.json`.
-The suite refuses an absent or changed default snapshot. Preserve upstream
-notices in the cached rules. The mutable registry URL cannot guarantee retrieval
-of that exact snapshot later: review and update the policy before accepting a
-different download. Never add the cached YAML to a plugin or shared image.
+available to others as a service. `../assets/semgrep-policy.json` lists the packs;
+setup downloads them per user and records each pack's SHA-256 and download time.
+Registry URLs are mutable, so content is recorded at download instead of pinned in
+advance; a pack that later differs from its record is refused until refreshed.
+Preserve upstream notices in the cached rules. Never add the cached YAML to a
+plugin, shared image or a service offered to others. The rules in
+`../assets/semgrep/` are written for this collection and are not SRL-licensed.
 
 Custom rule configs require explicit license-review acknowledgment; the plugin
 does not infer a license from compatibility with Semgrep or Opengrep. Do not

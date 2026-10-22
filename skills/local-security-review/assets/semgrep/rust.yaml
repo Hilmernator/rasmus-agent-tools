@@ -1,0 +1,143 @@
+# Collection-authored Rust audit rules for gaps in the public Semgrep packs.
+# They mark dangerous sinks for AI triage; they do not prove attacker control.
+rules:
+  - id: rasmus.rust.path-join-to-filesystem
+    languages: [rust]
+    severity: WARNING
+    message: >-
+      A non-literal path segment is joined onto a base path and reaches a filesystem
+      operation. If the segment is request-controlled, `..` or an absolute path escapes
+      the base directory (Path::join replaces the base when given an absolute path).
+    metadata:
+      cwe: ["CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')"]
+      category: security
+      confidence: MEDIUM
+    patterns:
+      - pattern-either:
+          - patterns:
+              - pattern-inside: |
+                  let $P = <... $BASE.join($X) ...>;
+                  ...
+              - pattern-either:
+                  - pattern: $FS::$OP(<... $P ...>)
+                  - pattern: $FS::$TYPE::$OP(<... $P ...>)
+          - pattern: $FS::$OP(<... $BASE.join($X) ...>)
+          - pattern: $FS::$TYPE::$OP(<... $BASE.join($X) ...>)
+      - metavariable-regex:
+          metavariable: $OP
+          regex: ^(read|read_to_string|read_dir|write|create|open|remove_file|remove_dir|remove_dir_all|create_dir|create_dir_all|copy|rename|hard_link|set_permissions|canonicalize|metadata)$
+      - metavariable-pattern:
+          metavariable: $X
+          patterns:
+            - pattern-not: '"..."'
+
+  - id: rasmus.rust.cors-any-origin
+    languages: [rust]
+    severity: WARNING
+    message: >-
+      CORS allows any origin. Without authentication, any website the user visits can
+      call this API from the browser (including localhost services).
+    metadata:
+      cwe: ["CWE-942: Permissive Cross-domain Policy with Untrusted Domains"]
+      category: security
+      confidence: MEDIUM
+    pattern-either:
+      - pattern: $C.allow_origin(Any)
+      - pattern: $C.allow_origin(tower_http::cors::Any)
+      - pattern: $C.allow_origin(cors::Any)
+      - pattern: $C.allow_origin(AllowOrigin::any())
+      - pattern: CorsLayer::permissive()
+      - pattern: CorsLayer::very_permissive()
+      - pattern: Cors::permissive()
+      - pattern: $C.allow_any_origin()
+
+  - id: rasmus.rust.sql-built-with-format
+    languages: [rust]
+    severity: ERROR
+    message: >-
+      SQL text is built with format!/string concatenation. If any interpolated value is
+      user-controlled this is SQL injection; use bind parameters instead.
+    metadata:
+      cwe: ["CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"]
+      category: security
+      confidence: MEDIUM
+    patterns:
+      - pattern-either:
+          - pattern: $Q(<... format!(...) ...>, ...)
+          - pattern: $Q(<... format!(...) ...>)
+          - pattern: $OBJ.$Q(<... format!(...) ...>, ...)
+          - pattern: $OBJ.$Q(<... format!(...) ...>)
+      - metavariable-regex:
+          metavariable: $Q
+          regex: ^(query|query_as|query_scalar|query_with|sql_query|execute|execute_batch|prepare|prepare_cached|query_row|query_map|simple_query|batch_execute)$
+
+  - id: rasmus.rust.command-non-literal-program
+    languages: [rust]
+    severity: WARNING
+    message: >-
+      A process is started with a non-literal program or through a shell. If any part
+      is user-controlled this allows command injection.
+    metadata:
+      cwe: ["CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')"]
+      category: security
+      confidence: LOW
+    pattern-either:
+      - patterns:
+          - pattern: Command::new($X)
+          - pattern-not: Command::new("...")
+      - patterns:
+          - pattern: std::process::Command::new($X)
+          - pattern-not: std::process::Command::new("...")
+      - pattern: Command::new("sh").arg("-c").arg($X)
+      - pattern: Command::new("bash").arg("-c").arg($X)
+      - pattern: Command::new("sh").args([..., "-c", ...])
+      - pattern: Command::new("bash").args([..., "-c", ...])
+
+  - id: rasmus.rust.content-disposition-from-input
+    languages: [rust]
+    severity: WARNING
+    message: >-
+      A Content-Disposition header is built with format!. An unescaped filename allows
+      header parameter injection, and invalid header bytes make `.unwrap()` panic.
+    metadata:
+      cwe: ["CWE-113: Improper Neutralization of CRLF Sequences in HTTP Headers"]
+      category: security
+      confidence: LOW
+    pattern-either:
+      - pattern: $B.header($H::CONTENT_DISPOSITION, format!(...))
+      - pattern: $B.header(CONTENT_DISPOSITION, format!(...))
+      - pattern: $B.header("content-disposition", format!(...))
+      - pattern: $B.header("Content-Disposition", format!(...))
+
+  - id: rasmus.rust.jwt-validation-disabled
+    languages: [rust]
+    severity: ERROR
+    message: >-
+      JWT validation is weakened (signature, expiry or audience checks disabled).
+      Tokens may be forged or replayed.
+    metadata:
+      cwe: ["CWE-347: Improper Verification of Cryptographic Signature"]
+      category: security
+      confidence: HIGH
+    pattern-either:
+      - pattern: $V.insecure_disable_signature_validation()
+      - pattern: $V.validate_exp = false
+      - pattern: $V.validate_aud = false
+      - pattern: jsonwebtoken::dangerous_insecure_decode(...)
+      - pattern: dangerous_insecure_decode(...)
+
+  - id: rasmus.rust.unwrap-on-request-input
+    languages: [rust]
+    severity: INFO
+    message: >-
+      A request extractor/body result is unwrapped. Malformed client input makes the
+      handler panic instead of returning an error (denial of service per request).
+    metadata:
+      cwe: ["CWE-248: Uncaught Exception"]
+      category: security
+      confidence: LOW
+    pattern-either:
+      - pattern: $M.next_field().await.unwrap()
+      - pattern: $M.next_field().await.expect(...)
+      - pattern: $F.bytes().await.unwrap()
+      - pattern: $F.text().await.unwrap()

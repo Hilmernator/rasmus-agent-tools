@@ -45,7 +45,7 @@ class GroupTests(unittest.TestCase):
         self.assertEqual(result["issues"][1]["finding_ids"], ["SAST-0003"])
         self.assertEqual(result["summary"]["scanner_findings"], 3)
         rendered = review.markdown(result)
-        self.assertEqual(rendered.count("### ISSUE-"), 2)
+        self.assertEqual(rendered.split("## Fix plan")[1].split("## All candidates")[0].count("\n### "), 2)
         for finding in self.report["findings"]:
             self.assertIn(finding["id"], rendered)
         self.assertIn("not demonstrated", rendered)
@@ -67,9 +67,9 @@ class GroupTests(unittest.TestCase):
              "confidence": "high", "dismissal_reason": "Fixture input is constant and isolated from deployed paths."}
             for i in range(3, 39)]
         result = review.merge(report, assessments, [self.group])
-        self.assertEqual(result["summary"], {"scanner_findings": 38, "issue_groups": 37,
+        self.assertEqual(result["summary"], {"scanner_findings": 38, "agent_findings": 0, "issue_groups": 37,
             "actionable_issue_groups": 1, "unresolved_issue_groups": 0, "false_positive_scanner_findings": 36})
-        self.assertEqual(review.markdown(result).count("### ISSUE-"), 1)
+        self.assertEqual(review.markdown(result).split("## Fix plan")[1].split("## All candidates")[0].count("\n### "), 1)
         self.assertEqual(len(result["findings"]), 38)
         self.assertEqual({i for group in result["issues"] for i in group["finding_ids"]},
                          {f["id"] for f in report["findings"]})
@@ -113,7 +113,7 @@ class GroupTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 review.merge(self.report, [{**self.assessments[0], **changes}])
 
-    def test_cli_groups_counts_appendix_permissions_and_no_overwrite(self):
+    def test_cli_groups_counts_appendix_permissions_and_rerender(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             for name, data in (("report", self.report), ("assessments", self.assessments), ("groups", [self.group])):
@@ -125,8 +125,15 @@ class GroupTests(unittest.TestCase):
             summary = json.loads(result.stdout)["summary"]
             self.assertEqual((summary["scanner_findings"], summary["actionable_issue_groups"]), (3, 2))
             output = root / "review.json"
-            before = output.read_bytes()
             self.assertEqual(output.stat().st_mode & 0o777, 0o600)
+            # Rerendering after edits replaces the review; inputs beside the report are found by default.
+            self.assertEqual(subprocess.run([sys.executable, str(RUNNER), str(root / "report.json")],
+                                            capture_output=True).returncode, 0)
+            self.assertEqual(output.stat().st_mode & 0o777, 0o600)
+            self.assertEqual(json.loads(output.read_text())["summary"]["actionable_issue_groups"], 2)
+            invalid = [{**self.assessments[0], "disposition": "confirmed", "preconditions": ""}]
+            (root / "assessments.json").write_text(json.dumps(invalid))
+            before = output.read_bytes()
             self.assertNotEqual(subprocess.run(command, capture_output=True).returncode, 0)
             self.assertEqual(before, output.read_bytes())
 

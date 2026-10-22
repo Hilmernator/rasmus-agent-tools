@@ -20,20 +20,27 @@ class SetupTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
-        self.rules = self.root / "cache/rules.yaml"
+        self.rules = self.root / "cache/packs"
         self.policy = self.root / "policy.json"
-        self.payload = b"rules: []\n"
-        self.policy.write_text(json.dumps({"source": "https://example.invalid/reviewed-rules",
-                                          "sha256": hashlib.sha256(self.payload).hexdigest()}))
-        for name, value in (("DEFAULT_RULES", self.rules), ("RULE_POLICY", self.policy)):
+        self.payloads = {"default": b"rules:\n- id: a\n", "rust": b"rules:\n- id: b\n"}
+        self.policy.write_text(json.dumps({"source": "https://example.invalid/c/p/{pack}", "packs": list(self.payloads),
+                                           "license": "Semgrep-Rules-License-1.0"}))
+        for name, value in (("RULES_DIR", self.rules), ("RULE_POLICY", self.policy)):
             patcher = patch.object(setup_sast, name, value)
             patcher.start()
             self.addCleanup(patcher.stop)
 
-    def response(self, data):
+    def response(self, data, url="https://example.invalid/c/p/x"):
         response = io.BytesIO(data)
-        response.geturl = lambda: "https://example.invalid/reviewed-rules"
+        response.geturl = lambda: url
+        response.__enter__ = lambda *a: response
         return response
+
+    def serve(self, overrides=None):
+        def opener(url, timeout):
+            pack = url.rsplit("/", 1)[1]
+            return self.response((overrides or {}).get(pack, self.payloads[pack]), url)
+        return opener
 
     def test_check_reports_missing_without_installing_or_downloading(self):
         with patch.object(setup_sast.shutil, "which", return_value=None), \
@@ -59,43 +66,37 @@ class SetupTests(unittest.TestCase):
         for version in ("v18.20.0", "v20.18.9", "v22.12.9", "v23.9.0", "v24.0.0-rc.1", "unknown"):
             self.assertFalse(setup_sast.node_supported(version), version)
 
-    def test_download_checks_hash_and_publishes_exclusively(self):
-        with patch.object(setup_sast.urllib.request, "urlopen", return_value=self.response(self.payload)):
-            self.assertEqual(setup_sast.fetch_rules()["status"], "installed")
-        self.assertEqual(self.rules.read_bytes(), self.payload)
-        self.assertEqual(self.rules.stat().st_mode & 0o777, 0o600)
-        self.assertEqual(list(self.rules.parent.iterdir()), [self.rules])
+    def test_fetch_records_hashes_and_check_detects_tampering(self):
+        with patch.object(setup_sast.urllib.request, "urlopen", side_effect=self.serve()):
+            result = setup_sast.fetch_rules()
+        self.assertEqual(result["status"], "installed")
+        self.assertEqual((self.rules / "rust.yaml").read_bytes(), self.payloads["rust"])
+        manifest = json.loads((self.rules / "manifest.json").read_text())
+        self.assertEqual(manifest["packs"]["default"]["sha256"], hashlib.sha256(self.payloads["default"]).hexdigest())
+        self.assertEqual(setup_sast.rules_status()["status"], "available")
         with patch.object(setup_sast.urllib.request, "urlopen") as network:
             self.assertEqual(setup_sast.fetch_rules()["status"], "already-present")
             network.assert_not_called()
-        self.rules.write_bytes(b"user-owned rules")
-        with patch.object(setup_sast.urllib.request, "urlopen") as network, self.assertRaises(ValueError):
-            setup_sast.fetch_rules()
-        self.assertEqual(self.rules.read_bytes(), b"user-owned rules")
-        network.assert_not_called()
+        (self.rules / "rust.yaml").write_bytes(b"rules: []\n")
+        self.assertEqual(setup_sast.rules_status()["status"], "changed")
+        with patch.object(setup_sast.urllib.request, "urlopen", side_effect=self.serve()):
+            self.assertEqual(setup_sast.fetch_rules(refresh=True)["status"], "installed")
+        self.assertEqual(setup_sast.rules_status()["status"], "available")
+        self.assertEqual(sorted(p.name for p in self.rules.parent.iterdir()), ["packs"])
 
-    def test_mismatch_oversize_and_http_redirect_leave_cache_absent(self):
-        for data in (b"changed upstream rules", b"x" * 100):
-            with patch.object(setup_sast, "MAX_RULE_BYTES", 20), \
-                 patch.object(setup_sast.urllib.request, "urlopen", return_value=self.response(data)), \
-                 self.assertRaises(ValueError):
-                setup_sast.fetch_rules()
-            self.assertFalse(self.rules.parent.exists())
-        response = self.response(self.payload)
-        response.geturl = lambda: "http://example.invalid/insecure"
-        with patch.object(setup_sast.urllib.request, "urlopen", return_value=response), self.assertRaises(ValueError):
+    def test_bad_download_never_replaces_the_working_set(self):
+        with patch.object(setup_sast.urllib.request, "urlopen", side_effect=self.serve()):
             setup_sast.fetch_rules()
-        self.assertFalse(self.rules.exists())
-
-    def test_concurrent_writer_is_preserved(self):
-        def competing_link(source, destination):
-            Path(destination).write_bytes(b"another installation")
-            raise FileExistsError
-        with patch.object(setup_sast.urllib.request, "urlopen", return_value=self.response(self.payload)), \
-             patch.object(setup_sast.os, "link", side_effect=competing_link), self.assertRaises(FileExistsError):
-            setup_sast.fetch_rules()
-        self.assertEqual(self.rules.read_bytes(), b"another installation")
-        self.assertEqual(list(self.rules.parent.iterdir()), [self.rules])
+        before = {p.name: p.read_bytes() for p in self.rules.iterdir()}
+        insecure = lambda url, timeout: self.response(b"rules: []\n", "http://example.invalid/insecure")
+        for name, opener in (("not a rule file", self.serve({"rust": b"<html>login</html>"})),
+                             ("oversized", self.serve({"rust": b"rules:" + b"x" * 100})),
+                             ("redirected to http", insecure)):
+            with self.subTest(name), patch.object(setup_sast, "MAX_RULE_BYTES", 50), \
+                 patch.object(setup_sast.urllib.request, "urlopen", side_effect=opener), self.assertRaises(ValueError):
+                setup_sast.fetch_rules(refresh=True)
+            self.assertEqual({p.name: p.read_bytes() for p in self.rules.iterdir()}, before)
+            self.assertEqual(sorted(p.name for p in self.rules.parent.iterdir()), ["packs"])
 
     def test_verify_stops_before_running_scanners_when_prerequisites_missing(self):
         with patch.object(setup_sast, "check", return_value={"status": "needs-setup"}), \

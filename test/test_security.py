@@ -57,7 +57,7 @@ class CombinedTests(unittest.TestCase):
             report = security.check()
         self.assertEqual(report["status"], "needs-setup")
         self.assertEqual(set(report["checks"]), {"sast", "sca", "secrets"})
-        self.assertEqual(report["checks"]["sca"]["setup_skill"], "setup-sca")
+        self.assertEqual(report["checks"]["sca"]["setup"], "security.py --setup")
         self.assertNotIn("private diagnostic", json.dumps(report))
         install.assert_not_called()
 

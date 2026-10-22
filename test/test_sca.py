@@ -88,7 +88,13 @@ class ScaTests(unittest.TestCase):
             path, report = scan.execute(args)
             self.addCleanup(shutil.rmtree, path.parent)
             self.assertEqual(report["status"], "findings", report.get("error"))
-            self.assertEqual({f["package"]["ecosystem"] for f in report["findings"]}, {"npm", "PyPI"})
+            self.assertEqual({f["package"]["ecosystem"] for f in report["findings"]}, {"npm", "PyPI", "crates.io"})
+            self.assertIn("--no-ignore", report["command"])
+            # Nested build trees (rust-analyzer keeps lockfile copies under crate/target/) stay excluded.
+            exclude = report["command"][report["command"].index("--experimental-exclude") + 1]
+            self.assertRegex("crate/target", exclude.removeprefix("r:"))
+            self.assertNotRegex("crate/targets", exclude.removeprefix("r:"))
+            self.assertTrue(all("fixed_versions" in f for f in report["findings"]))
             self.assertIn("--no-call-analysis=all", report["command"])
             self.assertIn("--offline", report["command"])
             self.assertNotIn("--download-offline-databases", report["command"])

@@ -41,8 +41,8 @@ def validate(root):
             if target:
                 assert (path.parent / target).exists(), f'Broken link: {path}: {target}'
     security = root / 'skills/local-security-review'
+    assert (security / 'references/setup.md').is_file()
     for name in ('sast', 'sca', 'secrets'):
-        assert (security / f'references/setup-{name}.md').is_file()
         assert (security / f'scripts/setup_{name}.py').is_file()
     return len(skills)
 
