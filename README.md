@@ -28,6 +28,7 @@ Evidence guides the next step: a failing test, a reproducible bug, a working pro
 | [qa-only](skills/qa-only/SKILL.md) | Exercise behavior and report failures without fixes | Local workflow inspired by gstack |
 | [doubt-driven-development](skills/doubt-driven-development/SKILL.md) | Independently challenge a difficult claim | Adapted Osmani workflow |
 | [local-security-review](skills/local-security-review/SKILL.md) | Local security review: scanners, impact investigation, hunt, fix plan | Adapted security plugin; see SOURCES.md |
+| [security-audit](skills/security-audit/SKILL.md) | Source-first security guidance and multi-phase audits with independent verification | Cloudflare; see SOURCES.md |
 | [asd-ste100](skills/asd-ste100/SKILL.md) | Clear technical English with preserved meaning | danyuchn/asd-ste100-skill |
 
 ## Daily use
@@ -36,7 +37,7 @@ Use interview-me when you need an overall product direction. It produces a livin
 
 Use Ponytail as the coding style. Use TDD for the next behavior and diagnosis when a failure needs investigation. Use a prototype when an experiment can answer an unresolved question.
 
-Run code validation before commit and QA when runtime behavior needs verification. Use review-bugs to probe edge cases, invalid inputs, concurrency, and recovery in an uncommitted diff or selected flow; it reports findings without changing source files. Use doubt-driven development for difficult claims rather than every small edit. Run local security review for security coverage.
+Run code validation before commit and QA when runtime behavior needs verification. Use review-bugs to probe edge cases, invalid inputs, concurrency, and recovery in an uncommitted diff or selected flow; it reports findings without changing source files. Use doubt-driven development for difficult claims rather than every small edit. Use local-security-review for scanner-backed security reviews and security-audit for source-first guidance or multi-phase audits.
 
 These workflows complement each other. Avoid running several equivalent reviews on the same unchanged artifact.
 
@@ -48,7 +49,7 @@ For Codex, personal skills can live under `~/.agents/skills/<name>`. For Claude 
 
 The root `plugin.json` describes the portable skills plugin. Compatibility manifests in `.codex-plugin/` and `.claude-plugin/` expose the same collection to those hosts. This repository is the source of truth; no installation, cache replacement, or global configuration change is performed by cloning it. Copy only the selected directories to avoid duplicates with the original plugins.
 
-## Security: one entry point
+## Security workflows
 
 Use `local-security-review`. The agent prepares the scanners with one command (`security.py --setup`), scans, maps the target, investigates every finding for reachability and impact (confirming it with a local regression test where practical), hunts for issues scanners miss, and returns a fix plan. Say "fix it" afterwards to apply the plan.
 
@@ -57,6 +58,12 @@ The default scope is full. Optional suffixes are `diff`, `commit [SHA]`, and `re
 Python 3.10+ is required. Setup supports macOS and Linux; Windows requires WSL. The locked ESLint toolchain requires Node `^20.19.0 || ^22.13.0 || >=24`. Scanner binaries, advisory databases, and rule packs remain machine-local and are not committed here.
 
 Review the [scanner licensing boundaries](skills/local-security-review/references/licensing.md) before setup.
+
+Use [security-audit](skills/security-audit/SKILL.md) for source-first security guidance or an explicitly requested full codebase audit. Full audits use reconnaissance, coverage-led hunting, independent validation, and structured reports. The bundled validators use Node.js and have no external dependencies. Target-code execution requires the sandbox controls defined in the skill; if those controls are unavailable, validation remains blocked. Choose the workflow that answers the task rather than running both by default.
+
+## Upgrade notes for 0.7.0
+
+Added Cloudflare's security-audit as a separate skill with its complete references, report schema, validators, tests, and MIT license. Its content is unchanged from the pinned upstream revision in SOURCES.md. Local-security-review remains available.
 
 ## Upgrade notes for 0.6.0
 
@@ -89,6 +96,7 @@ Run the package checks and bundled security regression tests with a supported Py
 python3 scripts/validate_package.py
 python3.14 -m unittest discover -s test -v
 python3 skills/asd-ste100/scripts/ste-lint.py --selftest
+node --test skills/security-audit/*.test.cjs
 ```
 
 Security integration tests can skip when real scanners or databases are absent. Unit tests and package checks do not establish live scanner coverage or agent behavior. Real scans must follow the security skill's scope and permissions.

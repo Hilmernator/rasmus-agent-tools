@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 EXPECTED = {
     'asd-ste100', 'code-validation', 'diagnosing-bugs',
     'doubt-driven-development', 'local-security-review', 'ponytail',
-    'prototype', 'qa-only', 'tdd', 'interview-me', 'review-bugs',
+    'prototype', 'qa-only', 'tdd', 'interview-me', 'review-bugs', 'security-audit',
 }
 
 
@@ -44,6 +44,9 @@ def validate(root):
     assert (security / 'references/setup.md').is_file()
     for name in ('sast', 'sca', 'secrets'):
         assert (security / f'scripts/setup_{name}.py').is_file()
+    audit = root / 'skills/security-audit'
+    for name in ('report-schema.json', 'validate-findings.cjs', 'validate-coverage-ledger.cjs', 'LICENSE'):
+        assert (audit / name).is_file(), f'Missing audit dependency: {name}'
     return len(skills)
 
 

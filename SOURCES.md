@@ -11,6 +11,7 @@ This collection contains vendored source and local adaptations. It does not fetc
 | ASD-STE100 | danyuchn/asd-ste100-skill `3944283c183eea13fe5bd902b572da3b4de8bf44` | [MIT](licenses/asd-ste100.txt), portable frontmatter adaptation |
 | Local security review and tests | Stampen Media security plugin `2fc0d6d414d220e920cd7f13ef9953ab1201559f`; installed cache 0.1.0+codex.20260922120756 | User-requested copy; no upstream repository license found. No new license is asserted for this source. |
 | Bug review and review contract | Stampen Media code quality plugin `04c64e802ac646b56a0f0b0e10aa151740ba1a53`; installed cache 0.2.0+codex.20261001082644 | User-requested copy; no upstream repository license found. No new license is asserted for this source. |
+| Security audit | [cloudflare/security-audit-skill](https://github.com/cloudflare/security-audit-skill) `c1c8a8c1471069fb0e188eeaff69b8e8db6564a8`, captured 2026-10-26 | [MIT](skills/security-audit/LICENSE), unchanged upstream skill |
 | QA only | Original local workflow, inspired by garrytan/gstack report-only QA | No gstack runtime or source copied |
 | Code validation | Existing rasmus-agent-tools source | English translation preserving review scope |
 
@@ -29,3 +30,5 @@ The README lists behavioral adaptations. Security scanner code and tests retain 
 Review-bugs and its review contract match the installed Stampen Media code quality source captured on 2026-10-15. The contract is bundled inside the skill, and the broad-review handoff uses this collection's code-validation instead of the upstream review-code skill. No other upstream code quality skills or runtime dependencies are imported. Upstream project branding and repository links were removed at the maintainer's request; source owner, captured revisions, and license status remain recorded above.
 
 ASD's official dictionary is not included. The ASD-STE100 skill provides structural rules and a heuristic linter, not certified compliance.
+
+Security-audit includes every file from the pinned upstream `skills/security-audit/` directory without modification. The upstream MIT license is included inside the skill so standalone copies retain the notice. This revision also matches the installed local skill byte for byte; no runtime download or installation hook is added.
