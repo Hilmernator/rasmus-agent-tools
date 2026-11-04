@@ -29,6 +29,7 @@ Evidence guides the next step: a failing test, a reproducible bug, a working pro
 | [doubt-driven-development](skills/doubt-driven-development/SKILL.md) | Independently challenge a difficult claim | Adapted Osmani workflow |
 | [local-security-review](skills/local-security-review/SKILL.md) | Local security review: scanners, impact investigation, hunt, fix plan | Adapted security plugin; see SOURCES.md |
 | [security-audit](skills/security-audit/SKILL.md) | Source-first security guidance and multi-phase audits with independent verification | Cloudflare; see SOURCES.md |
+| [security-gap-analysis](skills/security-gap-analysis/SKILL.md) | Gap analysis against the security requirements that fit the product (ASVS, AISVS, MASVS), documented in the repository's `security/` folder | Collection-authored; bundled OWASP catalogs, see SOURCES.md |
 | [asd-ste100](skills/asd-ste100/SKILL.md) | Clear technical English with preserved meaning | danyuchn/asd-ste100-skill |
 
 ## Daily use
@@ -60,6 +61,12 @@ Python 3.10+ is required. Setup supports macOS and Linux; Windows requires WSL. 
 Review the [scanner licensing boundaries](skills/local-security-review/references/licensing.md) before setup.
 
 Use [security-audit](skills/security-audit/SKILL.md) for source-first security guidance or an explicitly requested full codebase audit. Full audits use reconnaissance, coverage-led hunting, independent validation, and structured reports. The bundled validators use Node.js and have no external dependencies. Target-code execution requires the sandbox controls defined in the skill; if those controls are unavailable, validation remains blocked. Choose the workflow that answers the task rather than running both by default.
+
+Use [security-gap-analysis](skills/security-gap-analysis/SKILL.md) to find controls that are missing rather than bugs in code that exists. It models the product, selects OWASP ASVS 5.0, AISVS 1.0 for LLM, agent, RAG and MCP features, and MASVS 2.1 for mobile apps, then records a status with `file:line` evidence for each requirement in the target repository's `security/` folder. Coverage is checked, not assumed: every file is listed and must be read, skimmed or skipped with a reason, and a fixed-pattern inventory of servers, routes, processes, network calls, deserialization, HTML sinks and model calls must be placed in the profile or explained. A file that changes reopens itself and the rows that cite it. The requirement catalogs are bundled; `scripts/build_catalogs.py` rebuilds them from the pinned sources.
+
+## Upgrade notes for 0.8.0
+
+Added security-gap-analysis with bundled ASVS 5.0.0, AISVS 1.01 and MASVS 2.1.0 catalogs (CC BY-SA 4.0) and `gap.py`, which keeps `requirements.csv`, the file ledger `files.csv` and the boundary inventory `inventory.csv` consistent and fails `check` while any of them is incomplete or stale.
 
 ## Upgrade notes for 0.7.0
 
