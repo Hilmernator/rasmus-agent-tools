@@ -4,6 +4,7 @@ import csv
 import io
 import json
 from pathlib import Path
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -84,6 +85,29 @@ class Rows(unittest.TestCase):
         code, out = run("check", str(self.repo), "--complete")
         self.assertEqual(code, 1)
         self.assertIn("70 requirements are unassessed", out)
+
+    def test_the_folder_holds_only_its_own_files(self):
+        (self.repo / "security/notes-2026.md").write_text("x\n")
+        (self.repo / "security/findings.csv").write_text("id,status\n")
+        out = run("check", str(self.repo))[1]
+        self.assertIn("security/notes-2026.md: not a file of this folder", out)
+        self.assertIn("security/findings.csv: header must be fingerprint,skill,", out)
+        self.assertNotIn("requirements.csv: not a file", out)
+
+    def test_the_folder_is_ignored_by_git_unless_it_is_tracked(self):
+        def git(repo, *args):
+            return subprocess.run(["git", "-C", str(repo), *args], capture_output=True, text=True)
+        git(self.repo, "init", "-q")
+        self.assertIn("ignored: added security/", run("init", str(self.repo), "--select", "asvs:1")[1])
+        self.assertEqual(git(self.repo, "status", "--porcelain", "--", "security").stdout, "")
+        self.assertNotIn("ignored:", run("files", str(self.repo))[1])
+        tracked = Path(tempfile.mkdtemp())
+        git(tracked, "init", "-q")
+        run("init", str(tracked), "--select", "asvs:1")
+        (tracked / ".git/info/exclude").write_text("")
+        git(tracked, "add", "security")
+        run("files", str(tracked))
+        self.assertEqual((tracked / ".git/info/exclude").read_text(), "")
 
 
 class Coverage(unittest.TestCase):

@@ -60,20 +60,26 @@ Mark each line of the Entrypoints list in `context.md` as `walked` or `not walke
 
 `python3 scripts/render_review.py <report.json>` picks up `assessments.json`, `groups.json` and `agent_findings.json` from the report folder and writes `review.md`/`review.json` (rerun freely after changes).
 
+When every candidate has its disposition, run `python3 scripts/ledger.py record <repository-root> <report folder>/review.json`. It keeps the findings ledger, one file in the repository: `security/findings.csv`, one row per finding, kept out of commits through `.git/info/exclude`. For each assessed finding it prints the ID, a fingerprint and a label: `new`, `seen before` (with the earlier status, how it was known and since when), `changed`, or `decided by user`. Run it now and not earlier: this run's verdicts come from this run's reading of the code, and the ledger stays closed until they are final. A label goes into the report; it never changes a disposition. A commit review prints `not recorded`, because the ledger describes the working tree. A diff review or an incomplete scan adds and updates rows; only a complete full scan removes the rows it no longer finds.
+
+When the user decides a finding in the conversation (it is a false positive, or it is real), store their decision: `python3 scripts/ledger.py decide <repository-root> <fingerprint> --status <status> --note "<their reason>"`. Later runs show it as `decided by user` and never overwrite it. Only the user's own words are a decision.
+
 In chat, in this order:
 
-1. **Fix plan**: one numbered item per confirmed/likely issue, most severe first: what is wrong, where (path:line), who can reach it and the impact, the fix, and how to verify it. Say which issues a test confirmed.
-2. **Unresolved**: anything still `needs-review`, and the one question or check that would settle it.
-3. **Dismissed**: a count plus the main reasons (details are in `review.md`).
+1. **Fix plan**: one numbered item per confirmed/likely issue, most severe first: what is wrong, where (path:line), who can reach it and the impact, the fix, and how to verify it. Say which issues a test confirmed, and give each its ledger label.
+2. **Unresolved**: anything still `needs-review`, and the one question or check that would settle it. Put here every finding whose label disagrees with this run (`changed`, `decided by user: … ; this run says …`, `file changed since that decision`), with both verdicts.
+3. **Dismissed**: a count plus the main reasons (details are in `review.md`), and how many of them were dismissed before.
 4. **Coverage gaps** that matter for this repository: engines that did not run, languages and file types no engine reads, IDs left `unreviewed`, entrypoints not walked.
 5. **Not in this review**: one line. It looks for defects in code that exists, from source. Controls that are missing altogether are security-gap-analysis; what the running application does is local-dast; what is deployed is checked by none of them.
 6. Link `review.md`. End by offering to apply the fix plan.
 
 Never call a repository secure because nothing was found.
 
+Done when `ledger.py record` has printed its row count (or `not recorded`) and every item of the fix plan carries its label.
+
 ## Boundaries
 
-- Do not change code, suppress findings, rotate credentials, commit or push during the review. When the user then says to fix: apply the plan in order, add the verification test where the plan names one, run the project's tests, and rescan with `--diff` to confirm the signals are gone.
+- Do not change code, suppress findings, rotate credentials, commit or push during the review. The one file the review writes in the repository is `security/findings.csv`, and only through `ledger.py`. When the user then says to fix: apply the plan in order, add the verification test where the plan names one, run the project's tests, and rescan with `--diff` to confirm the signals are gone.
 - Confirmation tests run locally, in a temporary copy of the repository (never the user's working tree): unit tests, scripts, or a locally started instance. Building and running tests executes project code, so prove only in repositories the user owns or trusts. No external targets, real credentials, or destructive actions outside temporary data.
 - If a safety stop interrupts a step, do not retry the same text; continue with the next file in the workflow and keep the affected IDs `needs-review`.
 - Never print or read secret values into the conversation, and do not open `.env`, key or credential config files raw while mapping. Use `scripts/secret_probe.py <report.json> [IDs]` for flagged findings, or `scripts/secret_probe.py --repo <root> --file <path>` for any file you suspect; both return yes/no facts only. Never test a credential against its provider.

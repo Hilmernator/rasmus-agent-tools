@@ -32,6 +32,10 @@ FILE_FIELDS = ["path", "lines", "status", "sha", "notes"]
 FILE_STATUSES = ["unread", "read", "skimmed", "skipped"]
 INV_FIELDS = ["kind", "path", "line", "text", "status", "notes"]
 INV_STATUSES = ["unreviewed", "boundary", "internal", "test"]
+# The whole folder. A file outside this list is a problem: state lives in these, not in one more file per run.
+SECURITY_FILES = ["profile.md", "files.csv", "inventory.csv", "requirements.csv", "gaps.md", "accepted-risks.md", "findings.csv"]
+# findings.csv is written by ledger.py of local-security-review and local-dast; this is its header.
+FINDING_FIELDS = ["fingerprint", "skill", "rule", "path", "status", "basis", "sha", "first_seen", "last_seen", "note"]
 SKIP_DIRS = {".git", "node_modules", "target", "dist", "build", ".venv", "venv", "__pycache__", "vendor", ".next"}
 CODE = re.compile(r"\.(m|c)?(t|j)sx?$|\.(py|rs|go|java|kt|kts|rb|php|cs|swift|m|mm|c|cc|cpp|h|hpp|html?|vue|svelte|astro"
                   r"|sh|ps1|ya?ml|toml|tf|xml|plist|entitlements|gradle)$|(^|/)Dockerfile[^/]*$|(^|/)package\.json$")
@@ -135,6 +139,25 @@ def revision(repo):
         return sha + ("+dirty" if dirty else "")
     except (OSError, subprocess.CalledProcessError):
         return datetime.date.today().isoformat()
+
+
+def ensure_ignored(repo, entry):
+    """Keep security state out of commits without touching a tracked file: add it to .git/info/exclude."""
+    def git(*a):
+        try:
+            return subprocess.run(["git", "-C", str(repo), *a], capture_output=True, text=True)
+        except OSError:
+            return subprocess.CompletedProcess(a, 1, "", "")
+    if git("rev-parse", "--is-inside-work-tree").stdout.strip() != "true":
+        return
+    if git("ls-files", "--", entry).stdout.strip() or git("check-ignore", "-q", entry).returncode == 0:
+        return
+    exclude = Path(git("rev-parse", "--git-path", "info/exclude").stdout.strip())
+    exclude = exclude if exclude.is_absolute() else Path(repo) / exclude
+    exclude.parent.mkdir(parents=True, exist_ok=True)
+    with exclude.open("a") as f:
+        f.write(f"\n# local security state, not for commits\n{entry}\n")
+    print(f"ignored: added {entry} to {exclude}")
 
 
 def init(args):
@@ -496,6 +519,14 @@ def check(args):
     print("total  " + "  ".join(f"{s} {n}" for s, n in total.items() if n))
     found, ledgers = coverage_problems(repo, rows)
     errors += found
+    for p in sorted((repo / "security").iterdir()):
+        if p.name not in SECURITY_FILES and not p.name.startswith("."):
+            errors.append(f"security/{p.name}: not a file of this folder ({', '.join(SECURITY_FILES)}); move it out")
+    findings = repo / "security/findings.csv"
+    if findings.exists():
+        with findings.open(newline="") as f:
+            if next(csv.reader(f), None) != FINDING_FIELDS:
+                errors.append(f"security/findings.csv: header must be {','.join(FINDING_FIELDS)}; write it only with ledger.py")
     if args.complete and total["unassessed"]:
         errors.append(f'{total["unassessed"]} requirements are unassessed')
     if ledgers:
@@ -542,8 +573,11 @@ def main(argv=None):
     p.add_argument("repo")
     p.add_argument("--complete", action="store_true", help="also fail while a requirement is unassessed")
     args = ap.parse_args(argv)
-    return {"init": init, "show": show, "set": set_, "files": files, "inventory": inventory,
+    code = {"init": init, "show": show, "set": set_, "files": files, "inventory": inventory,
             "check": check}[args.cmd](args) or 0
+    if args.cmd in ("init", "files", "inventory"):
+        ensure_ignored(args.repo, "security/")
+    return code
 
 
 if __name__ == "__main__":

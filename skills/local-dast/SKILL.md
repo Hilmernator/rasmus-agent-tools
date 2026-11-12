@@ -69,7 +69,7 @@ Done when you hold the `report.json` path and know for each case whether it pass
 
 ## 6. Investigate
 
-Investigate candidates against code and intended behavior. Use ZAP rule links for scanner explanations. Follow up by adding a bounded case with a concrete assertion rather than dumping response bodies. Keep a small ledger of hypotheses, evidence and next checks so the agent changes its approach based on results. Stop after ten hypotheses or when no useful next check is available; report remaining questions. Do not repeat the same inconclusive request.
+Investigate candidates against code and intended behavior. Use ZAP rule links for scanner explanations. Follow up by adding a bounded case with a concrete assertion rather than dumping response bodies. Keep a short list of hypotheses, evidence and next checks so the agent changes its approach based on results. Stop after ten hypotheses or when no useful next check is available; report remaining questions. Do not repeat the same inconclusive request.
 
 Confirm meaningful failures from reset fixtures, compare an allowed control with the denied case, and save a regression test in the disposable copy when practical. Record `confirmed`, `likely`, `needs-review`, `false-positive` or `unreviewed` with evidence and preconditions. A failed expectation is a candidate, not automatically a security vulnerability. A local development server's missing headers do not establish production exposure.
 
@@ -79,14 +79,18 @@ Done when every failed case and every `DAST-` candidate has one of the five disp
 
 Save an agent assessment beside the generated report. Include the fix plan, reproduced behavior and source locations where known, unresolved candidates, dismissal rationale, exercised cases and coverage gaps. Link the assessment and the generated review. Do not silently drop scanner candidates or call the app secure because none were found.
 
-In chat, in this order: the fix plan, most severe first (what the running app did, what it should have done, where in the code, the fix, the case that proves it); what is unresolved and the one check that would settle it; what was dismissed and why; the coverage gaps (routes without a case, cases that did not run, whether ZAP completed, and that nothing was crawled, run in a browser or actively scanned). End by offering to apply the fix plan.
+Then record the verdicts in the findings ledger, the one file `security/findings.csv` in the source repository (the user's repository, not the disposable copy). Save `assessments.json` beside the report: a list with one entry per failed case and per `DAST-` candidate, `{"id": "<case id or DAST-0001>", "disposition": "confirmed|likely|needs-review|false-positive|unreviewed", "basis": "test|code|assumed", "note": "<one line>"}`. `basis` says how the verdict is known: `test` when a case or regression test showed it, `code` when reading the handler did, `assumed` otherwise. A note names the route's behaviour and the reason in plain words; credentials, cookies, payloads and response data stay in `private/`. Run `python3 scripts/ledger.py record <source-repository> <run dir>/report.json --assessments <run dir>/assessments.json`. It prints a label for each assessed candidate: `new`, `seen before`, `changed` or `decided by user`. Run it now and not earlier: this run's verdicts come from this run's evidence, and a label never changes a disposition. When the user decides a candidate in the conversation, store it with `python3 scripts/ledger.py decide <source-repository> <fingerprint> --status <status> --note "<their reason>"`.
+
+In chat, in this order: the fix plan, most severe first (what the running app did, what it should have done, where in the code, the fix, the case that proves it, its ledger label); what is unresolved and the one check that would settle it; what was dismissed and why; the coverage gaps (routes without a case, cases that did not run, whether ZAP completed, and that nothing was crawled, run in a browser or actively scanned). End by offering to apply the fix plan.
+
+Done when `ledger.py record` has printed its row count and every item of the fix plan carries its label.
 
 This skill reviews by default. If asked to fix, apply the agreed fixes and regression tests to the user's working tree, run project checks, and replay the same DAST cases. Stop only processes you started, and clean up temporary test data.
 
 ## Boundaries
 
 - Every request to the target goes through the runner's plan, so the target check, the request budget and the private capture hold for all of them.
-- Keep reports private outside Git; retain evidence only as long as needed, and explicitly remove the run directory when the user no longer needs it. Never commit credentials, HAR, session state, downloaded scanners or scan reports.
+- Keep reports private outside Git; the one file this skill writes in the source repository is `security/findings.csv`, through `ledger.py`, and it holds labels and one-line notes only. Retain evidence only as long as needed, and explicitly remove the run directory when the user no longer needs it. Never commit credentials, HAR, session state, downloaded scanners or scan reports.
 - Credentials are those of disposable test accounts in the disposable copy, passed in `DAST_` environment variables. Never use a real account's password, token or cookie, and never print a credential's value.
 - Test only an application the user owns or is trusted to test, on this machine. A deployed or shared instance is out of scope even when it is reachable.
 - Browser journeys, active ZAP scans, Schemathesis and Nuclei are future adapters, not current capabilities. Adding them requires enforced target/egress boundaries, scoped credentials, cancellation and budget tests, and fresh license/integrity review. Do not route around this runner's limits by quietly issuing a broader scan or enabling external callback services.
