@@ -66,7 +66,7 @@ In chat, in this order:
 2. **Unresolved**: anything still `needs-review`, and the one question or check that would settle it.
 3. **Dismissed**: a count plus the main reasons (details are in `review.md`).
 4. **Coverage gaps** that matter for this repository: engines that did not run, languages and file types no engine reads, IDs left `unreviewed`, entrypoints not walked.
-5. **Not in this review**: one line. It looks for defects in code that exists, from source. Controls that are missing altogether are security-gap-analysis; the running application and what is deployed are checked by neither.
+5. **Not in this review**: one line. It looks for defects in code that exists, from source. Controls that are missing altogether are security-gap-analysis; what the running application does is local-dast; what is deployed is checked by none of them.
 6. Link `review.md`. End by offering to apply the fix plan.
 
 Never call a repository secure because nothing was found.

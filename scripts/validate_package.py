@@ -8,7 +8,7 @@ EXPECTED = {
     'asd-ste100', 'code-validation', 'diagnosing-bugs',
     'doubt-driven-development', 'local-security-review', 'ponytail',
     'prototype', 'qa-only', 'tdd', 'interview-me', 'review-bugs', 'security-audit',
-    'security-gap-analysis', 'blueprint',
+    'security-gap-analysis', 'blueprint', 'local-dast',
 }
 
 

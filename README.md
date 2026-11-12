@@ -30,6 +30,7 @@ Evidence guides the next step: a failing test, a reproducible bug, a working pro
 | [local-security-review](skills/local-security-review/SKILL.md) | Local security review: scanners, impact investigation, hunt, fix plan | Adapted security plugin; see SOURCES.md |
 | [security-audit](skills/security-audit/SKILL.md) | Source-first security guidance and multi-phase audits with independent verification | Cloudflare; see SOURCES.md |
 | [security-gap-analysis](skills/security-gap-analysis/SKILL.md) | Missing controls: gap analysis against the security requirements that fit the product (ASVS, AISVS, MASVS), documented in the repository's `security/` folder | Collection-authored; bundled OWASP catalogs, see SOURCES.md |
+| [local-dast](skills/local-dast/SKILL.md) | Runtime security test of a locally running app: planned HTTP cases with assertions, login sessions, state-changing cases against a disposable copy, ZAP passive analysis, fix plan | Collection-authored; ZAP downloaded separately, see SOURCES.md |
 | [blueprint](skills/blueprint/SKILL.md) | Draw a codebase's architecture as an HTML page where every box cites the code behind it; sketch, compare and diff architectures | Collection-authored; see SOURCES.md |
 | [asd-ste100](skills/asd-ste100/SKILL.md) | Clear technical English with preserved meaning | danyuchn/asd-ste100-skill |
 
@@ -57,17 +58,18 @@ Use [blueprint](skills/blueprint/SKILL.md) to see how a repository is built. It 
 
 ## Security workflows
 
-Three skills answer three different questions. None replaces another, and none of them tests a running application.
+Four skills answer four different questions. Each runs on its own, and none replaces another.
 
 | Question | Skill | It leaves behind |
 | --- | --- | --- |
 | Which known defect patterns, leaked secrets, vulnerable dependencies and misconfigured infrastructure are in the code, and which of them matter? | `local-security-review` | A fix plan and `review.md` in a private temporary folder |
 | Which defects does a careful reader find without scanners? | `security-audit` | A structured report with a coverage ledger |
 | Which controls should exist and do not? | `security-gap-analysis` | The repository's `security/` folder |
+| What does the running application do when one user asks for or changes another's data, and what does its traffic give away? | `local-dast` | A fix plan and `review.md` in a private temporary folder |
 
-For a full pass over a repository, run them in this order, each on the result of the one before: `security-gap-analysis` first (its `security/profile.md` and inventory are the map the others start from), then `local-security-review` with `release`, then `security-audit` in full mode when a second, independent reading is worth its cost. Blueprint gives the same map as a picture when that helps. On unchanged code, one run of each is enough.
+No skill waits for another. When you do want a full pass over a repository, this order saves work, because each skill can start from what the one before left: `security-gap-analysis` first (its `security/profile.md` and inventory are a map the others can start from), then `local-security-review` with `release`, then `security-audit` in full mode when a second, independent reading is worth its cost, then `local-dast` on a disposable running copy to check at runtime what the source reading claims. Blueprint gives the same map as a picture when that helps. On unchanged code, one run of each is enough.
 
-What no skill here covers: the running application (dynamic testing), what is deployed but not in the repository, container images, dependencies outside npm, PyPI and crates.io, licence compliance of dependencies, and standards that are not bundled (CIS and cloud benchmarks, PCI DSS, ISO 27001, SOC 2, GDPR). No bundled standard covers the build and release pipeline; the gap analysis inventories it and reports what it finds as outside the selection.
+What no skill here covers: crawling, browser-driven journeys and active scanning of the running application (`local-dast` sends only the cases its plan lists), what is deployed but not in the repository, container images, dependencies outside npm, PyPI and crates.io, licence compliance of dependencies, and standards that are not bundled (CIS and cloud benchmarks, PCI DSS, ISO 27001, SOC 2, GDPR). No bundled standard covers the build and release pipeline; the gap analysis inventories it and reports what it finds as outside the selection.
 
 Use `local-security-review`. The agent prepares the scanners with one command (`security.py --setup`), scans, maps the target, investigates every finding for reachability and impact (confirming it with a local regression test where practical), hunts for issues scanners miss, and returns a fix plan. Say "fix it" afterwards to apply the plan.
 
@@ -81,9 +83,13 @@ Use [security-audit](skills/security-audit/SKILL.md) for source-first security g
 
 Use [security-gap-analysis](skills/security-gap-analysis/SKILL.md) to find controls that are missing rather than bugs in code that exists. It models the product, selects OWASP ASVS 5.0, AISVS 1.0 for LLM, agent, RAG and MCP features, and MASVS 2.1 for mobile apps, then records a status with `file:line` evidence for each requirement in the target repository's `security/` folder. Coverage is checked, not assumed: every file is listed and must be read, skimmed or skipped with a reason, and a fixed-pattern inventory of the ways in (servers, routes and serverless handlers, command lines, IPC, uploads), the effects outside the program (processes, network calls, data stores, model calls), the build and release pipeline, and the dangerous sinks must be placed in the profile or explained. A file that changes reopens itself and the rows that cite it. The requirement catalogs are bundled; `scripts/build_catalogs.py` rebuilds them from the pinned sources.
 
+Use [local-dast](skills/local-dast/SKILL.md) to test a running application. The agent starts a disposable copy on 127.0.0.1 with synthetic data, writes a plan of cases from the code (who may read, list, change and delete what), and `dast.py` sends exactly those requests, checks each response against its assertion and has ZAP read the recorded traffic passively. A case can log in and keep its session, and a plan can hold `POST`, `PUT`, `PATCH` and `DELETE` cases, which run only with `--allow-writes`. It needs Python 3.10+, Java 17+ and the pinned ZAP archive, downloaded once as [its setup](skills/local-dast/references/setup.md) describes; ZAP is not bundled. It does not crawl, drive a browser or scan actively, and the runner cannot stop the application itself from reaching the network: the skill gives the macOS command that does. The wider design, of which this is the first part, is in [the DAST proposal](docs/agent-powered-dast.md).
+
 ## Upgrade notes for 0.9.0
 
 Added blueprint, moved here from the animation-engine repository. Its pages now go under `~/blueprint/`; pages made before the move stay where they were written and still open.
+
+Added local-dast. It needs a ZAP archive and a Java runtime that the collection does not install; without them it runs only with `--http-only` and reports ZAP coverage as incomplete.
 
 Security-gap-analysis finds more kinds of boundary: serverless handlers and event sources, framework route files, command lines and stdin, uploads and archives, data stores, the build and release pipeline, native and unsafe code, and switched-off TLS verification. An existing `security/` folder therefore shows new `unreviewed` inventory lines on its next `gap.py inventory`, and `gap.py check` fails until they are placed. `gap.py check --complete` also fails while a requirement is unassessed. Local-security-review keeps a list of entrypoints and marks each one walked or not walked; its hunt now covers webhooks, uploads, sessions and cryptography, LLM features, desktop IPC and the build pipeline. Security-audit is unchanged.
 
@@ -130,6 +136,6 @@ node --test skills/security-audit/*.test.cjs
 npm ci --prefix skills/blueprint/scripts && npm test --prefix skills/blueprint/scripts
 ```
 
-Security integration tests can skip when real scanners or databases are absent. Unit tests and package checks do not establish live scanner coverage or agent behavior. Real scans must follow the security skill's scope and permissions.
+Security integration tests can skip when real scanners or databases are absent. For the DAST tests that run ZAP, set `AGENT_TOOLS_DAST_ZAP_ARCHIVE` to the pinned ZIP and `AGENT_TOOLS_DAST_JAVA` to an absolute Java executable path; without both they skip. The DAST tests start a server on a loopback port, which a host sandbox may have to permit. Unit tests and package checks do not establish live scanner coverage or agent behavior. Real scans must follow the security skill's scope and permissions.
 
 See [SOURCES.md](SOURCES.md) for provenance, adaptation details, and licenses.
