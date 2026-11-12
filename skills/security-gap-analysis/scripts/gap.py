@@ -5,7 +5,7 @@
   gap.py set       REPO PREFIX ... --status S [--evidence "path:line; path:line-line"] [--notes TEXT]
   gap.py files     REPO [--list STATUS] [--mark PATH ... --status S [--notes TEXT]]
   gap.py inventory REPO [--list STATUS] [--mark --kind K --path P --lines A-B --status S [--notes TEXT]]
-  gap.py check     REPO
+  gap.py check     REPO [--complete]
 
 A PREFIX is standard:id-prefix, for example asvs:V6, asvs:V6.2.1, aisvs:9, aisvs-ac:AC.4, masvs:MASVS-STORAGE.
 A PATH is a file or a directory; "." is the whole repository.
@@ -34,7 +34,7 @@ INV_FIELDS = ["kind", "path", "line", "text", "status", "notes"]
 INV_STATUSES = ["unreviewed", "boundary", "internal", "test"]
 SKIP_DIRS = {".git", "node_modules", "target", "dist", "build", ".venv", "venv", "__pycache__", "vendor", ".next"}
 CODE = re.compile(r"\.(m|c)?(t|j)sx?$|\.(py|rs|go|java|kt|kts|rb|php|cs|swift|m|mm|c|cc|cpp|h|hpp|html?|vue|svelte|astro"
-                  r"|sh|ps1|ya?ml|toml|tf)$|(^|/)Dockerfile[^/]*$")
+                  r"|sh|ps1|ya?ml|toml|tf|xml|plist|entitlements|gradle)$|(^|/)Dockerfile[^/]*$|(^|/)package\.json$")
 # Where input from outside can enter, or where code acts on something outside. Recall matters more than
 # precision: every hit is either named in the profile or marked internal or test with a reason.
 SIGNALS = [
@@ -43,7 +43,12 @@ SIGNALS = [
                r"|containerPort|bind\(\s*\(?\s*[\"'](0\.0\.0\.0|127\.0\.0\.1|localhost|::)"),
     ("route", r"\b(app|router|server|fastify|api|hono)\.(get|post|put|patch|delete|all|route|use)\(\s*[\"'`]"
               r"|@\w+\.(get|post|put|patch|delete|route|api_route|websocket)\(|#\[(get|post|put|patch|delete|route)\("
-              r"|\.route\(\s*\"|HandleFunc\(|\(\s*\"(GET|POST|PUT|PATCH|DELETE)\"\s*,|\bpath\(\s*[\"']"),
+              r"|\.route\(\s*\"|HandleFunc\(|\(\s*\"(GET|POST|PUT|PATCH|DELETE)\"\s*,|\bpath\(\s*[\"']"
+              r"|\bdef\s+\w*handler\(\s*event\b|exports\.handler\s*=|export\s+const\s+handler\b"
+              r"|^\s*Type:\s*(Http)?Api\s*$|^\s*Type:\s*(SQS|SNS|S3|Kinesis|DynamoDB|Schedule|EventBridgeRule)\s*$"
+              r"|AWS::(ApiGateway|ApiGatewayV2|AppSync|Lambda::Url)\b"
+              r"|export\s+(async\s+)?function\s+(GET|POST|PUT|PATCH|DELETE)\b|^\s*[\"']use server[\"']"
+              r"|\b(public|protected)Procedure\b|@(Get|Post|Put|Patch|Delete|Request)Mapping\("),
     ("process", r"Command::new\(|\bsubprocess\.|os\.system\(|os\.popen\(|child_process|\bexecFile(Sync)?\(|(?<!::)\bspawn(Sync)?\("
                 r"|\bexecSync\(|Runtime\.getRuntime\(\)\.exec|ProcessBuilder|NSTask|Process\(\)"),
     ("network-out", r"https?://[a-z0-9-]+(\.[a-z0-9-]+)+|reqwest::|ureq::|\bfetch\(|axios|requests\.(get|post|put|delete|request)"
@@ -61,8 +66,21 @@ SIGNALS = [
     ("headers", r"Access-Control-Allow|Content-Security-Policy|\bcors\(|X-Frame-Options|Strict-Transport-Security"),
     ("env", r"env::var|process\.env|os\.environ|getenv\(|ENV\["),
     ("ipc", r"UnixStream|NSXPC|postMessage|addEventListener\(\s*[\"']message|WKWebView|ipcMain|ipcRenderer|contextBridge"
-            r"|registerProtocol|deep.?link"),
-    ("weak-crypto", r"\b(md5|MD5|sha1|SHA1|Md5|Sha1)\b|\bECB\b|Math\.random\(|\brandom\.random\("),
+            r"|registerProtocol|deep.?link|tauri::command|android:exported=\"true\"|CFBundleURLSchemes|<intent-filter"),
+    ("weak-crypto", r"\b(md5|MD5|sha1|SHA1|Md5|Sha1)\b|\bECB\b|Math\.random\(|\brandom\.random\("
+                    r"|verify\s*=\s*False|danger_accept_invalid_(certs|hostnames)|rejectUnauthorized:\s*false"
+                    r"|InsecureSkipVerify:\s*true|NODE_TLS_REJECT_UNAUTHORIZED|NSAllowsArbitraryLoads"
+                    r"|usesCleartextTraffic=\"true\""),
+    ("cli", r"\benv::args(_os)?\(|\bclap::|derive\([^)]*\bParser\b|import argparse|argparse\.|sys\.argv|process\.argv|\bclick\.(command|group)"
+            r"|\btyper\.|io::stdin\(|sys\.stdin|process\.stdin"),
+    ("upload", r"\bmultipart\b|MultipartFile|\bmulter\b|UploadFile|formidable|busboy|\.extractall\(|tarfile\.open|zipfile\.ZipFile|ZipArchive"
+               r"|ZipInputStream|tar::Archive|\btar\s+-?x|\bunzip\b|[Cc]ontent-[Dd]isposition"),
+    ("store", r"localStorage|sessionStorage|document\.cookie|indexedDB|SecItem(Add|CopyMatching|Update)|\bKeychain"
+              r"|SharedPreferences|UserDefaults|\bs3\.|put_object|PutObjectCommand|put_item|\bredis\b|mongodb|dynamodb(?!:)|DynamoDB"),
+    ("pipeline", r"pull_request_target|workflow_run|\$\{\{\s*github\.(event|head_ref)|\$\{\{\s*secrets\.|permissions:\s*write-all"
+                 r"|\b(curl|wget)\b[^|\n]*\|\s*(sudo\s+)?(ba|z)?sh\b|\b(npm|cargo|twine|gem)\s+(publish|upload|push)\b"
+                 r"|docker\s+push|\"(pre|post)?install\"\s*:|uses:\s*[\w./-]+@(?![0-9a-f]{40}\b)"),
+    ("ffi", r"\bunsafe\s*(\{|fn\b|impl\b|extern\b)|extern\s+\"C\"|#\[no_mangle\]|\bctypes\.|\bdlopen\(|System\.loadLibrary"),
 ]
 SIGNAL_RES = [(kind, re.compile(p, re.I if kind in {"sql", "auth"} else 0)) for kind, p in SIGNALS]
 
@@ -478,6 +496,8 @@ def check(args):
     print("total  " + "  ".join(f"{s} {n}" for s, n in total.items() if n))
     found, ledgers = coverage_problems(repo, rows)
     errors += found
+    if args.complete and total["unassessed"]:
+        errors.append(f'{total["unassessed"]} requirements are unassessed')
     if ledgers:
         frows, irows = ledgers
         print(coverage_line(frows))
@@ -520,6 +540,7 @@ def main(argv=None):
     p.add_argument("--notes")
     p = sub.add_parser("check")
     p.add_argument("repo")
+    p.add_argument("--complete", action="store_true", help="also fail while a requirement is unassessed")
     args = ap.parse_args(argv)
     return {"init": init, "show": show, "set": set_, "files": files, "inventory": inventory,
             "check": check}[args.cmd](args) or 0

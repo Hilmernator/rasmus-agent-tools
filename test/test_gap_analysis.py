@@ -81,6 +81,9 @@ class Rows(unittest.TestCase):
         code, out = run("check", str(self.repo))
         self.assertEqual(code, 0, out)
         self.assertIn("unassessed 70", out)
+        code, out = run("check", str(self.repo), "--complete")
+        self.assertEqual(code, 1)
+        self.assertIn("70 requirements are unassessed", out)
 
 
 class Coverage(unittest.TestCase):
@@ -134,6 +137,44 @@ class Coverage(unittest.TestCase):
         run("set", str(self.repo), "masvs:MASVS-CODE-1", "--status", "met", "--evidence", "src/util.rs:1")
         code, out = self.check()
         self.assertIn("evidence src/util.rs is skipped, not read", out)
+
+
+class Signals(unittest.TestCase):
+    def kinds(self, name, text):
+        repo = Path(tempfile.mkdtemp())
+        (repo / name).parent.mkdir(parents=True, exist_ok=True)
+        (repo / name).write_text(text)
+        return {h["kind"] for h in gap.scan(repo)}
+
+    def test_entry_points_beyond_http_servers_are_found(self):
+        for name, line, kind in [
+            ("fn/app.py", "def lambda_handler(event, context):", "route"),
+            ("template.yaml", "      Type: Api", "route"),
+            ("app/api/items/route.ts", "export async function POST(req: Request) {", "route"),
+            ("src/main.rs", "let args: Vec<String> = std::env::args().collect();", "cli"),
+            ("tool.py", "import argparse", "cli"),
+            ("api.py", "async def put(file: UploadFile):", "upload"),
+            ("unpack.py", "tarfile.open(path).extractall(dest)", "upload"),
+            ("web/app.js", "localStorage.setItem('token', t)", "store"),
+            (".github/workflows/ci.yml", "      - uses: actions/checkout@v4", "pipeline"),
+            (".github/workflows/ci.yml", "        run: curl -sSf https://sh.example.com | sh", "pipeline"),
+            ("package.json", '    "postinstall": "node setup.js"', "pipeline"),
+            ("src/lib.rs", "unsafe { ptr.read() }", "ffi"),
+            ("client.py", "requests.get(url, verify=False)", "weak-crypto"),
+            ("AndroidManifest.xml", '<activity android:exported="true">', "ipc"),
+        ]:
+            self.assertIn(kind, self.kinds(name, line + "\n"), line)
+
+    def test_lookalikes_are_left_out(self):
+        for name, line, kind in [
+            (".github/workflows/ci.yml", "      - uses: actions/checkout@" + "a" * 40, "pipeline"),
+            ("web/app.ts", "await uploadFile(blob)", "upload"),
+            ("template.yaml", '        - "s3:CreateMultipartUpload"', "upload"),
+            ("template.yaml", '        - "dynamodb:GetItem"', "store"),
+            ("pyproject.toml", 'argparse = "^1.4.0"', "cli"),
+            ("src/lib.rs", "let unsafe_name = 1;", "ffi"),
+        ]:
+            self.assertNotIn(kind, self.kinds(name, line + "\n"), line)
 
 
 if __name__ == "__main__":
