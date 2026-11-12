@@ -1,0 +1,4126 @@
+{
+ "schemaVersion": 1,
+ "assets": [
+  {
+   "id": "aws/groups/auto-scaling-group-32",
+   "name": "Auto Scaling group 32",
+   "collection": "aws",
+   "category": "Architecture-Group-Icons_01302026",
+   "path": "svg/aws/groups/auto-scaling-group-32.svg",
+   "viewBox": "0 0 40 40",
+   "bytes": 1686,
+   "sha256": "e5e6b44e61a3768c8c8b5c92affc8cdf1588b0ae09472d948f81d66b5efb8be5",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Group-Icons_01302026/Auto-Scaling-group_32.svg"
+   ]
+  },
+  {
+   "id": "aws/groups/aws-account-32",
+   "name": "AWS Account 32",
+   "collection": "aws",
+   "category": "Architecture-Group-Icons_01302026",
+   "path": "svg/aws/groups/aws-account-32.svg",
+   "viewBox": "0 0 40 40",
+   "bytes": 1484,
+   "sha256": "f39e6364a75803321948bf0fa87edfc7a1413996b3a38eb64c9ca9f0e81a2b38",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Group-Icons_01302026/AWS-Account_32.svg"
+   ]
+  },
+  {
+   "id": "aws/groups/aws-cloud-32",
+   "name": "AWS Cloud 32",
+   "collection": "aws",
+   "category": "Architecture-Group-Icons_01302026",
+   "path": "svg/aws/groups/aws-cloud-32.svg",
+   "viewBox": "0 0 40 40",
+   "bytes": 1998,
+   "sha256": "8caea10d6cd7e8f2047b061874ef8f014e74717b2897ccbc23b305e3fa083ed7",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Group-Icons_01302026/AWS-Cloud_32.svg"
+   ]
+  },
+  {
+   "id": "aws/groups/aws-cloud-32-dark",
+   "name": "AWS Cloud 32 Dark",
+   "collection": "aws",
+   "category": "Architecture-Group-Icons_01302026",
+   "path": "svg/aws/groups/aws-cloud-32-dark.svg",
+   "viewBox": "0 0 40 40",
+   "bytes": 2003,
+   "sha256": "2611cef04cb7bb13156f116658a8d016f6fa907ace918d48aa1bc19cf019da37",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Group-Icons_01302026/AWS-Cloud_32_Dark.svg"
+   ]
+  },
+  {
+   "id": "aws/groups/aws-cloud-logo-32",
+   "name": "AWS Cloud logo 32",
+   "collection": "aws",
+   "category": "Architecture-Group-Icons_01302026",
+   "path": "svg/aws/groups/aws-cloud-logo-32.svg",
+   "viewBox": "0 0 40 40",
+   "bytes": 6364,
+   "sha256": "63d73df1aac59dab323df732f82e196e359fb7b6370c0ca8e51e7b897cd350be",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Group-Icons_01302026/AWS-Cloud-logo_32.svg"
+   ]
+  },
+  {
+   "id": "aws/groups/aws-cloud-logo-32-dark",
+   "name": "AWS Cloud logo 32 Dark",
+   "collection": "aws",
+   "category": "Architecture-Group-Icons_01302026",
+   "path": "svg/aws/groups/aws-cloud-logo-32-dark.svg",
+   "viewBox": "0 0 40 40",
+   "bytes": 6369,
+   "sha256": "1c5db2de7a100b1a5e51fcd4bdfd2c5ed76600b3c8b64677d614fa3c402b124c",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Group-Icons_01302026/AWS-Cloud-logo_32_Dark.svg"
+   ]
+  },
+  {
+   "id": "aws/groups/aws-iot-greengrass-deployment-32",
+   "name": "AWS IoT Greengrass Deployment 32",
+   "collection": "aws",
+   "category": "Architecture-Group-Icons_01302026",
+   "path": "svg/aws/groups/aws-iot-greengrass-deployment-32.svg",
+   "viewBox": "0 0 40 40",
+   "bytes": 3033,
+   "sha256": "a938226a0e0dc085e1ed69fa0079d5ff1280e1195a8b2c9721625ce7a4d05546",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Group-Icons_01302026/AWS-IoT-Greengrass-Deployment_32.svg"
+   ]
+  },
+  {
+   "id": "aws/groups/corporate-data-center-32",
+   "name": "Corporate data center 32",
+   "collection": "aws",
+   "category": "Architecture-Group-Icons_01302026",
+   "path": "svg/aws/groups/corporate-data-center-32.svg",
+   "viewBox": "0 0 40 40",
+   "bytes": 1322,
+   "sha256": "40dd9e62fbd85620f7e750df0e347c1d8d9c67ee695308d7cf17644bca0af812",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Group-Icons_01302026/Corporate-data-center_32.svg"
+   ]
+  },
+  {
+   "id": "aws/groups/ec2-instance-contents-32",
+   "name": "EC2 instance contents 32",
+   "collection": "aws",
+   "category": "Architecture-Group-Icons_01302026",
+   "path": "svg/aws/groups/ec2-instance-contents-32.svg",
+   "viewBox": "0 0 40 40",
+   "bytes": 1240,
+   "sha256": "17edfc8cb5c7c78546588af9b559444836aa52ddec9da4a8f1a06deff86a9eb7",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Group-Icons_01302026/EC2-instance-contents_32.svg"
+   ]
+  },
+  {
+   "id": "aws/groups/private-subnet-32",
+   "name": "Private subnet 32",
+   "collection": "aws",
+   "category": "Architecture-Group-Icons_01302026",
+   "path": "svg/aws/groups/private-subnet-32.svg",
+   "viewBox": "0 0 40 40",
+   "bytes": 1454,
+   "sha256": "0666b2c8784d303a850c7cd1b40236f3d6d97012b4f4d2bad65a28c6ec614ba4",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Group-Icons_01302026/Private-subnet_32.svg"
+   ]
+  },
+  {
+   "id": "aws/groups/public-subnet-32",
+   "name": "Public subnet 32",
+   "collection": "aws",
+   "category": "Architecture-Group-Icons_01302026",
+   "path": "svg/aws/groups/public-subnet-32.svg",
+   "viewBox": "0 0 40 40",
+   "bytes": 1452,
+   "sha256": "009342df9afcc20b8c6f0d82ded7620105aaa7e53eb253d74f80a9e7d3beee58",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Group-Icons_01302026/Public-subnet_32.svg"
+   ]
+  },
+  {
+   "id": "aws/groups/region-32",
+   "name": "Region 32",
+   "collection": "aws",
+   "category": "Architecture-Group-Icons_01302026",
+   "path": "svg/aws/groups/region-32.svg",
+   "viewBox": "0 0 40 40",
+   "bytes": 1096,
+   "sha256": "848203d40c55e213c84c1b8a3e14c2fa92aaa793b31a5c17a5fd1737ef58b8ca",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Group-Icons_01302026/Region_32.svg"
+   ]
+  },
+  {
+   "id": "aws/groups/server-contents-32",
+   "name": "Server contents 32",
+   "collection": "aws",
+   "category": "Architecture-Group-Icons_01302026",
+   "path": "svg/aws/groups/server-contents-32.svg",
+   "viewBox": "0 0 40 40",
+   "bytes": 707,
+   "sha256": "93d987eb01689a4e57fd06d0db2926dad26934a6bd39858bac52a162d2598c7b",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Group-Icons_01302026/Server-contents_32.svg"
+   ]
+  },
+  {
+   "id": "aws/groups/spot-fleet-32",
+   "name": "Spot Fleet 32",
+   "collection": "aws",
+   "category": "Architecture-Group-Icons_01302026",
+   "path": "svg/aws/groups/spot-fleet-32.svg",
+   "viewBox": "0 0 40 40",
+   "bytes": 2845,
+   "sha256": "0bbbb13519df3bc604c1c5b22fbfcf3090532e33d74e95449896918a93f333bd",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Group-Icons_01302026/Spot-Fleet_32.svg"
+   ]
+  },
+  {
+   "id": "aws/groups/virtual-private-cloud-vpc-32",
+   "name": "Virtual private cloud VPC 32",
+   "collection": "aws",
+   "category": "Architecture-Group-Icons_01302026",
+   "path": "svg/aws/groups/virtual-private-cloud-vpc-32.svg",
+   "viewBox": "0 0 40 40",
+   "bytes": 3605,
+   "sha256": "a225286901ea59f74d52c37ccaa2660f9e2728a76cd4ee0892c29c7a386ef98c",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Group-Icons_01302026/Virtual-private-cloud-VPC_32.svg"
+   ]
+  },
+  {
+   "id": "aws/services/analytics/48/amazon-athena-48",
+   "name": "Arch Amazon Athena 48",
+   "collection": "aws",
+   "category": "Arch_Analytics",
+   "path": "svg/aws/services/analytics/48/amazon-athena-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4974,
+   "sha256": "5644ca441ec8fea1519218ac70d998c97358855d9f28598f7db5910d625ba4bc",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Analytics/48/Arch_Amazon-Athena_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/analytics/48/amazon-cloudsearch-48",
+   "name": "Arch Amazon CloudSearch 48",
+   "collection": "aws",
+   "category": "Arch_Analytics",
+   "path": "svg/aws/services/analytics/48/amazon-cloudsearch-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3647,
+   "sha256": "83f1b20915f4e3cfe08546ffebc893f4751f65528aa395c42ab0317978d33022",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Analytics/48/Arch_Amazon-CloudSearch_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/analytics/48/amazon-data-firehose-48",
+   "name": "Arch Amazon Data Firehose 48",
+   "collection": "aws",
+   "category": "Arch_Analytics",
+   "path": "svg/aws/services/analytics/48/amazon-data-firehose-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3054,
+   "sha256": "8bba0a1b04c3953d6a2dd45326dc5b13117aad63b10367e48a7cce6642e4b180",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Analytics/48/Arch_Amazon-Data-Firehose_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/analytics/48/amazon-datazone-48",
+   "name": "Arch Amazon DataZone 48",
+   "collection": "aws",
+   "category": "Arch_Analytics",
+   "path": "svg/aws/services/analytics/48/amazon-datazone-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3408,
+   "sha256": "78cb9863417f6be42aad4a31ca120da7c6d008b2554d2b9667454c081d2533f5",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Analytics/48/Arch_Amazon-DataZone_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/analytics/48/amazon-emr-48",
+   "name": "Arch Amazon EMR 48",
+   "collection": "aws",
+   "category": "Arch_Analytics",
+   "path": "svg/aws/services/analytics/48/amazon-emr-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5518,
+   "sha256": "77950c1cffde026ca4662eaaa20952f82d66e524d668227eff3470fcb4996269",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Analytics/48/Arch_Amazon-EMR_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/analytics/48/amazon-finspace-48",
+   "name": "Arch Amazon FinSpace 48",
+   "collection": "aws",
+   "category": "Arch_Analytics",
+   "path": "svg/aws/services/analytics/48/amazon-finspace-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1448,
+   "sha256": "7248dcf28fe17a3830fa05ede5cf166a878ae20781dd84c22c4f4e7e9c36286a",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Analytics/48/Arch_Amazon-FinSpace_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/analytics/48/amazon-kinesis-48",
+   "name": "Arch Amazon Kinesis 48",
+   "collection": "aws",
+   "category": "Arch_Analytics",
+   "path": "svg/aws/services/analytics/48/amazon-kinesis-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1361,
+   "sha256": "c9a1573c77bfbf7c8b99f44fb216e24910d45b00e37f4e30fa346daae4759445",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Analytics/48/Arch_Amazon-Kinesis_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/analytics/48/amazon-kinesis-data-streams-48",
+   "name": "Arch Amazon Kinesis Data Streams 48",
+   "collection": "aws",
+   "category": "Arch_Analytics",
+   "path": "svg/aws/services/analytics/48/amazon-kinesis-data-streams-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2875,
+   "sha256": "d007fb1e2ebfb5b5577beb536b21e6ae055b08bb6e0ddbf0b257409bf96aeb3d",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Analytics/48/Arch_Amazon-Kinesis-Data-Streams_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/analytics/48/amazon-kinesis-video-streams-48",
+   "name": "Arch Amazon Kinesis Video Streams 48",
+   "collection": "aws",
+   "category": "Arch_Analytics",
+   "path": "svg/aws/services/analytics/48/amazon-kinesis-video-streams-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2188,
+   "sha256": "318fad886c00287d1905478bb6b36d99d499aecc1630257fd176dbdb3051d4b7",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Analytics/48/Arch_Amazon-Kinesis-Video-Streams_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/analytics/48/amazon-managed-service-for-apache-flink-48",
+   "name": "Arch Amazon Managed Service for Apache Flink 48",
+   "collection": "aws",
+   "category": "Arch_Analytics",
+   "path": "svg/aws/services/analytics/48/amazon-managed-service-for-apache-flink-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 6506,
+   "sha256": "d5e9fb8e0a1ccb1bdbf084725198f369d675b6c826e6e06615ebdb882c7151bf",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Analytics/48/Arch_Amazon-Managed-Service-for-Apache-Flink_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/analytics/48/amazon-managed-streaming-for-apache-kafka-48",
+   "name": "Arch Amazon Managed Streaming for Apache Kafka 48",
+   "collection": "aws",
+   "category": "Arch_Analytics",
+   "path": "svg/aws/services/analytics/48/amazon-managed-streaming-for-apache-kafka-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 6280,
+   "sha256": "ae5bbfe39e47140324f1fa1056f1d1a15485d064d13734c569734e03e4f35b13",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Analytics/48/Arch_Amazon-Managed-Streaming-for-Apache-Kafka_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/analytics/48/amazon-opensearch-service-48",
+   "name": "Arch Amazon OpenSearch Service 48",
+   "collection": "aws",
+   "category": "Arch_Analytics",
+   "path": "svg/aws/services/analytics/48/amazon-opensearch-service-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2313,
+   "sha256": "459225008be72208cb484436b4c0c0eef19935a255ca197bf51f4ed718dd818f",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Analytics/48/Arch_Amazon-OpenSearch-Service_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/analytics/48/amazon-redshift-48",
+   "name": "Arch Amazon Redshift 48",
+   "collection": "aws",
+   "category": "Arch_Analytics",
+   "path": "svg/aws/services/analytics/48/amazon-redshift-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3483,
+   "sha256": "b2a267bb27552a7608cae3cd0284b5617498848a273a2ef752f9dcb338312b65",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Analytics/48/Arch_Amazon-Redshift_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/analytics/48/amazon-sagemaker-48",
+   "name": "Arch Amazon SageMaker 48",
+   "collection": "aws",
+   "category": "Arch_Analytics",
+   "path": "svg/aws/services/analytics/48/amazon-sagemaker-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1718,
+   "sha256": "ca167c306832e0d386c29d320001fa85409fa044302e9ec9792bee737655fd35",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Analytics/48/Arch_Amazon-SageMaker_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/analytics/48/aws-clean-rooms-48",
+   "name": "Arch AWS Clean Rooms 48",
+   "collection": "aws",
+   "category": "Arch_Analytics",
+   "path": "svg/aws/services/analytics/48/aws-clean-rooms-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4346,
+   "sha256": "08e911465239e3d061f2fc474477074a8ebcb221388e5a6380860e5ee437165a",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Analytics/48/Arch_AWS-Clean-Rooms_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/analytics/48/aws-data-exchange-48",
+   "name": "Arch AWS Data Exchange 48",
+   "collection": "aws",
+   "category": "Arch_Analytics",
+   "path": "svg/aws/services/analytics/48/aws-data-exchange-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2050,
+   "sha256": "ce029bca333d02a248b3cd0484e29b886938db2c57dfff85dfccc2b1a849f42e",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Analytics/48/Arch_AWS-Data-Exchange_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/analytics/48/aws-entity-resolution-48",
+   "name": "Arch AWS Entity Resolution 48",
+   "collection": "aws",
+   "category": "Arch_Analytics",
+   "path": "svg/aws/services/analytics/48/aws-entity-resolution-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2611,
+   "sha256": "ece12b27128fae13a6b6802bbe1921026515c24f63a4823dc62eacb68fc6c2ea",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Analytics/48/Arch_AWS-Entity-Resolution_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/analytics/48/aws-glue-48",
+   "name": "Arch AWS Glue 48",
+   "collection": "aws",
+   "category": "Arch_Analytics",
+   "path": "svg/aws/services/analytics/48/aws-glue-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4510,
+   "sha256": "f98d18c9698d54ecf10b6d05ddc80b4da8c22fa2a28f8d1795e5a9c182dd3f90",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Analytics/48/Arch_AWS-Glue_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/analytics/48/aws-glue-databrew-48",
+   "name": "Arch AWS Glue DataBrew 48",
+   "collection": "aws",
+   "category": "Arch_Analytics",
+   "path": "svg/aws/services/analytics/48/aws-glue-databrew-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2677,
+   "sha256": "c2bae222c2cc713939efa013e56e843177c02b102cd0856c6d958fe821be1dbb",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Analytics/48/Arch_AWS-Glue-DataBrew_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/analytics/48/aws-lake-formation-48",
+   "name": "Arch AWS Lake Formation 48",
+   "collection": "aws",
+   "category": "Arch_Analytics",
+   "path": "svg/aws/services/analytics/48/aws-lake-formation-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 6353,
+   "sha256": "164d11b006139552470e3c38db5604c4569fb640831636a38d7551578a418461",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Analytics/48/Arch_AWS-Lake-Formation_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/application-integration/48/amazon-appflow-48",
+   "name": "Arch Amazon AppFlow 48",
+   "collection": "aws",
+   "category": "Arch_Application-Integration",
+   "path": "svg/aws/services/application-integration/48/amazon-appflow-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1169,
+   "sha256": "cd2e3c85690c084e07d8fa6abf5b02d011543c14bd815cf7dc87c182b0952cd2",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Application-Integration/48/Arch_Amazon-AppFlow_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/application-integration/48/amazon-eventbridge-48",
+   "name": "Arch Amazon EventBridge 48",
+   "collection": "aws",
+   "category": "Arch_Application-Integration",
+   "path": "svg/aws/services/application-integration/48/amazon-eventbridge-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3916,
+   "sha256": "78f7fead59316ad6ac38cc262582bec81fc6649d0f6fdd5327708c08bede65e9",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Application-Integration/48/Arch_Amazon-EventBridge_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/application-integration/48/amazon-managed-workflows-for-apache-airflow-48",
+   "name": "Arch Amazon Managed Workflows for Apache Airflow 48",
+   "collection": "aws",
+   "category": "Arch_Application-Integration",
+   "path": "svg/aws/services/application-integration/48/amazon-managed-workflows-for-apache-airflow-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2484,
+   "sha256": "622d34799433cb6124b8e8c7cf5ecefefb005a024947a1101f24895a15e1f3c3",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Application-Integration/48/Arch_Amazon-Managed-Workflows-for-Apache-Airflow_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/application-integration/48/amazon-mq-48",
+   "name": "Arch Amazon MQ 48",
+   "collection": "aws",
+   "category": "Arch_Application-Integration",
+   "path": "svg/aws/services/application-integration/48/amazon-mq-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 6389,
+   "sha256": "5e124cde7d719d3564a549895f6e4ce7e898793b65cb99ebee481d0b69e01697",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Application-Integration/48/Arch_Amazon-MQ_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/application-integration/48/amazon-simple-notification-service-48",
+   "name": "Arch Amazon Simple Notification Service 48",
+   "collection": "aws",
+   "category": "Arch_Application-Integration",
+   "path": "svg/aws/services/application-integration/48/amazon-simple-notification-service-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3058,
+   "sha256": "f0fbc241cafdf4d6d06b0f46a7bba9325339480c61fd5f62195e3db63c7582b9",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Application-Integration/48/Arch_Amazon-Simple-Notification-Service_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/application-integration/48/amazon-simple-queue-service-48",
+   "name": "Arch Amazon Simple Queue Service 48",
+   "collection": "aws",
+   "category": "Arch_Application-Integration",
+   "path": "svg/aws/services/application-integration/48/amazon-simple-queue-service-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5877,
+   "sha256": "5b3f5beb065cd76e4a6ac65a24437aee2bd51000f6b749bce69bbaba45d73b75",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Application-Integration/48/Arch_Amazon-Simple-Queue-Service_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/application-integration/48/aws-appsync-48",
+   "name": "Arch AWS AppSync 48",
+   "collection": "aws",
+   "category": "Arch_Application-Integration",
+   "path": "svg/aws/services/application-integration/48/aws-appsync-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4146,
+   "sha256": "8df85575847a65452bf6cc85a32755e144a68830e8ce983466e1fda018fabd88",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Application-Integration/48/Arch_AWS-AppSync_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/application-integration/48/aws-b2b-data-interchange-48",
+   "name": "Arch AWS B2B Data Interchange 48",
+   "collection": "aws",
+   "category": "Arch_Application-Integration",
+   "path": "svg/aws/services/application-integration/48/aws-b2b-data-interchange-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1913,
+   "sha256": "19959ca0d6afcd4df082fa76b19bb0a89375a60e5ebfc18316cf9eb6e489e328",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Application-Integration/48/Arch_AWS-B2B-Data-Interchange_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/application-integration/48/aws-express-workflows-48",
+   "name": "Arch AWS Express Workflows 48",
+   "collection": "aws",
+   "category": "Arch_Application-Integration",
+   "path": "svg/aws/services/application-integration/48/aws-express-workflows-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3556,
+   "sha256": "992dd457f1b413669fde1cd1a60459f64baa25ba185c51b933b646526b348fd6",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Application-Integration/48/Arch_AWS-Express-Workflows_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/application-integration/48/aws-step-functions-48",
+   "name": "Arch AWS Step Functions 48",
+   "collection": "aws",
+   "category": "Arch_Application-Integration",
+   "path": "svg/aws/services/application-integration/48/aws-step-functions-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2060,
+   "sha256": "c1bb81d6504d283c6b31cbd9516fa6b8364010ea3c30ae614507114ca34192ad",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Application-Integration/48/Arch_AWS-Step-Functions_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-augmented-ai-a2i-48",
+   "name": "Arch Amazon Augmented AI A2I 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-augmented-ai-a2i-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5884,
+   "sha256": "9f2aa3a350b1003ca88adf68098995d1e3a8d52825245399fc303dd657a4341f",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-Augmented-AI-A2I_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-bedrock-48",
+   "name": "Arch Amazon Bedrock 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-bedrock-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4317,
+   "sha256": "01c39972d595d848ffc91d31aa6087b033c65279f8416c7c9a6659bc54406182",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-Bedrock_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-bedrock-agentcore-48",
+   "name": "Arch Amazon Bedrock AgentCore 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-bedrock-agentcore-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3060,
+   "sha256": "c715fe6dbc4b661c3cb9b57f8d2ea2176218cdf57b8298901c36c808d96b52e8",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-Bedrock-AgentCore_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-codeguru-48",
+   "name": "Arch Amazon CodeGuru 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-codeguru-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1997,
+   "sha256": "f2408144b2855c6dcdb00b3ee809c44bd74d1c99f5fd84edf84180effc886a08",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-CodeGuru_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-codewhisperer-48",
+   "name": "Arch Amazon CodeWhisperer 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-codewhisperer-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3761,
+   "sha256": "50d91ee3fa5350f8ba6ec2da6873ddcfad9efcef764e9286901947874df1aa4e",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-CodeWhisperer_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-comprehend-48",
+   "name": "Arch Amazon Comprehend 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-comprehend-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4033,
+   "sha256": "e9028bfe01842c8a3291495bb2b5c0014d14777706415de50ce90d145de7328f",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-Comprehend_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-comprehend-medical-48",
+   "name": "Arch Amazon Comprehend Medical 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-comprehend-medical-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2873,
+   "sha256": "b2033cd32190f778f506fbe5e6e3b40f6dc126cd3d3e4cd3ee981f4df3fd8a05",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-Comprehend-Medical_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-devops-guru-48",
+   "name": "Arch Amazon DevOps Guru 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-devops-guru-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4767,
+   "sha256": "14147145a1fcddfc1bd5e5549cf36b29d6d6004d5272cbc850dd98432e55645b",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-DevOps-Guru_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-elastic-inference-48",
+   "name": "Arch Amazon Elastic Inference 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-elastic-inference-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 6506,
+   "sha256": "a8f3d705dc6c26f2916d4f5cc15688e8a8afc5b01cd9ac6dbcbd0bf6534de468",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-Elastic-Inference_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-forecast-48",
+   "name": "Arch Amazon Forecast 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-forecast-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2021,
+   "sha256": "c199d0197ffb2f534819e10bcebcdc67ec15b8b6acc33f03c1e3152510decfd2",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-Forecast_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-fraud-detector-48",
+   "name": "Arch Amazon Fraud Detector 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-fraud-detector-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 6394,
+   "sha256": "39dcbb7406c036045dd83472862f0e94295dc8e869af63479e341086500663e4",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-Fraud-Detector_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-kendra-48",
+   "name": "Arch Amazon Kendra 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-kendra-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4154,
+   "sha256": "cd3793fae33f7e6e56067f4b0f8db277a945c43acb49203a19b8bdbc4d09cd86",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-Kendra_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-lex-48",
+   "name": "Arch Amazon Lex 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-lex-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5211,
+   "sha256": "5e4aa48b515d80cb7c1521e46b3286c1b9740daf3153aa1fc278fc6f31a91efe",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-Lex_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-lookout-for-equipment-48",
+   "name": "Arch Amazon Lookout for Equipment 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-lookout-for-equipment-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2690,
+   "sha256": "c1420c8294d5d7d7eb348c94e95df45b613bbdfdab29a0ee92b09a35f02149ab",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-Lookout-for-Equipment_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-lookout-for-vision-48",
+   "name": "Arch Amazon Lookout for Vision 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-lookout-for-vision-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3013,
+   "sha256": "af1c3deb940a9ccba37880230aef0eaab19b3d8653d06ce3dd144d631a579ee8",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-Lookout-for-Vision_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-monitron-48",
+   "name": "Arch Amazon Monitron 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-monitron-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3950,
+   "sha256": "d13a8ac6db566f9191dcf6f657f933735bd0b75d7ee6271399df8035fa5c8978",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-Monitron_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-nova-48",
+   "name": "Arch Amazon Nova 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-nova-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1546,
+   "sha256": "96de0c61ecebd934ddc755f40c88945ae49bbbf2b62f870761de106d65af57ed",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-Nova_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-personalize-48",
+   "name": "Arch Amazon Personalize 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-personalize-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4386,
+   "sha256": "6699caed2cfa855375564f7b23a491bee3df55a2d1cb25e7697b901c4de3a4dd",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-Personalize_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-polly-48",
+   "name": "Arch Amazon Polly 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-polly-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3840,
+   "sha256": "ca3aa6c91eb649e00ec6e752869c15309139d48e3ff185d80b62bd4c2c7c4eb7",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-Polly_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-q-48",
+   "name": "Arch Amazon Q 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-q-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2258,
+   "sha256": "12bd00db4740582545cbeefb88f3b4f67babd62c44bacbf9a23579e974f183aa",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-Q_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-rekognition-48",
+   "name": "Arch Amazon Rekognition 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-rekognition-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3052,
+   "sha256": "f02b611f64d6dc01aadb7422d960458da8459f06a35a6708ad4864b0674c8e04",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-Rekognition_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-sagemaker-ai-48",
+   "name": "Arch Amazon SageMaker AI 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-sagemaker-ai-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 6398,
+   "sha256": "4de353e8d39d0f5b39e5e707e9e9d6458cc818be8d5e5a302d30bca6441fd207",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-SageMaker-AI_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-sagemaker-ground-truth-48",
+   "name": "Arch Amazon SageMaker Ground Truth 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-sagemaker-ground-truth-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 6838,
+   "sha256": "726b02ba1a7c1a600a9ba65bf34331cdbb7b96fc3819e2ada744f0c2d46d3fc5",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-SageMaker-Ground-Truth_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-sagemaker-studio-lab-48",
+   "name": "Arch Amazon SageMaker Studio Lab 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-sagemaker-studio-lab-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3512,
+   "sha256": "ded433ff02da9b82085f4fcad58c25d87727abc50fdb3abf4d1dbaeff2aa237a",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-SageMaker-Studio-Lab_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-textract-48",
+   "name": "Arch Amazon Textract 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-textract-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3014,
+   "sha256": "134631674d3b0b81dc4eea89aef3a6e5bf9c504054523bc65c368f4a6bc585e2",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-Textract_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-transcribe-48",
+   "name": "Arch Amazon Transcribe 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-transcribe-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3872,
+   "sha256": "211580003d0b37f90b08b0f2b1a3d9b00203cdfa73029c7d09dd8abb28446902",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-Transcribe_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/amazon-translate-48",
+   "name": "Arch Amazon Translate 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/amazon-translate-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3403,
+   "sha256": "c98c1dec2ae462dab8be5667636c7944d8ccf5022838ec30341fc3a7989a0932",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Amazon-Translate_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/apache-mxnet-on-aws-48",
+   "name": "Arch Apache MXNet on AWS 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/apache-mxnet-on-aws-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2154,
+   "sha256": "956dc31ee06abdface5c52302e484e4fd307acf6f8e7d77999b3434880fdc80e",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_Apache-MXNet-on-AWS_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/aws-app-studio-48",
+   "name": "Arch AWS App Studio 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/aws-app-studio-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1342,
+   "sha256": "31bb26389365b9fe5989d810757d9fdce03deabaa9fe1a128ee694c382e4b592",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_AWS-App-Studio_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/aws-deep-learning-amis-48",
+   "name": "Arch AWS Deep Learning AMIs 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/aws-deep-learning-amis-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5379,
+   "sha256": "afcd5c3e04805d42e97134b6cd4568a04be9d741d0a06555b74049114b5be443",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_AWS-Deep-Learning-AMIs_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/aws-deep-learning-containers-48",
+   "name": "Arch AWS Deep Learning Containers 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/aws-deep-learning-containers-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3165,
+   "sha256": "3d1dc5678317626826e5d5a4479da272e401cbf85339d42ef0dba1bc4630b305",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_AWS-Deep-Learning-Containers_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/aws-deepracer-48",
+   "name": "Arch AWS DeepRacer 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/aws-deepracer-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 10320,
+   "sha256": "abee54a720eee6d5d158dcede8c216bf9e58cb494503c74f77fddfb0a3c9c48f",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_AWS-DeepRacer_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/aws-healthimaging-48",
+   "name": "Arch AWS HealthImaging 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/aws-healthimaging-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5212,
+   "sha256": "be5cfb8a80b054fdba86e73e69b6cb00e0dd01040af5066c1a29eca030491f2e",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_AWS-HealthImaging_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/aws-healthlake-48",
+   "name": "Arch AWS HealthLake 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/aws-healthlake-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2309,
+   "sha256": "57f78b10d942518e2a49bb3321f455e1d7167b039f4abc5d17da028fc9f997c4",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_AWS-HealthLake_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/aws-healthomics-48",
+   "name": "Arch AWS HealthOmics 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/aws-healthomics-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2462,
+   "sha256": "b9e34fcafa19503e23933f94c796e4bc874be7b3918e2ad804d2d744bfb7a89a",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_AWS-HealthOmics_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/aws-healthscribe-48",
+   "name": "Arch AWS HealthScribe 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/aws-healthscribe-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3247,
+   "sha256": "cf63374e72ae18657a0eaf5d842495d75a27388f8abbd0b2df0788dd065b7cd4",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_AWS-HealthScribe_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/aws-neuron-48",
+   "name": "Arch AWS Neuron 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/aws-neuron-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3776,
+   "sha256": "7277b8c3285c9b359988147992a6b1ab8b4542828416f1b9223ad40ca3ae4b8f",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_AWS-Neuron_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/aws-panorama-48",
+   "name": "Arch AWS Panorama 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/aws-panorama-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2151,
+   "sha256": "1109f7042bfac5f4e43c3740458c0f27ed774f26fcc37ef98e71b483a664a4f5",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_AWS-Panorama_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/pytorch-on-aws-48",
+   "name": "Arch PyTorch on AWS 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/pytorch-on-aws-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1428,
+   "sha256": "297e1e6e5b606dcb4867a5d6fff2a6294b6e51bc3badbab9e64100124b4b0e00",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_PyTorch-on-AWS_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/artificial-intelligence/48/tensorflow-on-aws-48",
+   "name": "Arch TensorFlow on AWS 48",
+   "collection": "aws",
+   "category": "Arch_Artificial-Intelligence",
+   "path": "svg/aws/services/artificial-intelligence/48/tensorflow-on-aws-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2148,
+   "sha256": "1466bba44cca2ffc0883653c2bbef936550401a50d7838f71cb44f909181697c",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Artificial-Intelligence/48/Arch_TensorFlow-on-AWS_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/blockchain/48/amazon-managed-blockchain-48",
+   "name": "Arch Amazon Managed Blockchain 48",
+   "collection": "aws",
+   "category": "Arch_Blockchain",
+   "path": "svg/aws/services/blockchain/48/amazon-managed-blockchain-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1832,
+   "sha256": "35b62aa514bc0812c281d74b8ca2442f4f2b415b3434d431dc51b64abda71f5c",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Blockchain/48/Arch_Amazon-Managed-Blockchain_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/business-applications/48/amazon-chime-48",
+   "name": "Arch Amazon Chime 48",
+   "collection": "aws",
+   "category": "Arch_Business-Applications",
+   "path": "svg/aws/services/business-applications/48/amazon-chime-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2922,
+   "sha256": "7ea66b5e0e71e7002e4d4a58f6246467a27adf972bed7bd860f07c43334734eb",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Business-Applications/48/Arch_Amazon-Chime_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/business-applications/48/amazon-chime-sdk-48",
+   "name": "Arch Amazon Chime SDK 48",
+   "collection": "aws",
+   "category": "Arch_Business-Applications",
+   "path": "svg/aws/services/business-applications/48/amazon-chime-sdk-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2966,
+   "sha256": "caa0878b6b1a8a52a539d89adb992adf4e177f594ab3a943e6e57f42a8a7fca8",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Business-Applications/48/Arch_Amazon-Chime-SDK_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/business-applications/48/amazon-connect-48",
+   "name": "Arch Amazon Connect 48",
+   "collection": "aws",
+   "category": "Arch_Business-Applications",
+   "path": "svg/aws/services/business-applications/48/amazon-connect-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5630,
+   "sha256": "4f32b5fb8c1208a05bc7d8fa45b015533f210ad844002e6d13802dca25db2264",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Business-Applications/48/Arch_Amazon-Connect_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/business-applications/48/amazon-pinpoint-48",
+   "name": "Arch Amazon Pinpoint 48",
+   "collection": "aws",
+   "category": "Arch_Business-Applications",
+   "path": "svg/aws/services/business-applications/48/amazon-pinpoint-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2342,
+   "sha256": "f4e29093d05a1cc047460d3145f8f70897b4ba19ca428f9878351c177ccc23ce",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Business-Applications/48/Arch_Amazon-Pinpoint_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/business-applications/48/amazon-pinpoint-apis-48",
+   "name": "Arch Amazon Pinpoint APIs 48",
+   "collection": "aws",
+   "category": "Arch_Business-Applications",
+   "path": "svg/aws/services/business-applications/48/amazon-pinpoint-apis-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2352,
+   "sha256": "3725c00a24a23c23e0952ab06524a62f49cd185c2cd56cb21f46e46eebba35e3",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Business-Applications/48/Arch_Amazon-Pinpoint-APIs_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/business-applications/48/amazon-quick-suite-48",
+   "name": "Arch Amazon Quick Suite 48",
+   "collection": "aws",
+   "category": "Arch_Business-Applications",
+   "path": "svg/aws/services/business-applications/48/amazon-quick-suite-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1440,
+   "sha256": "e225ca66260d8b8333548b3cf7b47adc325284080622aa3e3d3df2028726b722",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Business-Applications/48/Arch_Amazon-Quick-Suite_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/business-applications/48/amazon-simple-email-service-48",
+   "name": "Arch Amazon Simple Email Service 48",
+   "collection": "aws",
+   "category": "Arch_Business-Applications",
+   "path": "svg/aws/services/business-applications/48/amazon-simple-email-service-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2291,
+   "sha256": "69f4b5aa63b99f6e1c6ff814a585fb056da517270d1142be70088bb1ca2005d4",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Business-Applications/48/Arch_Amazon-Simple-Email-Service_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/business-applications/48/amazon-workdocs-48",
+   "name": "Arch Amazon WorkDocs 48",
+   "collection": "aws",
+   "category": "Arch_Business-Applications",
+   "path": "svg/aws/services/business-applications/48/amazon-workdocs-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1242,
+   "sha256": "7fcb21f3e0a8c65f9acb758ed5dd9f2bc4085a259d7184e9d3a23149d5fc1c5d",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Business-Applications/48/Arch_Amazon-WorkDocs_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/business-applications/48/amazon-workdocs-sdk-48",
+   "name": "Arch Amazon WorkDocs SDK 48",
+   "collection": "aws",
+   "category": "Arch_Business-Applications",
+   "path": "svg/aws/services/business-applications/48/amazon-workdocs-sdk-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1250,
+   "sha256": "d8bafa6feb89afdd135f6d56d3d1a5bae9a64ba5fa91033512f4a58406bf8d2a",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Business-Applications/48/Arch_Amazon-WorkDocs-SDK_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/business-applications/48/amazon-workmail-48",
+   "name": "Arch Amazon WorkMail 48",
+   "collection": "aws",
+   "category": "Arch_Business-Applications",
+   "path": "svg/aws/services/business-applications/48/amazon-workmail-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 955,
+   "sha256": "7e9d84777cf11b10df6ef6cd0806a8cd613eb60be96def09b3b5373b6b4ecdcf",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Business-Applications/48/Arch_Amazon-WorkMail_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/business-applications/48/aws-appfabric-48",
+   "name": "Arch AWS AppFabric 48",
+   "collection": "aws",
+   "category": "Arch_Business-Applications",
+   "path": "svg/aws/services/business-applications/48/aws-appfabric-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1726,
+   "sha256": "547aeafec88452304b7115088a52d6cda0c77b3fa3b4d7e7469067b380de9631",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Business-Applications/48/Arch_AWS-AppFabric_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/business-applications/48/aws-end-user-messaging-48",
+   "name": "Arch AWS End User Messaging 48",
+   "collection": "aws",
+   "category": "Arch_Business-Applications",
+   "path": "svg/aws/services/business-applications/48/aws-end-user-messaging-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1659,
+   "sha256": "cc8df47bbf6798f687d08fd0161b7e60018c7521bf3789bbac43eb1867979dce",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Business-Applications/48/Arch_AWS-End-User-Messaging_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/business-applications/48/aws-supply-chain-48",
+   "name": "Arch AWS Supply Chain 48",
+   "collection": "aws",
+   "category": "Arch_Business-Applications",
+   "path": "svg/aws/services/business-applications/48/aws-supply-chain-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1748,
+   "sha256": "79a6cf291a8b688090fe7fdf0f9344f29ae19e61fe7e9472337c73702ca41671",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Business-Applications/48/Arch_AWS-Supply-Chain_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/business-applications/48/aws-wickr-48",
+   "name": "Arch AWS Wickr 48",
+   "collection": "aws",
+   "category": "Arch_Business-Applications",
+   "path": "svg/aws/services/business-applications/48/aws-wickr-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1975,
+   "sha256": "98b6105c9be4c78cf0e5044d1d01efb7b304af1344cd49ba01bf487b88e8f8b0",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Business-Applications/48/Arch_AWS-Wickr_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/cloud-financial-management/48/aws-billing-conductor-48",
+   "name": "Arch AWS Billing Conductor 48",
+   "collection": "aws",
+   "category": "Arch_Cloud-Financial-Management",
+   "path": "svg/aws/services/cloud-financial-management/48/aws-billing-conductor-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1749,
+   "sha256": "fd8c9032bae8cdc1fc2696ed9307dc64ae4b6e0db1c07c861e446b0302546176",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Cloud-Financial-Management/48/Arch_AWS-Billing-Conductor_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/cloud-financial-management/48/aws-budgets-48",
+   "name": "Arch AWS Budgets 48",
+   "collection": "aws",
+   "category": "Arch_Cloud-Financial-Management",
+   "path": "svg/aws/services/cloud-financial-management/48/aws-budgets-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1569,
+   "sha256": "3982ad8da8fa8e36d83ed57492de32c65564a1ac0f2d396b0468b032bf6f88a0",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Cloud-Financial-Management/48/Arch_AWS-Budgets_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/cloud-financial-management/48/aws-cost-and-usage-report-48",
+   "name": "Arch AWS Cost and Usage Report 48",
+   "collection": "aws",
+   "category": "Arch_Cloud-Financial-Management",
+   "path": "svg/aws/services/cloud-financial-management/48/aws-cost-and-usage-report-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2636,
+   "sha256": "b24997219c33ec30b2788bd2dc96d4be58dd29db2aa77802ff3c681c2c776a44",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Cloud-Financial-Management/48/Arch_AWS-Cost-and-Usage-Report_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/cloud-financial-management/48/aws-cost-explorer-48",
+   "name": "Arch AWS Cost Explorer 48",
+   "collection": "aws",
+   "category": "Arch_Cloud-Financial-Management",
+   "path": "svg/aws/services/cloud-financial-management/48/aws-cost-explorer-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3380,
+   "sha256": "9fbd554cb445b10366c3ef7d92a8349c94084c8c22a4324313b092417a0a49ea",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Cloud-Financial-Management/48/Arch_AWS-Cost-Explorer_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/cloud-financial-management/48/reserved-instance-reporting-48",
+   "name": "Arch Reserved Instance Reporting 48",
+   "collection": "aws",
+   "category": "Arch_Cloud-Financial-Management",
+   "path": "svg/aws/services/cloud-financial-management/48/reserved-instance-reporting-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1697,
+   "sha256": "078ec66aea45a6ed7645cf1fb2f7758f88b92aaec6fb26f2ade1f70c17df9177",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Cloud-Financial-Management/48/Arch_Reserved-Instance-Reporting_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/cloud-financial-management/48/savings-plans-48",
+   "name": "Arch Savings Plans 48",
+   "collection": "aws",
+   "category": "Arch_Cloud-Financial-Management",
+   "path": "svg/aws/services/cloud-financial-management/48/savings-plans-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3547,
+   "sha256": "b0e121de0ae28ff2b0f957082466225d271f20b07644e560569cf9fcf41e0fd5",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Cloud-Financial-Management/48/Arch_Savings-Plans_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/amazon-dcv-48",
+   "name": "Arch Amazon DCV 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/amazon-dcv-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2589,
+   "sha256": "7cc83157706bc216d9b0607a10e5b9d3fc0e246d35ec0a0d8eca24b8ed6e30d6",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_Amazon-DCV_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/amazon-ec2-48",
+   "name": "Arch Amazon EC2 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/amazon-ec2-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1749,
+   "sha256": "099dff32b3f795f3fa8ed97f0466708502a7fd6500136679899a0cec5a5a2473",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_Amazon-EC2_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/amazon-ec2-auto-scaling-48",
+   "name": "Arch Amazon EC2 Auto Scaling 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/amazon-ec2-auto-scaling-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3458,
+   "sha256": "575637da8fc56a59a29b3cc7195e7b0d439f379c58284eb065d4a79d3a73f3c7",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_Amazon-EC2-Auto-Scaling_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/amazon-ec2-image-builder-48",
+   "name": "Arch Amazon EC2 Image Builder 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/amazon-ec2-image-builder-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2423,
+   "sha256": "a11dbebb7497bc914aaadb80362b121191234fd654cd9b3b44f5aac7336f1248",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_Amazon-EC2-Image-Builder_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/amazon-elastic-vmware-service-48",
+   "name": "Arch Amazon Elastic VMware Service 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/amazon-elastic-vmware-service-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1885,
+   "sha256": "0c22f811c9a3fbaed8ef2eb1e6b5dd7ee07d1c307c335d56e29198d4f444d488",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_Amazon-Elastic-VMware-Service_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/amazon-lightsail-48",
+   "name": "Arch Amazon Lightsail 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/amazon-lightsail-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2169,
+   "sha256": "8d12e0026f919fe23467f3b3e38a700fdd48a00bd640b0c3b875afd816d17943",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_Amazon-Lightsail_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/amazon-lightsail-for-research-48",
+   "name": "Arch Amazon Lightsail for Research 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/amazon-lightsail-for-research-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4362,
+   "sha256": "aa30b12c20e8f22a90b6a136d45a29e4122162b0f1abd87eb7400d94416a83ff",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_Amazon-Lightsail-for-Research_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/aws-app-runner-48",
+   "name": "Arch AWS App Runner 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/aws-app-runner-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1637,
+   "sha256": "6951c996d3a5df91e658700386c3e68236848f8b9f744d91b33626344a2c9976",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_AWS-App-Runner_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/aws-batch-48",
+   "name": "Arch AWS Batch 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/aws-batch-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2895,
+   "sha256": "f8e1466957013d4b8cd8bf90f75ebf5c3475cdde6df314daf27d0235ba24f3a8",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_AWS-Batch_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/aws-compute-optimizer-48",
+   "name": "Arch AWS Compute Optimizer 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/aws-compute-optimizer-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5715,
+   "sha256": "59e410170b1577f31d6ae9212a25bb202e6e981c7759b6d0380d55f508fdaa44",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_AWS-Compute-Optimizer_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/aws-elastic-beanstalk-48",
+   "name": "Arch AWS Elastic Beanstalk 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/aws-elastic-beanstalk-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4488,
+   "sha256": "79d0808e006ccae23af10b2862407af43962383ab874f2f03a73264c4704eabe",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_AWS-Elastic-Beanstalk_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/aws-lambda-48",
+   "name": "Arch AWS Lambda 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/aws-lambda-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1814,
+   "sha256": "4a376abd2d67f8916791458810f3640b12fcfa71079154e0aed0974b92e58cdb",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_AWS-Lambda_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/aws-local-zones-48",
+   "name": "Arch AWS Local Zones 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/aws-local-zones-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5934,
+   "sha256": "c694ac4b9e85b8a7a7ad039d7e27056b168f71bf39737f0328791ee1b6a9b936",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_AWS-Local-Zones_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/aws-nitro-enclaves-48",
+   "name": "Arch AWS Nitro Enclaves 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/aws-nitro-enclaves-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1983,
+   "sha256": "d6a1ba1ea35f279fac81b7a13e1f775318fd6b63cb71385c43d2435a5c80fee0",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_AWS-Nitro-Enclaves_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/aws-outposts-family-48",
+   "name": "Arch AWS Outposts family 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/aws-outposts-family-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4089,
+   "sha256": "e13436e9e4222bead3861c49cfda36fa0ebfd93a9275db499c42883cc01c584a",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_AWS-Outposts-family_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/aws-outposts-rack-48",
+   "name": "Arch AWS Outposts rack 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/aws-outposts-rack-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4849,
+   "sha256": "429c666c3a210875259c03f7fbeceb99c14d73584916bf4b26ff93127ec70abd",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_AWS-Outposts-rack_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/aws-outposts-servers-48",
+   "name": "Arch AWS Outposts servers 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/aws-outposts-servers-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2842,
+   "sha256": "12685dcf12d9c50630386dbd9c654479427a9e42bcb1ee566af0fef3746c33d1",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_AWS-Outposts-servers_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/aws-parallel-cluster-48",
+   "name": "Arch AWS Parallel Cluster 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/aws-parallel-cluster-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3800,
+   "sha256": "c53bf4e3d397fab778ccb6345c6b8a60456e719b870b53fc1c144abe36a739cb",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_AWS-Parallel-Cluster_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/aws-parallel-computing-service-48",
+   "name": "Arch AWS Parallel Computing Service 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/aws-parallel-computing-service-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2488,
+   "sha256": "b95e2877e6028b45b3d1143bee7f43c1af85157a828c319dcf4a2cabb5417a81",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_AWS-Parallel-Computing-Service_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/aws-serverless-application-repository-48",
+   "name": "Arch AWS Serverless Application Repository 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/aws-serverless-application-repository-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5631,
+   "sha256": "0d54cd44aef6e8c28176f5bbae2dfff8f2e8e3bf4d2a9e8d4ee76cb1adab3cbe",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_AWS-Serverless-Application-Repository_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/aws-simspace-weaver-48",
+   "name": "Arch AWS SimSpace Weaver 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/aws-simspace-weaver-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4466,
+   "sha256": "a687975d87adb4d42d5682f1c40a5cd07142da7f6f0ddcda7a43faa8060090c7",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_AWS-SimSpace-Weaver_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/aws-wavelength-48",
+   "name": "Arch AWS Wavelength 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/aws-wavelength-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3768,
+   "sha256": "6919ec2e741596a71469a650c196aa885b749821185797580e3edadc8c505f0e",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_AWS-Wavelength_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/bottlerocket-48",
+   "name": "Arch Bottlerocket 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/bottlerocket-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3271,
+   "sha256": "2e63533d10c38490b46284da569d5ec4d35712a25d6cd0062c7fdab0c31a01cf",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_Bottlerocket_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/compute/48/elastic-fabric-adapter-48",
+   "name": "Arch Elastic Fabric Adapter 48",
+   "collection": "aws",
+   "category": "Arch_Compute",
+   "path": "svg/aws/services/compute/48/elastic-fabric-adapter-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2171,
+   "sha256": "8af83479d30da2983979d4a6632ba06b7a7e498ca05db0ac352e076a09218547",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Compute/48/Arch_Elastic-Fabric-Adapter_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/containers/48/amazon-ecs-anywhere-48",
+   "name": "Arch Amazon ECS Anywhere 48",
+   "collection": "aws",
+   "category": "Arch_Containers",
+   "path": "svg/aws/services/containers/48/amazon-ecs-anywhere-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3589,
+   "sha256": "5cf17f6e505fbaac1708256b35f78e54f097a3daf33950eea55f32b9e947afb6",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Containers/48/Arch_Amazon-ECS-Anywhere_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/containers/48/amazon-eks-anywhere-48",
+   "name": "Arch Amazon EKS Anywhere 48",
+   "collection": "aws",
+   "category": "Arch_Containers",
+   "path": "svg/aws/services/containers/48/amazon-eks-anywhere-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4430,
+   "sha256": "551c58aa5e1c63354d26f7f0b4774c4feca1d1001da635ab5776380ebb70db0d",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Containers/48/Arch_Amazon-EKS-Anywhere_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/containers/48/amazon-eks-distro-48",
+   "name": "Arch Amazon EKS Distro 48",
+   "collection": "aws",
+   "category": "Arch_Containers",
+   "path": "svg/aws/services/containers/48/amazon-eks-distro-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 6571,
+   "sha256": "2aa36d91b3e4d901f31552d1f8e3344c8b80079a28061298727d5acea30a7a51",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Containers/48/Arch_Amazon-EKS-Distro_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/containers/48/amazon-elastic-container-registry-48",
+   "name": "Arch Amazon Elastic Container Registry 48",
+   "collection": "aws",
+   "category": "Arch_Containers",
+   "path": "svg/aws/services/containers/48/amazon-elastic-container-registry-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2100,
+   "sha256": "bf829eab882165f4fb850bab032e5c81312cb579e2ad880372f206936db4a2be",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Containers/48/Arch_Amazon-Elastic-Container-Registry_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/containers/48/amazon-elastic-container-service-48",
+   "name": "Arch Amazon Elastic Container Service 48",
+   "collection": "aws",
+   "category": "Arch_Containers",
+   "path": "svg/aws/services/containers/48/amazon-elastic-container-service-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2403,
+   "sha256": "7f8b2883cd6171a42bdcafab2d20d17c3cf886d306c62846c6c555ad26463b04",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Containers/48/Arch_Amazon-Elastic-Container-Service_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/containers/48/amazon-elastic-kubernetes-service-48",
+   "name": "Arch Amazon Elastic Kubernetes Service 48",
+   "collection": "aws",
+   "category": "Arch_Containers",
+   "path": "svg/aws/services/containers/48/amazon-elastic-kubernetes-service-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2611,
+   "sha256": "83125d0b8a7920b7a13381a8645aacb4efa5ea7a0af3049949e4530491b46ca8",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Containers/48/Arch_Amazon-Elastic-Kubernetes-Service_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/containers/48/aws-fargate-48",
+   "name": "Arch AWS Fargate 48",
+   "collection": "aws",
+   "category": "Arch_Containers",
+   "path": "svg/aws/services/containers/48/aws-fargate-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4061,
+   "sha256": "2b1b00e6e702e9bd1a1cc8bba077e05f214889c145186b9a44c28a74943b38ce",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Containers/48/Arch_AWS-Fargate_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/containers/48/red-hat-openshift-service-on-aws-48",
+   "name": "Arch Red Hat OpenShift Service on AWS 48",
+   "collection": "aws",
+   "category": "Arch_Containers",
+   "path": "svg/aws/services/containers/48/red-hat-openshift-service-on-aws-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5945,
+   "sha256": "3ff38511a9edb4770e004beacabc7011690b874fae55afa33a0bb019f455cd73",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Containers/48/Arch_Red-Hat-OpenShift-Service-on-AWS_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/customer-enablement/48/aws-activate-48",
+   "name": "Arch AWS Activate 48",
+   "collection": "aws",
+   "category": "Arch_Customer-Enablement",
+   "path": "svg/aws/services/customer-enablement/48/aws-activate-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1824,
+   "sha256": "e8febbe4b8ea536329a3d4366efc954781d4ed7b63ccda49e40a28f0aa7fe5d4",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Customer-Enablement/48/Arch_AWS-Activate_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/customer-enablement/48/aws-iq-48",
+   "name": "Arch AWS IQ 48",
+   "collection": "aws",
+   "category": "Arch_Customer-Enablement",
+   "path": "svg/aws/services/customer-enablement/48/aws-iq-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2657,
+   "sha256": "5869d0a03cb692c617fc626a98734899e2d8e972a91f71bc3f72bcc6ba8015d1",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Customer-Enablement/48/Arch_AWS-IQ_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/customer-enablement/48/aws-managed-services-48",
+   "name": "Arch AWS Managed Services 48",
+   "collection": "aws",
+   "category": "Arch_Customer-Enablement",
+   "path": "svg/aws/services/customer-enablement/48/aws-managed-services-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 7580,
+   "sha256": "5d6b6b5a42bb62cf9ec0abad3f6c96d3d73aa6bab280d86932250f65bd05c79c",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Customer-Enablement/48/Arch_AWS-Managed-Services_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/customer-enablement/48/aws-professional-services-48",
+   "name": "Arch AWS Professional Services 48",
+   "collection": "aws",
+   "category": "Arch_Customer-Enablement",
+   "path": "svg/aws/services/customer-enablement/48/aws-professional-services-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2447,
+   "sha256": "eeedbb8b9e9ffbf8c3a619901ba9415ecffeaa19f21cc4fb7b7826c234d19c33",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Customer-Enablement/48/Arch_AWS-Professional-Services_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/customer-enablement/48/aws-repost-48",
+   "name": "Arch AWS rePost 48",
+   "collection": "aws",
+   "category": "Arch_Customer-Enablement",
+   "path": "svg/aws/services/customer-enablement/48/aws-repost-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4502,
+   "sha256": "85201ecf1b459f12b3360fa27b60439e055dfdc0c48990c6d0c47d4b844a8940",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Customer-Enablement/48/Arch_AWS-rePost_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/customer-enablement/48/aws-repost-private-48",
+   "name": "Arch AWS rePost Private 48",
+   "collection": "aws",
+   "category": "Arch_Customer-Enablement",
+   "path": "svg/aws/services/customer-enablement/48/aws-repost-private-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2975,
+   "sha256": "07e9744cc042d5c5d84f768cb84a3a1f1dae7d0390daf93ef279a3166098ab76",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Customer-Enablement/48/Arch_AWS-rePost-Private_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/customer-enablement/48/aws-support-48",
+   "name": "Arch AWS Support 48",
+   "collection": "aws",
+   "category": "Arch_Customer-Enablement",
+   "path": "svg/aws/services/customer-enablement/48/aws-support-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5315,
+   "sha256": "1fa9a61786464ab0083a0123e697caca005e0017551b8308b311c1752ece3481",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Customer-Enablement/48/Arch_AWS-Support_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/customer-enablement/48/aws-training-certification-48",
+   "name": "Arch AWS Training Certification 48",
+   "collection": "aws",
+   "category": "Arch_Customer-Enablement",
+   "path": "svg/aws/services/customer-enablement/48/aws-training-certification-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2583,
+   "sha256": "7f01612b058d50b2cfa5b541148396a879c006e4b3471aa9a9606c28ec25f02f",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Customer-Enablement/48/Arch_AWS-Training-Certification_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/databases/48/amazon-aurora-48",
+   "name": "Arch Amazon Aurora 48",
+   "collection": "aws",
+   "category": "Arch_Databases",
+   "path": "svg/aws/services/databases/48/amazon-aurora-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3982,
+   "sha256": "d222f2a71889a437005b20291a5eb6f59de02b74e3f0ec836e0f58bb7ad3ec3b",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Databases/48/Arch_Amazon-Aurora_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/databases/48/amazon-documentdb-48",
+   "name": "Arch Amazon DocumentDB 48",
+   "collection": "aws",
+   "category": "Arch_Databases",
+   "path": "svg/aws/services/databases/48/amazon-documentdb-48.svg",
+   "viewBox": "0 0 40 40",
+   "bytes": 3930,
+   "sha256": "9467b9131bbbb38d47c6812b61a893bf5e49a1bf5389b7f72b22d8e5cac22c91",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Databases/48/Arch_Amazon-DocumentDB_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/databases/48/amazon-dynamodb-48",
+   "name": "Arch Amazon DynamoDB 48",
+   "collection": "aws",
+   "category": "Arch_Databases",
+   "path": "svg/aws/services/databases/48/amazon-dynamodb-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5419,
+   "sha256": "c336f941abcb25012c6e36fd884123a868d0727cf916d6f2348b0fb0a053f2f0",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Databases/48/Arch_Amazon-DynamoDB_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/databases/48/amazon-elasticache-48",
+   "name": "Arch Amazon ElastiCache 48",
+   "collection": "aws",
+   "category": "Arch_Databases",
+   "path": "svg/aws/services/databases/48/amazon-elasticache-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4496,
+   "sha256": "13613f97e4b57b0ad79ffacb9def422cae3e8cdc5aaa302b1452828fc8ff4915",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Databases/48/Arch_Amazon-ElastiCache_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/databases/48/amazon-keyspaces-48",
+   "name": "Arch Amazon Keyspaces 48",
+   "collection": "aws",
+   "category": "Arch_Databases",
+   "path": "svg/aws/services/databases/48/amazon-keyspaces-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2528,
+   "sha256": "c6e4282e9f84b291717d82bf2b6053d0e6ac476fc39b8a75b459791ef19637d4",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Databases/48/Arch_Amazon-Keyspaces_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/databases/48/amazon-memorydb-48",
+   "name": "Arch Amazon MemoryDB 48",
+   "collection": "aws",
+   "category": "Arch_Databases",
+   "path": "svg/aws/services/databases/48/amazon-memorydb-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2457,
+   "sha256": "08fa6371dcea82c1f968694bcbfdc0dfd9a06d5065acd141f34fc5b6103bb39a",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Databases/48/Arch_Amazon-MemoryDB_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/databases/48/amazon-neptune-48",
+   "name": "Arch Amazon Neptune 48",
+   "collection": "aws",
+   "category": "Arch_Databases",
+   "path": "svg/aws/services/databases/48/amazon-neptune-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4971,
+   "sha256": "4bad4a09ff4efcf214e1d3e7e8c2e45efb2d4e30b2d6e66b3952c06ca33b8f5b",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Databases/48/Arch_Amazon-Neptune_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/databases/48/amazon-rds-48",
+   "name": "Arch Amazon RDS 48",
+   "collection": "aws",
+   "category": "Arch_Databases",
+   "path": "svg/aws/services/databases/48/amazon-rds-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2596,
+   "sha256": "5ef651fae418df2ceade6bf9cbf779d8c8f2ec35c6ff47b23934b10722b6790e",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Databases/48/Arch_Amazon-RDS_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/databases/48/amazon-timestream-48",
+   "name": "Arch Amazon Timestream 48",
+   "collection": "aws",
+   "category": "Arch_Databases",
+   "path": "svg/aws/services/databases/48/amazon-timestream-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2572,
+   "sha256": "ca813623b26718afa1dade653a72c034ca76d3aadd9c86b712e7b1f85f88742c",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Databases/48/Arch_Amazon-Timestream_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/databases/48/aws-database-migration-service-48",
+   "name": "Arch AWS Database Migration Service 48",
+   "collection": "aws",
+   "category": "Arch_Databases",
+   "path": "svg/aws/services/databases/48/aws-database-migration-service-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2133,
+   "sha256": "33120ff741325f79d78cde06f924347d0f453a95c62d6f69d14704fe207fce14",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Databases/48/Arch_AWS-Database-Migration-Service_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/databases/48/oracle-database-at-aws-48",
+   "name": "Arch Oracle Database at AWS 48",
+   "collection": "aws",
+   "category": "Arch_Databases",
+   "path": "svg/aws/services/databases/48/oracle-database-at-aws-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1181,
+   "sha256": "0af7d55377c31cf28ea6c73d362dff126d1b8d841fc1048489a3b94c7544a586",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Databases/48/Arch_Oracle-Database-at-AWS_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/developer-tools/48/amazon-codecatalyst-48",
+   "name": "Arch Amazon CodeCatalyst 48",
+   "collection": "aws",
+   "category": "Arch_Developer-Tools",
+   "path": "svg/aws/services/developer-tools/48/amazon-codecatalyst-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2943,
+   "sha256": "51750b2bf74abe00f5af99c8ab8f999ea752d78f7d4fcdfd00d336b819a26fca",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Developer-Tools/48/Arch_Amazon-CodeCatalyst_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/developer-tools/48/amazon-corretto-48",
+   "name": "Arch Amazon Corretto 48",
+   "collection": "aws",
+   "category": "Arch_Developer-Tools",
+   "path": "svg/aws/services/developer-tools/48/amazon-corretto-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2612,
+   "sha256": "002b8e27afb930415935d792fecf943e183d451822c54cb448de6fb89ec81233",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Developer-Tools/48/Arch_Amazon-Corretto_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/developer-tools/48/aws-cloud-control-api-48",
+   "name": "Arch AWS Cloud Control API 48",
+   "collection": "aws",
+   "category": "Arch_Developer-Tools",
+   "path": "svg/aws/services/developer-tools/48/aws-cloud-control-api-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2760,
+   "sha256": "89a5e51fb35ac4a9169d85526f890299e9b88c92365ccb23be2dfe17e3590ff2",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Developer-Tools/48/Arch_AWS-Cloud-Control-API_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/developer-tools/48/aws-cloud-development-kit-48",
+   "name": "Arch AWS Cloud Development Kit 48",
+   "collection": "aws",
+   "category": "Arch_Developer-Tools",
+   "path": "svg/aws/services/developer-tools/48/aws-cloud-development-kit-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3876,
+   "sha256": "041ef5763cd53be49cb19a09f77cf7727579344f01252cc8c953dcd817f9b8d8",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Developer-Tools/48/Arch_AWS-Cloud-Development-Kit_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/developer-tools/48/aws-cloud9-48",
+   "name": "Arch AWS Cloud9 48",
+   "collection": "aws",
+   "category": "Arch_Developer-Tools",
+   "path": "svg/aws/services/developer-tools/48/aws-cloud9-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3419,
+   "sha256": "02e5b0a516dd985fe66a1d1a55b1ed4cd69219878bfcdd01e6c1da9cc643c4d2",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Developer-Tools/48/Arch_AWS-Cloud9_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/developer-tools/48/aws-cloudshell-48",
+   "name": "Arch AWS CloudShell 48",
+   "collection": "aws",
+   "category": "Arch_Developer-Tools",
+   "path": "svg/aws/services/developer-tools/48/aws-cloudshell-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2893,
+   "sha256": "5c2cb5a3f5cff41777e2a7fa02f7f99670aa05f26b2891c39205b85f9af449e6",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Developer-Tools/48/Arch_AWS-CloudShell_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/developer-tools/48/aws-codeartifact-48",
+   "name": "Arch AWS CodeArtifact 48",
+   "collection": "aws",
+   "category": "Arch_Developer-Tools",
+   "path": "svg/aws/services/developer-tools/48/aws-codeartifact-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1893,
+   "sha256": "b569ee504727e096ed22d147de3920f8c70b3478d912728fd562364a03a894b5",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Developer-Tools/48/Arch_AWS-CodeArtifact_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/developer-tools/48/aws-codebuild-48",
+   "name": "Arch AWS CodeBuild 48",
+   "collection": "aws",
+   "category": "Arch_Developer-Tools",
+   "path": "svg/aws/services/developer-tools/48/aws-codebuild-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3167,
+   "sha256": "bde1dd403aca780551e984a45ebbfdb0332de1ff5509687c4b1134f516827c48",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Developer-Tools/48/Arch_AWS-CodeBuild_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/developer-tools/48/aws-codecommit-48",
+   "name": "Arch AWS CodeCommit 48",
+   "collection": "aws",
+   "category": "Arch_Developer-Tools",
+   "path": "svg/aws/services/developer-tools/48/aws-codecommit-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3273,
+   "sha256": "9257c70eb2067fffbd4673acb6228a345b4a0340c047c2fc50c4374b722f285a",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Developer-Tools/48/Arch_AWS-CodeCommit_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/developer-tools/48/aws-codedeploy-48",
+   "name": "Arch AWS CodeDeploy 48",
+   "collection": "aws",
+   "category": "Arch_Developer-Tools",
+   "path": "svg/aws/services/developer-tools/48/aws-codedeploy-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4516,
+   "sha256": "73d353f2527dc65dd33b9b9f55e6d1649a718d1e41394fa40a1ad5de29daa603",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Developer-Tools/48/Arch_AWS-CodeDeploy_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/developer-tools/48/aws-codepipeline-48",
+   "name": "Arch AWS CodePipeline 48",
+   "collection": "aws",
+   "category": "Arch_Developer-Tools",
+   "path": "svg/aws/services/developer-tools/48/aws-codepipeline-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1690,
+   "sha256": "b443f1ef8b5926b8fe5236766938ceb040e422e21bc5f584cac6c442052120ef",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Developer-Tools/48/Arch_AWS-CodePipeline_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/developer-tools/48/aws-command-line-interface-48",
+   "name": "Arch AWS Command Line Interface 48",
+   "collection": "aws",
+   "category": "Arch_Developer-Tools",
+   "path": "svg/aws/services/developer-tools/48/aws-command-line-interface-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1095,
+   "sha256": "570a8e14c8d4a23f88497b306b476abba63736add7823f3fddaaecb98111c6ac",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Developer-Tools/48/Arch_AWS-Command-Line-Interface_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/developer-tools/48/aws-fault-injection-service-48",
+   "name": "Arch AWS Fault Injection Service 48",
+   "collection": "aws",
+   "category": "Arch_Developer-Tools",
+   "path": "svg/aws/services/developer-tools/48/aws-fault-injection-service-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2804,
+   "sha256": "7e1428c892c0ebb357459d006f07125b887912bea4fbc33ca7bae3824964156e",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Developer-Tools/48/Arch_AWS-Fault-Injection-Service_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/developer-tools/48/aws-infrastructure-composer-48",
+   "name": "Arch AWS Infrastructure Composer 48",
+   "collection": "aws",
+   "category": "Arch_Developer-Tools",
+   "path": "svg/aws/services/developer-tools/48/aws-infrastructure-composer-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4483,
+   "sha256": "d402bb78ab91fd7b3b732d9acf7dbccf25f3e7adaf0826cf4440ed71d0c5d58a",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Developer-Tools/48/Arch_AWS-Infrastructure-Composer_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/developer-tools/48/aws-tools-and-sdks-48",
+   "name": "Arch AWS Tools and SDKs 48",
+   "collection": "aws",
+   "category": "Arch_Developer-Tools",
+   "path": "svg/aws/services/developer-tools/48/aws-tools-and-sdks-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1958,
+   "sha256": "aa1779e365138b91cca2145df0a3c4d2c229c1a5dd33b33ddc8949477a981057",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Developer-Tools/48/Arch_AWS-Tools-and-SDKs_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/developer-tools/48/aws-x-ray-48",
+   "name": "Arch AWS X Ray 48",
+   "collection": "aws",
+   "category": "Arch_Developer-Tools",
+   "path": "svg/aws/services/developer-tools/48/aws-x-ray-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3335,
+   "sha256": "49c3a0c3f4e8a4e774492dfbc8c86869c593e33060b2f58a7ec4e483e52b161f",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Developer-Tools/48/Arch_AWS-X-Ray_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/end-user-computing/48/amazon-workspaces-48",
+   "name": "Arch Amazon WorkSpaces 48",
+   "collection": "aws",
+   "category": "Arch_End-User-Computing",
+   "path": "svg/aws/services/end-user-computing/48/amazon-workspaces-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1849,
+   "sha256": "a3e5ef1ed0054db80c20babb841fab439a2d30d1fdf5a4ba41d15d167a50863a",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_End-User-Computing/48/Arch_Amazon-WorkSpaces_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/front-end-web-mobile/48/amazon-location-service-48",
+   "name": "Arch Amazon Location Service 48",
+   "collection": "aws",
+   "category": "Arch_Front-End-Web-Mobile",
+   "path": "svg/aws/services/front-end-web-mobile/48/amazon-location-service-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3577,
+   "sha256": "6971b72a9681ff2c2dac5376b7096d04ad5ecee4a3c4148a503b900070bd9f73",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Front-End-Web-Mobile/48/Arch_Amazon-Location-Service_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/front-end-web-mobile/48/aws-amplify-48",
+   "name": "Arch AWS Amplify 48",
+   "collection": "aws",
+   "category": "Arch_Front-End-Web-Mobile",
+   "path": "svg/aws/services/front-end-web-mobile/48/aws-amplify-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2462,
+   "sha256": "d429ca12d0e36f4ecd342b30303e2b205af92bb10114b0ae66ca39e67cda8561",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Front-End-Web-Mobile/48/Arch_AWS-Amplify_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/front-end-web-mobile/48/aws-device-farm-48",
+   "name": "Arch AWS Device Farm 48",
+   "collection": "aws",
+   "category": "Arch_Front-End-Web-Mobile",
+   "path": "svg/aws/services/front-end-web-mobile/48/aws-device-farm-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5558,
+   "sha256": "b1cf44f60893650866688ba1db9ac71f26eb15a2325ea3bc76ca628ee6fe6f0e",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Front-End-Web-Mobile/48/Arch_AWS-Device-Farm_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/games/48/amazon-gamelift-servers-48",
+   "name": "Arch Amazon GameLift Servers 48",
+   "collection": "aws",
+   "category": "Arch_Games",
+   "path": "svg/aws/services/games/48/amazon-gamelift-servers-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4634,
+   "sha256": "c95d465e184e528aabbd136f588170293021e98a8d4b78c31e3b1bac8f57b5d1",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Games/48/Arch_Amazon-GameLift-Servers_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/games/48/amazon-gamelift-streams-48",
+   "name": "Arch Amazon GameLift Streams 48",
+   "collection": "aws",
+   "category": "Arch_Games",
+   "path": "svg/aws/services/games/48/amazon-gamelift-streams-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3979,
+   "sha256": "7e77ada1dc285b36d053b3f9ae19093479b4c826d0cd4b43d5c7dfd47ce37141",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Games/48/Arch_Amazon-GameLift-Streams_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/games/48/open-3d-engine-48",
+   "name": "Arch Open 3D Engine 48",
+   "collection": "aws",
+   "category": "Arch_Games",
+   "path": "svg/aws/services/games/48/open-3d-engine-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4901,
+   "sha256": "30e44c9bbacb5a9a5f8df047b0b6adf0d7809db6399f04861256fbc9ad16eb65",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Games/48/Arch_Open-3D-Engine_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/general-icons/48/aws-marketplace-dark-48",
+   "name": "Arch AWS Marketplace Dark 48",
+   "collection": "aws",
+   "category": "Arch_General-Icons",
+   "path": "svg/aws/services/general-icons/48/aws-marketplace-dark-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2751,
+   "sha256": "2404e90c74e372ac601f5b49118898c32292268cacc94470723690c308d1ccf6",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_General-Icons/48/Arch_AWS-Marketplace_Dark_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/general-icons/48/aws-marketplace-light-48",
+   "name": "Arch AWS Marketplace Light 48",
+   "collection": "aws",
+   "category": "Arch_General-Icons",
+   "path": "svg/aws/services/general-icons/48/aws-marketplace-light-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2753,
+   "sha256": "fc498a00efd9920addf80c22df23f8a6aa04ed61b53dd657224b1fe4a0d9aaa5",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_General-Icons/48/Arch_AWS-Marketplace_Light_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/internet-of-things/48/aws-iot-core-48",
+   "name": "Arch AWS IoT Core 48",
+   "collection": "aws",
+   "category": "Arch_Internet-of-Things",
+   "path": "svg/aws/services/internet-of-things/48/aws-iot-core-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5124,
+   "sha256": "7e8873f9711799d4370a8d1c4507450c623643c90eb4155b81dcc04eabeb5c22",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Internet-of-Things/48/Arch_AWS-IoT-Core_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/internet-of-things/48/aws-iot-device-defender-48",
+   "name": "Arch AWS IoT Device Defender 48",
+   "collection": "aws",
+   "category": "Arch_Internet-of-Things",
+   "path": "svg/aws/services/internet-of-things/48/aws-iot-device-defender-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3206,
+   "sha256": "9b2dc76917a49b587c9354c6c8de507ad8425d6b1d3c6ede14c866e3090fc437",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Internet-of-Things/48/Arch_AWS-IoT-Device-Defender_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/internet-of-things/48/aws-iot-device-management-48",
+   "name": "Arch AWS IoT Device Management 48",
+   "collection": "aws",
+   "category": "Arch_Internet-of-Things",
+   "path": "svg/aws/services/internet-of-things/48/aws-iot-device-management-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5026,
+   "sha256": "21f3da15afcfb51f8c114e1e3024bc81ca0439b07319f907c371227e3c5941c8",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Internet-of-Things/48/Arch_AWS-IoT-Device-Management_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/internet-of-things/48/aws-iot-events-48",
+   "name": "Arch AWS IoT Events 48",
+   "collection": "aws",
+   "category": "Arch_Internet-of-Things",
+   "path": "svg/aws/services/internet-of-things/48/aws-iot-events-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4362,
+   "sha256": "65d35db836ca48dda82c5154e9c63b6069a45cdf303ea8b9594ad43f3018817a",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Internet-of-Things/48/Arch_AWS-IoT-Events_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/internet-of-things/48/aws-iot-expresslink-48",
+   "name": "Arch AWS IoT ExpressLink 48",
+   "collection": "aws",
+   "category": "Arch_Internet-of-Things",
+   "path": "svg/aws/services/internet-of-things/48/aws-iot-expresslink-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3857,
+   "sha256": "e870ea75c86123ed2ffa82c6ac511eaa7b1bb149a870767df55e5ffc0986cee8",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Internet-of-Things/48/Arch_AWS-IoT-ExpressLink_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/internet-of-things/48/aws-iot-fleetwise-48",
+   "name": "Arch AWS IoT FleetWise 48",
+   "collection": "aws",
+   "category": "Arch_Internet-of-Things",
+   "path": "svg/aws/services/internet-of-things/48/aws-iot-fleetwise-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4179,
+   "sha256": "b9da3aee8df45ece9e1bead89a423876b5ae30a189fc5274c76b016bfb4d9ade",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Internet-of-Things/48/Arch_AWS-IoT-FleetWise_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/internet-of-things/48/aws-iot-greengrass-48",
+   "name": "Arch AWS IoT Greengrass 48",
+   "collection": "aws",
+   "category": "Arch_Internet-of-Things",
+   "path": "svg/aws/services/internet-of-things/48/aws-iot-greengrass-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2093,
+   "sha256": "4f8bec1f5d66bb626c7b242e854df28fbebf9bd9a895f0c925a9f66628c1c81e",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Internet-of-Things/48/Arch_AWS-IoT-Greengrass_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/internet-of-things/48/aws-iot-sitewise-48",
+   "name": "Arch AWS IoT SiteWise 48",
+   "collection": "aws",
+   "category": "Arch_Internet-of-Things",
+   "path": "svg/aws/services/internet-of-things/48/aws-iot-sitewise-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4443,
+   "sha256": "801e92596a7dddf1e7aafee82db6a221f21367b2a3f29611dc18b2de1fe97316",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Internet-of-Things/48/Arch_AWS-IoT-SiteWise_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/internet-of-things/48/aws-iot-twinmaker-48",
+   "name": "Arch AWS IoT TwinMaker 48",
+   "collection": "aws",
+   "category": "Arch_Internet-of-Things",
+   "path": "svg/aws/services/internet-of-things/48/aws-iot-twinmaker-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3405,
+   "sha256": "c1bfc9b10c2caa8f039c7141caa5c1097357a6c1a86de31b411255a3c0325b40",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Internet-of-Things/48/Arch_AWS-IoT-TwinMaker_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/internet-of-things/48/freertos-48",
+   "name": "Arch FreeRTOS 48",
+   "collection": "aws",
+   "category": "Arch_Internet-of-Things",
+   "path": "svg/aws/services/internet-of-things/48/freertos-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3379,
+   "sha256": "ea0743beb946a69ddf548920e53f0efdd0fca8de8717cf6cee54c7b8671c7aa5",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Internet-of-Things/48/Arch_FreeRTOS_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/amazon-cloudwatch-48",
+   "name": "Arch Amazon CloudWatch 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/amazon-cloudwatch-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3711,
+   "sha256": "9920f2db47fed7e2437c329e8b231edcb0f55db82f02413afa3f2d546c30d552",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_Amazon-CloudWatch_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/amazon-managed-grafana-48",
+   "name": "Arch Amazon Managed Grafana 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/amazon-managed-grafana-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2172,
+   "sha256": "5316963c96d04a5712ce866d3eebc1d97f65129c8687f217696dc7f248129371",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_Amazon-Managed-Grafana_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/amazon-managed-service-for-prometheus-48",
+   "name": "Arch Amazon Managed Service for Prometheus 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/amazon-managed-service-for-prometheus-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2389,
+   "sha256": "1f1264c345b86f97786174c33565ebc37fdb7a4211ae2fb6e60b19748506cec3",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_Amazon-Managed-Service-for-Prometheus_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-appconfig-48",
+   "name": "Arch AWS AppConfig 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-appconfig-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4007,
+   "sha256": "6729845dfa8f80a693451f7ac6a409da53f2a8b4257130f3f73c34fefcfa430f",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-AppConfig_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-application-auto-scaling-48",
+   "name": "Arch AWS Application Auto Scaling 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-application-auto-scaling-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3122,
+   "sha256": "1ef88268ce43bff242a5fefd31a33cd82ff694c383a25da80d9399378e4886eb",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Application-Auto-Scaling_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-auto-scaling-48",
+   "name": "Arch AWS Auto Scaling 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-auto-scaling-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2324,
+   "sha256": "7852128af1ff1832f90ba7f1bf2cf22cf7bb66d3944f3d7d4263d279911aabd6",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Auto-Scaling_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-backint-agent-48",
+   "name": "Arch AWS Backint Agent 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-backint-agent-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 8921,
+   "sha256": "e2f03c7981a6fd080e45760fd9ab276ebf6146b8956e939e4248e89b20b9507a",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Backint-Agent_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-chatbot-48",
+   "name": "Arch AWS Chatbot 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-chatbot-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3830,
+   "sha256": "a1381b70caf8fff5596a15a08354244f955e735cdabee18b9e76f697a5f95459",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Chatbot_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-cloudformation-48",
+   "name": "Arch AWS CloudFormation 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-cloudformation-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3130,
+   "sha256": "37a07518c8163299a791387f613cf399ed3a6beb3c52158eff1a45c78726b5d0",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-CloudFormation_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-cloudtrail-48",
+   "name": "Arch AWS CloudTrail 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-cloudtrail-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2282,
+   "sha256": "f7d90eab5dd0fd668a515cc0d5d20df075bd01940549a28b4c26116fa22ffb18",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-CloudTrail_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-compute-optimizer-48",
+   "name": "Arch AWS Compute Optimizer 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-compute-optimizer-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3924,
+   "sha256": "99e23a6c1d592d0522dba233ecbfccc4a7ddbbd1fd42a407c247da48d14f59b2",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Compute-Optimizer_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-config-48",
+   "name": "Arch AWS Config 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-config-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 10363,
+   "sha256": "0d7701533e4377a9a1e8f9a4d4a6592d524aca657e00390011e414d3997c1b40",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Config_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-console-mobile-application-48",
+   "name": "Arch AWS Console Mobile Application 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-console-mobile-application-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2519,
+   "sha256": "d90cd6b2c4944fb93751d8d50946c5a76fe516493866136687d9ec460d62ee49",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Console-Mobile-Application_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-control-tower-48",
+   "name": "Arch AWS Control Tower 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-control-tower-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2642,
+   "sha256": "49cfb496ef994f16f5592677ae7830fe441c54f253127abfafa85e0b0c26793e",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Control-Tower_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-devops-agent-48",
+   "name": "Arch AWS DevOps Agent 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-devops-agent-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1850,
+   "sha256": "0ae34f32a456bfece183e5cd51d7b4338e7cf9066d4c4fa4283c8fc70482f29e",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-DevOps-Agent_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-distro-for-opentelemetry-48",
+   "name": "Arch AWS Distro for OpenTelemetry 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-distro-for-opentelemetry-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2244,
+   "sha256": "0f7f54156fc3b3c8647496764495f73d2f0d329df02dd6f836503443d4f1cfc4",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Distro-for-OpenTelemetry_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-health-dashboard-48",
+   "name": "Arch AWS Health Dashboard 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-health-dashboard-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2607,
+   "sha256": "b7c639336c40b9c8fb086571c07518af46e93b9173a134b03c5f5a67bb381406",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Health-Dashboard_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-launch-wizard-48",
+   "name": "Arch AWS Launch Wizard 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-launch-wizard-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1807,
+   "sha256": "1538d6bca0eee1b84de16941f0690f8c6b4bc7fe5c34f2538bd6805af6144de4",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Launch-Wizard_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-license-manager-48",
+   "name": "Arch AWS License Manager 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-license-manager-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5036,
+   "sha256": "aeebc92fd003b0b7ebb260d4d247f770e474ebff092ef86d9b7296b85eda0310",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-License-Manager_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-management-console-48",
+   "name": "Arch AWS Management Console 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-management-console-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4827,
+   "sha256": "ecf3db5cc401fd754bf7958255f76a3b5fc7be37acad8c43f58d9148e5fbac8e",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Management-Console_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-organizations-48",
+   "name": "Arch AWS Organizations 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-organizations-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2565,
+   "sha256": "f049a5f29536f8fcfcacd19baa197b6af175ff235ebf7451726b469c088629c9",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Organizations_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-partner-central-48",
+   "name": "Arch AWS Partner Central 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-partner-central-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1666,
+   "sha256": "338e5859d5d38f510aec57f25bccf805edd245d633296ab8ab5e0038461a75b8",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Partner-Central_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-proton-48",
+   "name": "Arch AWS Proton 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-proton-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2257,
+   "sha256": "02200026eab1a11dc6a21e78b6d5343c6d87e81f5f7e7ae52557b1468ad790f6",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Proton_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-resilience-hub-48",
+   "name": "Arch AWS Resilience Hub 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-resilience-hub-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3032,
+   "sha256": "dce1b5573b1dfb3d84b1225f9e19ad397ae1faf4a7e773758f5fc5fac4fd9b34",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Resilience-Hub_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-resource-explorer-48",
+   "name": "Arch AWS Resource Explorer 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-resource-explorer-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3139,
+   "sha256": "fbabba349dd43cb4652d7a6e6ada0f0dddce45a8c41bc6108f32bdcc074c6413",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Resource-Explorer_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-service-catalog-48",
+   "name": "Arch AWS Service Catalog 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-service-catalog-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 6262,
+   "sha256": "b0e841b45c5b6938f0a0aef6ac61813006f17f38d967b5548474e927e2df4176",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Service-Catalog_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-service-management-connector-48",
+   "name": "Arch AWS Service Management Connector 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-service-management-connector-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1229,
+   "sha256": "e8a90b1995883b2fc1f85dd19ea3234f74ba52075b6fe59bb8dd6dd9db37d3c1",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Service-Management-Connector_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-systems-manager-48",
+   "name": "Arch AWS Systems Manager 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-systems-manager-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 6910,
+   "sha256": "b03519f1080a84cc183f7d24d48ee84114834b06f788c6f6459c717527d4df13",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Systems-Manager_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-telco-network-builder-48",
+   "name": "Arch AWS Telco Network Builder 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-telco-network-builder-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 6058,
+   "sha256": "1489dcdda2754ed8f886aa0f3448f3d732d4584e8de81b8cebd635ac4b2c6116",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Telco-Network-Builder_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-trusted-advisor-48",
+   "name": "Arch AWS Trusted Advisor 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-trusted-advisor-48.svg",
+   "viewBox": "0 0 40 40",
+   "bytes": 3162,
+   "sha256": "0ce84ea23416bdcfd92f7c537484be0914f72e37bb9acc3731d83de5d0e5c6ca",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Trusted-Advisor_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-user-notifications-48",
+   "name": "Arch AWS User Notifications 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-user-notifications-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2716,
+   "sha256": "08f732cf5909af322ca6ed793a615bdcd0dd7dea3266f3b013e839fc95830254",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-User-Notifications_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/management-tools/48/aws-well-architected-tool-48",
+   "name": "Arch AWS Well Architected Tool 48",
+   "collection": "aws",
+   "category": "Arch_Management-Tools",
+   "path": "svg/aws/services/management-tools/48/aws-well-architected-tool-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4991,
+   "sha256": "1a660c904e61ee6ba71e56a6f412ed67569282d79856ecdbc30d2e20fb7dbb22",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Management-Tools/48/Arch_AWS-Well-Architected-Tool_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/media-services/48/amazon-interactive-video-service-48",
+   "name": "Arch Amazon Interactive Video Service 48",
+   "collection": "aws",
+   "category": "Arch_Media-Services",
+   "path": "svg/aws/services/media-services/48/amazon-interactive-video-service-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3138,
+   "sha256": "f1726c58ef0d299909cf689beab6dc4d8a2ea73d84fa4f3a393f2eb4ace0ac67",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Media-Services/48/Arch_Amazon-Interactive-Video-Service_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/media-services/48/amazon-kinesis-video-streams-48",
+   "name": "Arch Amazon Kinesis Video Streams 48",
+   "collection": "aws",
+   "category": "Arch_Media-Services",
+   "path": "svg/aws/services/media-services/48/amazon-kinesis-video-streams-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2107,
+   "sha256": "bb4a8d1c532b7dd1e1002fe77876b663f6292a0dd43260bb3d39538ed27784c8",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Media-Services/48/Arch_Amazon-Kinesis-Video-Streams_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/media-services/48/aws-deadline-cloud-48",
+   "name": "Arch AWS Deadline Cloud 48",
+   "collection": "aws",
+   "category": "Arch_Media-Services",
+   "path": "svg/aws/services/media-services/48/aws-deadline-cloud-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2230,
+   "sha256": "8987e0a8d743ab6db166fd28d5d1fbcf4a89f1a1b7d7daffcca1c8e36ae68bcc",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Media-Services/48/Arch_AWS-Deadline-Cloud_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/media-services/48/aws-elemental-appliances-software-48",
+   "name": "Arch AWS Elemental Appliances & Software 48",
+   "collection": "aws",
+   "category": "Arch_Media-Services",
+   "path": "svg/aws/services/media-services/48/aws-elemental-appliances-software-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1469,
+   "sha256": "9b00083c049bd5e8b1f89b13741fa11c24a39b4f7fbed783d910f1086e5ad95f",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Media-Services/48/Arch_AWS-Elemental-Appliances-&-Software_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/media-services/48/aws-elemental-conductor-48",
+   "name": "Arch AWS Elemental Conductor 48",
+   "collection": "aws",
+   "category": "Arch_Media-Services",
+   "path": "svg/aws/services/media-services/48/aws-elemental-conductor-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1421,
+   "sha256": "6f69009147bfad4d3bf04740151002651a5b65969a93764acef8adb8a77e106c",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Media-Services/48/Arch_AWS-Elemental-Conductor_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/media-services/48/aws-elemental-delta-48",
+   "name": "Arch AWS Elemental Delta 48",
+   "collection": "aws",
+   "category": "Arch_Media-Services",
+   "path": "svg/aws/services/media-services/48/aws-elemental-delta-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1409,
+   "sha256": "808902765a96a21d8317b48dfb176dba6f8dd701714196220cb29980c4c02a75",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Media-Services/48/Arch_AWS-Elemental-Delta_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/media-services/48/aws-elemental-link-48",
+   "name": "Arch AWS Elemental Link 48",
+   "collection": "aws",
+   "category": "Arch_Media-Services",
+   "path": "svg/aws/services/media-services/48/aws-elemental-link-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1931,
+   "sha256": "cf296d06e82d61429b3505cb095d85589bef84d108ce27119bb93e7f1ef2d995",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Media-Services/48/Arch_AWS-Elemental-Link_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/media-services/48/aws-elemental-live-48",
+   "name": "Arch AWS Elemental Live 48",
+   "collection": "aws",
+   "category": "Arch_Media-Services",
+   "path": "svg/aws/services/media-services/48/aws-elemental-live-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1406,
+   "sha256": "e27eff33d6c08b87242b001414cf11794182e6ac1de74cb5e67fcee7aba422c8",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Media-Services/48/Arch_AWS-Elemental-Live_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/media-services/48/aws-elemental-mediaconnect-48",
+   "name": "Arch AWS Elemental MediaConnect 48",
+   "collection": "aws",
+   "category": "Arch_Media-Services",
+   "path": "svg/aws/services/media-services/48/aws-elemental-mediaconnect-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4047,
+   "sha256": "fb14ddd8e97053184c52d886b21cfeec15081adc8c90a6df5a7d3e76a3206d93",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Media-Services/48/Arch_AWS-Elemental-MediaConnect_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/media-services/48/aws-elemental-mediaconvert-48",
+   "name": "Arch AWS Elemental MediaConvert 48",
+   "collection": "aws",
+   "category": "Arch_Media-Services",
+   "path": "svg/aws/services/media-services/48/aws-elemental-mediaconvert-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2692,
+   "sha256": "8f7356fbca09ec29b73b6355d808b4f3f77631593972c181dbd3bcd4651b8c87",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Media-Services/48/Arch_AWS-Elemental-MediaConvert_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/media-services/48/aws-elemental-medialive-48",
+   "name": "Arch AWS Elemental MediaLive 48",
+   "collection": "aws",
+   "category": "Arch_Media-Services",
+   "path": "svg/aws/services/media-services/48/aws-elemental-medialive-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 6278,
+   "sha256": "1390bb1445c37d96a7ea59771922e7da59d17e9703e2798a4e6aa902329eadc3",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Media-Services/48/Arch_AWS-Elemental-MediaLive_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/media-services/48/aws-elemental-mediapackage-48",
+   "name": "Arch AWS Elemental MediaPackage 48",
+   "collection": "aws",
+   "category": "Arch_Media-Services",
+   "path": "svg/aws/services/media-services/48/aws-elemental-mediapackage-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2937,
+   "sha256": "974a87e5dbdf82550b7847d0f4833573ce25ab265fb810520e012c18c115a20c",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Media-Services/48/Arch_AWS-Elemental-MediaPackage_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/media-services/48/aws-elemental-mediastore-48",
+   "name": "Arch AWS Elemental MediaStore 48",
+   "collection": "aws",
+   "category": "Arch_Media-Services",
+   "path": "svg/aws/services/media-services/48/aws-elemental-mediastore-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2651,
+   "sha256": "699a214c3bd0b229b0b0bc51dc4a3f45f6d4db3b0621885d3062b35abbf33122",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Media-Services/48/Arch_AWS-Elemental-MediaStore_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/media-services/48/aws-elemental-mediatailor-48",
+   "name": "Arch AWS Elemental MediaTailor 48",
+   "collection": "aws",
+   "category": "Arch_Media-Services",
+   "path": "svg/aws/services/media-services/48/aws-elemental-mediatailor-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2781,
+   "sha256": "1c4feca18b508925f17e935c87a2f6eb839ad86c72db7b0704d428a843f30177",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Media-Services/48/Arch_AWS-Elemental-MediaTailor_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/media-services/48/aws-elemental-server-48",
+   "name": "Arch AWS Elemental Server 48",
+   "collection": "aws",
+   "category": "Arch_Media-Services",
+   "path": "svg/aws/services/media-services/48/aws-elemental-server-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1412,
+   "sha256": "6418aa683bf57a934afd7d9ef62599b5ef769ab3f05744d36dee383a61c17246",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Media-Services/48/Arch_AWS-Elemental-Server_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/media-services/48/aws-thinkbox-deadline-48",
+   "name": "Arch AWS Thinkbox Deadline 48",
+   "collection": "aws",
+   "category": "Arch_Media-Services",
+   "path": "svg/aws/services/media-services/48/aws-thinkbox-deadline-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3166,
+   "sha256": "a5c0aae8a4b8ec10c0ea9dd2d75aaa83158beccec6087fe3a8bdd0ea545b4665",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Media-Services/48/Arch_AWS-Thinkbox-Deadline_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/media-services/48/aws-thinkbox-frost-48",
+   "name": "Arch AWS Thinkbox Frost 48",
+   "collection": "aws",
+   "category": "Arch_Media-Services",
+   "path": "svg/aws/services/media-services/48/aws-thinkbox-frost-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2931,
+   "sha256": "4435207a984cfe6b5c23566097bea80b85573a3b8e975660bcb5f34f8a5db026",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Media-Services/48/Arch_AWS-Thinkbox-Frost_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/media-services/48/aws-thinkbox-krakatoa-48",
+   "name": "Arch AWS Thinkbox Krakatoa 48",
+   "collection": "aws",
+   "category": "Arch_Media-Services",
+   "path": "svg/aws/services/media-services/48/aws-thinkbox-krakatoa-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4690,
+   "sha256": "3567408688e26d935c68553f225d1d5a50423118175821d6071bc92c249a496b",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Media-Services/48/Arch_AWS-Thinkbox-Krakatoa_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/media-services/48/aws-thinkbox-stoke-48",
+   "name": "Arch AWS Thinkbox Stoke 48",
+   "collection": "aws",
+   "category": "Arch_Media-Services",
+   "path": "svg/aws/services/media-services/48/aws-thinkbox-stoke-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3364,
+   "sha256": "6988ddd27cbda28411a35544d39d3e2245b293b7612390c513c8c4f793dceaa1",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Media-Services/48/Arch_AWS-Thinkbox-Stoke_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/media-services/48/aws-thinkbox-xmesh-48",
+   "name": "Arch AWS Thinkbox XMesh 48",
+   "collection": "aws",
+   "category": "Arch_Media-Services",
+   "path": "svg/aws/services/media-services/48/aws-thinkbox-xmesh-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3804,
+   "sha256": "d86dee4d222de729aab897545b729250bb8392933f4d502ad7cde4900fc5e0ef",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Media-Services/48/Arch_AWS-Thinkbox-XMesh_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/migration-modernization/48/aws-application-discovery-service-48",
+   "name": "Arch AWS Application Discovery Service 48",
+   "collection": "aws",
+   "category": "Arch_Migration-Modernization",
+   "path": "svg/aws/services/migration-modernization/48/aws-application-discovery-service-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3486,
+   "sha256": "ab49a5fd2b156335d8efad170d9d3df326880ef7bafa9f2124cd9ad45a2ed92c",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Migration-Modernization/48/Arch_AWS-Application-Discovery-Service_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/migration-modernization/48/aws-application-migration-service-48",
+   "name": "Arch AWS Application Migration Service 48",
+   "collection": "aws",
+   "category": "Arch_Migration-Modernization",
+   "path": "svg/aws/services/migration-modernization/48/aws-application-migration-service-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2548,
+   "sha256": "fcbac07d74ec16db63c7a7f32274ea5a3d40a02168a82a42ab89b5907a334f89",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Migration-Modernization/48/Arch_AWS-Application-Migration-Service_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/migration-modernization/48/aws-data-transfer-terminal-48",
+   "name": "Arch AWS Data Transfer Terminal 48",
+   "collection": "aws",
+   "category": "Arch_Migration-Modernization",
+   "path": "svg/aws/services/migration-modernization/48/aws-data-transfer-terminal-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2591,
+   "sha256": "70a0047393485375e7421f34fad9c1492bf8a37e8f8dbd10c1f498c16f4e9ed6",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Migration-Modernization/48/Arch_AWS-Data-Transfer-Terminal_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/migration-modernization/48/aws-datasync-48",
+   "name": "Arch AWS DataSync 48",
+   "collection": "aws",
+   "category": "Arch_Migration-Modernization",
+   "path": "svg/aws/services/migration-modernization/48/aws-datasync-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4198,
+   "sha256": "f4bf7193871b9f5c135ef4230ae1d64edf9241b713c313dd06af7f5c6f624083",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Migration-Modernization/48/Arch_AWS-DataSync_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/migration-modernization/48/aws-mainframe-modernization-48",
+   "name": "Arch AWS Mainframe Modernization 48",
+   "collection": "aws",
+   "category": "Arch_Migration-Modernization",
+   "path": "svg/aws/services/migration-modernization/48/aws-mainframe-modernization-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2158,
+   "sha256": "dd2f1afab1ac29697bb581feaf892f371f89fe209673660b091b539a934b5d78",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Migration-Modernization/48/Arch_AWS-Mainframe-Modernization_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/migration-modernization/48/aws-migration-evaluator-48",
+   "name": "Arch AWS Migration Evaluator 48",
+   "collection": "aws",
+   "category": "Arch_Migration-Modernization",
+   "path": "svg/aws/services/migration-modernization/48/aws-migration-evaluator-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2729,
+   "sha256": "bbbc63c66be7720173dc809aaa2e32a2959d3ab85e86c20f8f48d59982032896",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Migration-Modernization/48/Arch_AWS-Migration-Evaluator_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/migration-modernization/48/aws-migration-hub-48",
+   "name": "Arch AWS Migration Hub 48",
+   "collection": "aws",
+   "category": "Arch_Migration-Modernization",
+   "path": "svg/aws/services/migration-modernization/48/aws-migration-hub-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5225,
+   "sha256": "5465161f206371acae31fb5c0d0d3bf55b02e16067c87b04cceebaac4f70e43b",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Migration-Modernization/48/Arch_AWS-Migration-Hub_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/migration-modernization/48/aws-transfer-family-48",
+   "name": "Arch AWS Transfer Family 48",
+   "collection": "aws",
+   "category": "Arch_Migration-Modernization",
+   "path": "svg/aws/services/migration-modernization/48/aws-transfer-family-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2355,
+   "sha256": "5bfed0e41f40c4b16987b5ffbe35dbab8704b27c58645cbfbee7c0b9810111f2",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Migration-Modernization/48/Arch_AWS-Transfer-Family_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/migration-modernization/48/aws-transform-48",
+   "name": "Arch AWS Transform 48",
+   "collection": "aws",
+   "category": "Arch_Migration-Modernization",
+   "path": "svg/aws/services/migration-modernization/48/aws-transform-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2429,
+   "sha256": "9cdce30e5f3aebf059221a2ac088c1bc948ccc3c018681fd5f92add9a7780932",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Migration-Modernization/48/Arch_AWS-Transform_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/networking-content-delivery/48/amazon-api-gateway-48",
+   "name": "Arch Amazon API Gateway 48",
+   "collection": "aws",
+   "category": "Arch_Networking-Content-Delivery",
+   "path": "svg/aws/services/networking-content-delivery/48/amazon-api-gateway-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1764,
+   "sha256": "08f0cb8f93f8d390425d3925054004c17422cabb7eee14edbabe238e678278af",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Networking-Content-Delivery/48/Arch_Amazon-API-Gateway_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/networking-content-delivery/48/amazon-application-recovery-controller-48",
+   "name": "Arch Amazon Application Recovery Controller 48",
+   "collection": "aws",
+   "category": "Arch_Networking-Content-Delivery",
+   "path": "svg/aws/services/networking-content-delivery/48/amazon-application-recovery-controller-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2956,
+   "sha256": "993b1c760b58ef48c62f2a13f92e6f8d3092b75a1645753eb5e45a75ca508d77",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Networking-Content-Delivery/48/Arch_Amazon-Application-Recovery-Controller_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/networking-content-delivery/48/amazon-cloudfront-48",
+   "name": "Arch Amazon CloudFront 48",
+   "collection": "aws",
+   "category": "Arch_Networking-Content-Delivery",
+   "path": "svg/aws/services/networking-content-delivery/48/amazon-cloudfront-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3619,
+   "sha256": "bdea6b292bb1b482f96b788d955adc2d84ce987ad1c2b7d6c719ae31ca7dbb94",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Networking-Content-Delivery/48/Arch_Amazon-CloudFront_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/networking-content-delivery/48/amazon-route-53-48",
+   "name": "Arch Amazon Route 53 48",
+   "collection": "aws",
+   "category": "Arch_Networking-Content-Delivery",
+   "path": "svg/aws/services/networking-content-delivery/48/amazon-route-53-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 6681,
+   "sha256": "624f55ebfca201a7a69a4037baabed2fafac0a99ea05d5089efb5b6bf1819f5b",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Networking-Content-Delivery/48/Arch_Amazon-Route-53_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/networking-content-delivery/48/amazon-virtual-private-cloud-48",
+   "name": "Arch Amazon Virtual Private Cloud 48",
+   "collection": "aws",
+   "category": "Arch_Networking-Content-Delivery",
+   "path": "svg/aws/services/networking-content-delivery/48/amazon-virtual-private-cloud-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3329,
+   "sha256": "7b842e6a64b2238b159d2470e9dc2389f0d1d373a2236abe20aed971b1f69ded",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Networking-Content-Delivery/48/Arch_Amazon-Virtual-Private-Cloud_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/networking-content-delivery/48/amazon-vpc-lattice-48",
+   "name": "Arch Amazon VPC Lattice 48",
+   "collection": "aws",
+   "category": "Arch_Networking-Content-Delivery",
+   "path": "svg/aws/services/networking-content-delivery/48/amazon-vpc-lattice-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2274,
+   "sha256": "43854d56ce2a9ba3b409d28a3cdbbd650fcc810698b907adb270ef4ea3afb2ba",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Networking-Content-Delivery/48/Arch_Amazon-VPC-Lattice_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/networking-content-delivery/48/aws-app-mesh-48",
+   "name": "Arch AWS App Mesh 48",
+   "collection": "aws",
+   "category": "Arch_Networking-Content-Delivery",
+   "path": "svg/aws/services/networking-content-delivery/48/aws-app-mesh-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 6510,
+   "sha256": "8eb4ca53c8f4708460d1bd87b980e2b2a21ff131921e6c4b90ff56ff6502825b",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Networking-Content-Delivery/48/Arch_AWS-App-Mesh_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/networking-content-delivery/48/aws-client-vpn-48",
+   "name": "Arch AWS Client VPN 48",
+   "collection": "aws",
+   "category": "Arch_Networking-Content-Delivery",
+   "path": "svg/aws/services/networking-content-delivery/48/aws-client-vpn-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5050,
+   "sha256": "cc8ed149b94fbd929df3642a4abea47d9d3133dc7d04ecfe773c3d8891ecfc00",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Networking-Content-Delivery/48/Arch_AWS-Client-VPN_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/networking-content-delivery/48/aws-cloud-map-48",
+   "name": "Arch AWS Cloud Map 48",
+   "collection": "aws",
+   "category": "Arch_Networking-Content-Delivery",
+   "path": "svg/aws/services/networking-content-delivery/48/aws-cloud-map-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 6007,
+   "sha256": "748cfd553a75217da216a67cf261c1cc87873a25caa0fc717d88d3c8f9380126",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Networking-Content-Delivery/48/Arch_AWS-Cloud-Map_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/networking-content-delivery/48/aws-cloud-wan-48",
+   "name": "Arch AWS Cloud WAN 48",
+   "collection": "aws",
+   "category": "Arch_Networking-Content-Delivery",
+   "path": "svg/aws/services/networking-content-delivery/48/aws-cloud-wan-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4856,
+   "sha256": "be05a453aab039365388ce7d363b3641c0f862550b541e502acea17f570a5d20",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Networking-Content-Delivery/48/Arch_AWS-Cloud-WAN_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/networking-content-delivery/48/aws-direct-connect-48",
+   "name": "Arch AWS Direct Connect 48",
+   "collection": "aws",
+   "category": "Arch_Networking-Content-Delivery",
+   "path": "svg/aws/services/networking-content-delivery/48/aws-direct-connect-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5482,
+   "sha256": "5994f6cef68bfd9e686abb571035d09a81e23a52a062ccb1ba10ee495b83d7cb",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Networking-Content-Delivery/48/Arch_AWS-Direct-Connect_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/networking-content-delivery/48/aws-global-accelerator-48",
+   "name": "Arch AWS Global Accelerator 48",
+   "collection": "aws",
+   "category": "Arch_Networking-Content-Delivery",
+   "path": "svg/aws/services/networking-content-delivery/48/aws-global-accelerator-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5501,
+   "sha256": "7df650d876f822a0c75dbdc1aadd7c938c212532ea5f7bd2b7e1a144db2297dd",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Networking-Content-Delivery/48/Arch_AWS-Global-Accelerator_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/networking-content-delivery/48/aws-privatelink-48",
+   "name": "Arch AWS PrivateLink 48",
+   "collection": "aws",
+   "category": "Arch_Networking-Content-Delivery",
+   "path": "svg/aws/services/networking-content-delivery/48/aws-privatelink-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3233,
+   "sha256": "e7573e18201c71158c44dec11251f46894a3d26b895eb4c4e006aa630997db2d",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Networking-Content-Delivery/48/Arch_AWS-PrivateLink_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/networking-content-delivery/48/aws-rtb-fabric-48",
+   "name": "Arch AWS RTB Fabric 48",
+   "collection": "aws",
+   "category": "Arch_Networking-Content-Delivery",
+   "path": "svg/aws/services/networking-content-delivery/48/aws-rtb-fabric-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1374,
+   "sha256": "49ec68fb0fc50ac670a15e0f22603b72ddf7cb86fc434d692fa10cd8b6d3bb2b",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Networking-Content-Delivery/48/Arch_AWS-RTB-Fabric_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/networking-content-delivery/48/aws-site-to-site-vpn-48",
+   "name": "Arch AWS Site to Site VPN 48",
+   "collection": "aws",
+   "category": "Arch_Networking-Content-Delivery",
+   "path": "svg/aws/services/networking-content-delivery/48/aws-site-to-site-vpn-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1727,
+   "sha256": "4c59c24698fc98875176cfaad9a3cb4372c9bf229daa96cbd4043d9efb9479a4",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Networking-Content-Delivery/48/Arch_AWS-Site-to-Site-VPN_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/networking-content-delivery/48/aws-transit-gateway-48",
+   "name": "Arch AWS Transit Gateway 48",
+   "collection": "aws",
+   "category": "Arch_Networking-Content-Delivery",
+   "path": "svg/aws/services/networking-content-delivery/48/aws-transit-gateway-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2323,
+   "sha256": "07d3b531ad614a585d0f0bee06ddfc2780b25ecb289edcc3902f48a12c64d410",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Networking-Content-Delivery/48/Arch_AWS-Transit-Gateway_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/networking-content-delivery/48/aws-verified-access-48",
+   "name": "Arch AWS Verified Access 48",
+   "collection": "aws",
+   "category": "Arch_Networking-Content-Delivery",
+   "path": "svg/aws/services/networking-content-delivery/48/aws-verified-access-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4959,
+   "sha256": "64bcebe5fbcb87bda49f599640221a02b28b2908b3572ab21245a06e1acad8e6",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Networking-Content-Delivery/48/Arch_AWS-Verified-Access_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/networking-content-delivery/48/elastic-load-balancing-48",
+   "name": "Arch Elastic Load Balancing 48",
+   "collection": "aws",
+   "category": "Arch_Networking-Content-Delivery",
+   "path": "svg/aws/services/networking-content-delivery/48/elastic-load-balancing-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1841,
+   "sha256": "8eca01663c238c8685ce5b397d2b0ef49c00ca963023ba7ee80866ed5a620b74",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Networking-Content-Delivery/48/Arch_Elastic-Load-Balancing_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/quantum-technologies/48/amazon-braket-48",
+   "name": "Arch Amazon Braket 48",
+   "collection": "aws",
+   "category": "Arch_Quantum-Technologies",
+   "path": "svg/aws/services/quantum-technologies/48/amazon-braket-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4346,
+   "sha256": "47fc0fd91001bf7936eab858abc0d61967000c7f351ce2ccf2ef2c6257b43ab9",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Quantum-Technologies/48/Arch_Amazon-Braket_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/satellite/48/aws-ground-station-48",
+   "name": "Arch AWS Ground Station 48",
+   "collection": "aws",
+   "category": "Arch_Satellite",
+   "path": "svg/aws/services/satellite/48/aws-ground-station-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4535,
+   "sha256": "eb27be079abc31176906b1acaf6a46b255654410a7565030eb78e07787068783",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Satellite/48/Arch_AWS-Ground-Station_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/amazon-cloud-directory-48",
+   "name": "Arch Amazon Cloud Directory 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/amazon-cloud-directory-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2326,
+   "sha256": "622ec079035565d3e56c6fc5754685c71a32b1450edac5818d1f8473678459e8",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_Amazon-Cloud-Directory_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/amazon-cognito-48",
+   "name": "Arch Amazon Cognito 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/amazon-cognito-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4957,
+   "sha256": "66a89c507aced4afefe99d39fa7d5b7bd22e3f6bed03f511a031bf44f57f34ce",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_Amazon-Cognito_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/amazon-detective-48",
+   "name": "Arch Amazon Detective 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/amazon-detective-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4520,
+   "sha256": "0e9c249af6592f8257e1081b59108fdebc6de101a655d4c983f9b908f073bbc2",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_Amazon-Detective_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/amazon-guardduty-48",
+   "name": "Arch Amazon GuardDuty 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/amazon-guardduty-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 6079,
+   "sha256": "7fdd0628ad6c2161da31452656a1c5db7f9afec138b697bc5b9ecfa14c2a8d74",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_Amazon-GuardDuty_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/amazon-inspector-48",
+   "name": "Arch Amazon Inspector 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/amazon-inspector-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4116,
+   "sha256": "221d6e7fe5f5d1a82d293c69b5442017a385f47e09c009e8fac6bcdaae609775",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_Amazon-Inspector_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/amazon-macie-48",
+   "name": "Arch Amazon Macie 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/amazon-macie-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3373,
+   "sha256": "be378e3a74839741eb8c2fa0352a1a8869434531b283cfbba9a8f51c72cb1854",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_Amazon-Macie_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/amazon-security-lake-48",
+   "name": "Arch Amazon Security Lake 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/amazon-security-lake-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3513,
+   "sha256": "f71a80e035fbac8b31899f385b84cf032cca8ffd102f93144017e0a3ebfbf782",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_Amazon-Security-Lake_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/amazon-verified-permissions-48",
+   "name": "Arch Amazon Verified Permissions 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/amazon-verified-permissions-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4970,
+   "sha256": "cd5514fee4c52097c8411e03306b2b0a3537eba5c4133debb81f50137eb5e4a5",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_Amazon-Verified-Permissions_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/aws-artifact-48",
+   "name": "Arch AWS Artifact 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/aws-artifact-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1873,
+   "sha256": "820ad7f9cdde0fc264d77f525c6419780cf1ac8585766eae3e021ab0bfcf8aa1",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_AWS-Artifact_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/aws-audit-manager-48",
+   "name": "Arch AWS Audit Manager 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/aws-audit-manager-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2199,
+   "sha256": "93d781a519de09e94a572acb9304a092c6bfea2362fdf27a44429d5c241a3441",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_AWS-Audit-Manager_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/aws-certificate-manager-48",
+   "name": "Arch AWS Certificate Manager 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/aws-certificate-manager-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2180,
+   "sha256": "ceb602bb370f14c8238d717054c32ae5ab2ef12025d1a2215a910234be69972c",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_AWS-Certificate-Manager_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/aws-cloudhsm-48",
+   "name": "Arch AWS CloudHSM 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/aws-cloudhsm-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3132,
+   "sha256": "0c706223ee10383c78badc7dfabbd87c7123f05166aa66e0b68bcd8c88532c25",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_AWS-CloudHSM_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/aws-directory-service-48",
+   "name": "Arch AWS Directory Service 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/aws-directory-service-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2042,
+   "sha256": "73f3be2f4b530ab37586f50b65e8867eeff6bc4177b2652a942942bb2bb086e3",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_AWS-Directory-Service_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/aws-firewall-manager-48",
+   "name": "Arch AWS Firewall Manager 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/aws-firewall-manager-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4204,
+   "sha256": "d7c6fd3381e7a5485798571337c36925c4288d6e49c086f8229685ca7083b526",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_AWS-Firewall-Manager_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/aws-iam-identity-center-48",
+   "name": "Arch AWS IAM Identity Center 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/aws-iam-identity-center-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5003,
+   "sha256": "4bf31d6fa8b2e8b48faf2cd08bcfb55a00f8ae9d5451c82606fabf5ef2f872e9",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_AWS-IAM-Identity-Center_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/aws-identity-and-access-management-48",
+   "name": "Arch AWS Identity and Access Management 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/aws-identity-and-access-management-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2148,
+   "sha256": "81954dcfb86d5f410f7084345e459cd5c7ca1d76032d34f771ad379c94e062b6",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_AWS-Identity-and-Access-Management_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/aws-key-management-service-48",
+   "name": "Arch AWS Key Management Service 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/aws-key-management-service-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5511,
+   "sha256": "5655b1815bdfe9ea75a26c702efaac8d884884cccb3b306f75e54d6f542a325e",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_AWS-Key-Management-Service_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/aws-network-firewall-48",
+   "name": "Arch AWS Network Firewall 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/aws-network-firewall-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4622,
+   "sha256": "8880494187ffd79dc6b65c4c657b8ed84d043556b27d4b5eb41cb85867b01cae",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_AWS-Network-Firewall_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/aws-payment-cryptography-48",
+   "name": "Arch AWS Payment Cryptography 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/aws-payment-cryptography-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4782,
+   "sha256": "82d519f4470a696dbd221c71e1eb35029e2d2f4911ddd4ed06188e0c51e9fe44",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_AWS-Payment-Cryptography_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/aws-private-certificate-authority-48",
+   "name": "Arch AWS Private Certificate Authority 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/aws-private-certificate-authority-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1877,
+   "sha256": "3fbe1cde23507a3516279d9fc833af0c1fc8b7f30ccd50d023856a5ee630004d",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_AWS-Private-Certificate-Authority_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/aws-resource-access-manager-48",
+   "name": "Arch AWS Resource Access Manager 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/aws-resource-access-manager-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3426,
+   "sha256": "78c330ca464e30688f88e4f998a9b319a0571e591cf60d16ac7ac5a8e89fcc4f",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_AWS-Resource-Access-Manager_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/aws-secrets-manager-48",
+   "name": "Arch AWS Secrets Manager 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/aws-secrets-manager-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2903,
+   "sha256": "0258cbde7033b45683db4e814980f5871d3e88fd8490ad9e9f3f531049fffe40",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_AWS-Secrets-Manager_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/aws-security-agent-48",
+   "name": "Arch AWS Security Agent 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/aws-security-agent-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1811,
+   "sha256": "ac31f9d8b6fd370f676efc5032f2f62a72e679f9533c896637993a7e20f01949",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_AWS-Security-Agent_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/aws-security-hub-48",
+   "name": "Arch AWS Security Hub 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/aws-security-hub-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4097,
+   "sha256": "5a0f0b6dcd6e1620cc3e3abcaeb71d08a600093874107523a3ddcf8690317be1",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_AWS-Security-Hub_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/aws-security-incident-response-48",
+   "name": "Arch AWS Security Incident Response 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/aws-security-incident-response-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2109,
+   "sha256": "0db9c7a7ccfa056435950000f7cc8731587c45f07e15109d9c2dcb3a061522b9",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_AWS-Security-Incident-Response_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/aws-shield-48",
+   "name": "Arch AWS Shield 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/aws-shield-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3450,
+   "sha256": "dacb3427ca9d95973bef3ccbf34072db3671c69e9e9463dbf458f331539684a8",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_AWS-Shield_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/aws-signer-48",
+   "name": "Arch AWS Signer 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/aws-signer-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 5071,
+   "sha256": "f3d9fe18174027e89d72c6df2899ec7fe6eab949d212d960b79e3914fcf1d170",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_AWS-Signer_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/security-identity/48/aws-waf-48",
+   "name": "Arch AWS WAF 48",
+   "collection": "aws",
+   "category": "Arch_Security-Identity",
+   "path": "svg/aws/services/security-identity/48/aws-waf-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3670,
+   "sha256": "e67f918f21cf5fab0846faea3dfa703c9f167275da408c3b4e5f423e3e4ec24a",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Security-Identity/48/Arch_AWS-WAF_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/storage/48/amazon-efs-48",
+   "name": "Arch Amazon EFS 48",
+   "collection": "aws",
+   "category": "Arch_Storage",
+   "path": "svg/aws/services/storage/48/amazon-efs-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 4353,
+   "sha256": "82f8c32b68799a33b3c6737920d492493e6d293ba58caca65cfd6f4056a80e68",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Storage/48/Arch_Amazon-EFS_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/storage/48/amazon-elastic-block-store-48",
+   "name": "Arch Amazon Elastic Block Store 48",
+   "collection": "aws",
+   "category": "Arch_Storage",
+   "path": "svg/aws/services/storage/48/amazon-elastic-block-store-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1484,
+   "sha256": "6d816e4b5d90ff8930cecb63a8951cc3287328fcd4c43cd44c7d2f915ef87452",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Storage/48/Arch_Amazon-Elastic-Block-Store_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/storage/48/amazon-file-cache-48",
+   "name": "Arch Amazon File Cache 48",
+   "collection": "aws",
+   "category": "Arch_Storage",
+   "path": "svg/aws/services/storage/48/amazon-file-cache-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2500,
+   "sha256": "19529bc7fee11282ec0a1f2e07df4311996ea0a9b0eef65d12e7050304b50af0",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Storage/48/Arch_Amazon-File-Cache_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/storage/48/amazon-fsx-48",
+   "name": "Arch Amazon FSx 48",
+   "collection": "aws",
+   "category": "Arch_Storage",
+   "path": "svg/aws/services/storage/48/amazon-fsx-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2104,
+   "sha256": "a3b9251f798432e079796559807bd3f8f8696c5f94e0705fc8f4a81fa44e03c0",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Storage/48/Arch_Amazon-FSx_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/storage/48/amazon-fsx-for-lustre-48",
+   "name": "Arch Amazon FSx for Lustre 48",
+   "collection": "aws",
+   "category": "Arch_Storage",
+   "path": "svg/aws/services/storage/48/amazon-fsx-for-lustre-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2735,
+   "sha256": "2ab0ca3a6833ec65cb4bbbd2ee3210aa9c07e93b734a853502db970f55f1b393",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Storage/48/Arch_Amazon-FSx-for-Lustre_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/storage/48/amazon-fsx-for-netapp-ontap-48",
+   "name": "Arch Amazon FSx for NetApp ONTAP 48",
+   "collection": "aws",
+   "category": "Arch_Storage",
+   "path": "svg/aws/services/storage/48/amazon-fsx-for-netapp-ontap-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3633,
+   "sha256": "1884e767357a924fa5fae50c7d2d8ceb78bb2f0cd84afbd4e0c128f85cd3e024",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Storage/48/Arch_Amazon-FSx-for-NetApp-ONTAP_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/storage/48/amazon-fsx-for-openzfs-48",
+   "name": "Arch Amazon FSx for OpenZFS 48",
+   "collection": "aws",
+   "category": "Arch_Storage",
+   "path": "svg/aws/services/storage/48/amazon-fsx-for-openzfs-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2426,
+   "sha256": "233e0f0928c29f4402d28561cea8bad4d96b15fd20c8830452d52acf6aa3deeb",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Storage/48/Arch_Amazon-FSx-for-OpenZFS_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/storage/48/amazon-fsx-for-wfs-48",
+   "name": "Arch Amazon FSx for WFS 48",
+   "collection": "aws",
+   "category": "Arch_Storage",
+   "path": "svg/aws/services/storage/48/amazon-fsx-for-wfs-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 2402,
+   "sha256": "8f3f663a9e42f6200cff62058b08bbd06f6a186e716904be55310a586a4a9cf0",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Storage/48/Arch_Amazon-FSx-for-WFS_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/storage/48/amazon-s3-on-outposts-48",
+   "name": "Arch Amazon S3 on Outposts 48",
+   "collection": "aws",
+   "category": "Arch_Storage",
+   "path": "svg/aws/services/storage/48/amazon-s3-on-outposts-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3940,
+   "sha256": "e6ef8375955f79f92831f83ccccbe26ca8227edca68f30b14c49926fef65c418",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Storage/48/Arch_Amazon-S3-on-Outposts_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/storage/48/amazon-simple-storage-service-48",
+   "name": "Arch Amazon Simple Storage Service 48",
+   "collection": "aws",
+   "category": "Arch_Storage",
+   "path": "svg/aws/services/storage/48/amazon-simple-storage-service-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1939,
+   "sha256": "bb0df5b7ca52da7323888ed588baefa1c68a23b5776f325bc8ec29825c185a31",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Storage/48/Arch_Amazon-Simple-Storage-Service_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/storage/48/amazon-simple-storage-service-glacier-48",
+   "name": "Arch Amazon Simple Storage Service Glacier 48",
+   "collection": "aws",
+   "category": "Arch_Storage",
+   "path": "svg/aws/services/storage/48/amazon-simple-storage-service-glacier-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 8217,
+   "sha256": "4195e1b649e95369dec28f81de8fe15918ca241d0d9b075f5e81ea25ace651c5",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Storage/48/Arch_Amazon-Simple-Storage-Service-Glacier_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/storage/48/aws-backup-48",
+   "name": "Arch AWS Backup 48",
+   "collection": "aws",
+   "category": "Arch_Storage",
+   "path": "svg/aws/services/storage/48/aws-backup-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3157,
+   "sha256": "5a1fe6e1fc55644821dddd4ff9aab45b4906e45dca16e5181bd373d5d08432e6",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Storage/48/Arch_AWS-Backup_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/storage/48/aws-elastic-disaster-recovery-48",
+   "name": "Arch AWS Elastic Disaster Recovery 48",
+   "collection": "aws",
+   "category": "Arch_Storage",
+   "path": "svg/aws/services/storage/48/aws-elastic-disaster-recovery-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3294,
+   "sha256": "71b621236f73791d084d9e0550085a1b227ad185a52d9fc41ace87f4f023786e",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Storage/48/Arch_AWS-Elastic-Disaster-Recovery_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/storage/48/aws-snowball-48",
+   "name": "Arch AWS Snowball 48",
+   "collection": "aws",
+   "category": "Arch_Storage",
+   "path": "svg/aws/services/storage/48/aws-snowball-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 1784,
+   "sha256": "08fcfacdc5e3034e1cc7807598d7563703b5befb412a0814df0d3cbb07c694c6",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Storage/48/Arch_AWS-Snowball_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/storage/48/aws-snowball-edge-48",
+   "name": "Arch AWS Snowball Edge 48",
+   "collection": "aws",
+   "category": "Arch_Storage",
+   "path": "svg/aws/services/storage/48/aws-snowball-edge-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 10632,
+   "sha256": "1eef17ddd4e70ec2200781da9875fe3bff36ab73be8429b527b1adf058325e81",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Storage/48/Arch_AWS-Snowball-Edge_48.svg"
+   ]
+  },
+  {
+   "id": "aws/services/storage/48/aws-storage-gateway-48",
+   "name": "Arch AWS Storage Gateway 48",
+   "collection": "aws",
+   "category": "Arch_Storage",
+   "path": "svg/aws/services/storage/48/aws-storage-gateway-48.svg",
+   "viewBox": "0 0 64 64",
+   "bytes": 3281,
+   "sha256": "78b1901c23de88c5a978f2bb7fa0ab45ac837e08ac03c9a847beadf055c25d0d",
+   "sources": [
+    "Downloads/Icon-package_01302026/Architecture-Service-Icons_01302026/Arch_Storage/48/Arch_AWS-Storage-Gateway_48.svg"
+   ]
+  }
+ ]
+}

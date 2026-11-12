@@ -29,7 +29,8 @@ Evidence guides the next step: a failing test, a reproducible bug, a working pro
 | [doubt-driven-development](skills/doubt-driven-development/SKILL.md) | Independently challenge a difficult claim | Adapted Osmani workflow |
 | [local-security-review](skills/local-security-review/SKILL.md) | Local security review: scanners, impact investigation, hunt, fix plan | Adapted security plugin; see SOURCES.md |
 | [security-audit](skills/security-audit/SKILL.md) | Source-first security guidance and multi-phase audits with independent verification | Cloudflare; see SOURCES.md |
-| [security-gap-analysis](skills/security-gap-analysis/SKILL.md) | Gap analysis against the security requirements that fit the product (ASVS, AISVS, MASVS), documented in the repository's `security/` folder | Collection-authored; bundled OWASP catalogs, see SOURCES.md |
+| [security-gap-analysis](skills/security-gap-analysis/SKILL.md) | Missing controls: gap analysis against the security requirements that fit the product (ASVS, AISVS, MASVS), documented in the repository's `security/` folder | Collection-authored; bundled OWASP catalogs, see SOURCES.md |
+| [blueprint](skills/blueprint/SKILL.md) | Draw a codebase's architecture as an HTML page where every box cites the code behind it; sketch, compare and diff architectures | Collection-authored; see SOURCES.md |
 | [asd-ste100](skills/asd-ste100/SKILL.md) | Clear technical English with preserved meaning | danyuchn/asd-ste100-skill |
 
 ## Daily use
@@ -50,7 +51,23 @@ For Codex, personal skills can live under `~/.agents/skills/<name>`. For Claude 
 
 The root `plugin.json` describes the portable skills plugin. Compatibility manifests in `.codex-plugin/` and `.claude-plugin/` expose the same collection to those hosts. This repository is the source of truth; no installation, cache replacement, or global configuration change is performed by cloning it. Copy only the selected directories to avoid duplicates with the original plugins.
 
+## Blueprint
+
+Use [blueprint](skills/blueprint/SKILL.md) to see how a repository is built. It keeps the architecture as a model in which every zone, component, connection and flow cites file and lines, refuses a model whose citations do not exist, and draws it as one HTML page under `~/blueprint/`. Run `npm ci --prefix skills/blueprint/scripts` once (Node.js; the layout engine and fonts come from npm and are not committed). Deep mode has the agent in the session read the code. The quick commands send code of the analysed repository to the Claude Code or Codex CLI; the skill's rules say what is sent and what never is.
+
 ## Security workflows
+
+Three skills answer three different questions. None replaces another, and none of them tests a running application.
+
+| Question | Skill | It leaves behind |
+| --- | --- | --- |
+| Which known defect patterns, leaked secrets, vulnerable dependencies and misconfigured infrastructure are in the code, and which of them matter? | `local-security-review` | A fix plan and `review.md` in a private temporary folder |
+| Which defects does a careful reader find without scanners? | `security-audit` | A structured report with a coverage ledger |
+| Which controls should exist and do not? | `security-gap-analysis` | The repository's `security/` folder |
+
+For a full pass over a repository, run them in this order, each on the result of the one before: `security-gap-analysis` first (its `security/profile.md` and inventory are the map the others start from), then `local-security-review` with `release`, then `security-audit` in full mode when a second, independent reading is worth its cost. Blueprint gives the same map as a picture when that helps. On unchanged code, one run of each is enough.
+
+What no skill here covers: the running application (dynamic testing), what is deployed but not in the repository, container images, dependencies outside npm, PyPI and crates.io, licence compliance of dependencies, and standards that are not bundled (CIS and cloud benchmarks, PCI DSS, ISO 27001, SOC 2, GDPR). No bundled standard covers the build and release pipeline; the gap analysis inventories it and reports what it finds as outside the selection.
 
 Use `local-security-review`. The agent prepares the scanners with one command (`security.py --setup`), scans, maps the target, investigates every finding for reachability and impact (confirming it with a local regression test where practical), hunts for issues scanners miss, and returns a fix plan. Say "fix it" afterwards to apply the plan.
 
@@ -62,7 +79,13 @@ Review the [scanner licensing boundaries](skills/local-security-review/reference
 
 Use [security-audit](skills/security-audit/SKILL.md) for source-first security guidance or an explicitly requested full codebase audit. Full audits use reconnaissance, coverage-led hunting, independent validation, and structured reports. The bundled validators use Node.js and have no external dependencies. Target-code execution requires the sandbox controls defined in the skill; if those controls are unavailable, validation remains blocked. Choose the workflow that answers the task rather than running both by default.
 
-Use [security-gap-analysis](skills/security-gap-analysis/SKILL.md) to find controls that are missing rather than bugs in code that exists. It models the product, selects OWASP ASVS 5.0, AISVS 1.0 for LLM, agent, RAG and MCP features, and MASVS 2.1 for mobile apps, then records a status with `file:line` evidence for each requirement in the target repository's `security/` folder. Coverage is checked, not assumed: every file is listed and must be read, skimmed or skipped with a reason, and a fixed-pattern inventory of servers, routes, processes, network calls, deserialization, HTML sinks and model calls must be placed in the profile or explained. A file that changes reopens itself and the rows that cite it. The requirement catalogs are bundled; `scripts/build_catalogs.py` rebuilds them from the pinned sources.
+Use [security-gap-analysis](skills/security-gap-analysis/SKILL.md) to find controls that are missing rather than bugs in code that exists. It models the product, selects OWASP ASVS 5.0, AISVS 1.0 for LLM, agent, RAG and MCP features, and MASVS 2.1 for mobile apps, then records a status with `file:line` evidence for each requirement in the target repository's `security/` folder. Coverage is checked, not assumed: every file is listed and must be read, skimmed or skipped with a reason, and a fixed-pattern inventory of the ways in (servers, routes and serverless handlers, command lines, IPC, uploads), the effects outside the program (processes, network calls, data stores, model calls), the build and release pipeline, and the dangerous sinks must be placed in the profile or explained. A file that changes reopens itself and the rows that cite it. The requirement catalogs are bundled; `scripts/build_catalogs.py` rebuilds them from the pinned sources.
+
+## Upgrade notes for 0.9.0
+
+Added blueprint, moved here from the animation-engine repository. Its pages now go under `~/blueprint/`; pages made before the move stay where they were written and still open.
+
+Security-gap-analysis finds more kinds of boundary: serverless handlers and event sources, framework route files, command lines and stdin, uploads and archives, data stores, the build and release pipeline, native and unsafe code, and switched-off TLS verification. An existing `security/` folder therefore shows new `unreviewed` inventory lines on its next `gap.py inventory`, and `gap.py check` fails until they are placed. `gap.py check --complete` also fails while a requirement is unassessed. Local-security-review keeps a list of entrypoints and marks each one walked or not walked; its hunt now covers webhooks, uploads, sessions and cryptography, LLM features, desktop IPC and the build pipeline. Security-audit is unchanged.
 
 ## Upgrade notes for 0.8.0
 
@@ -104,6 +127,7 @@ python3 scripts/validate_package.py
 python3.14 -m unittest discover -s test -v
 python3 skills/asd-ste100/scripts/ste-lint.py --selftest
 node --test skills/security-audit/*.test.cjs
+npm ci --prefix skills/blueprint/scripts && npm test --prefix skills/blueprint/scripts
 ```
 
 Security integration tests can skip when real scanners or databases are absent. Unit tests and package checks do not establish live scanner coverage or agent behavior. Real scans must follow the security skill's scope and permissions.
