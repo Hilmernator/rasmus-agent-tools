@@ -181,8 +181,9 @@ Enforce isolation outside the model:
 
 ZAP's [baseline scan](https://www.zaproxy.org/docs/docker/baseline-scan/) includes
 spidering; passive analysis must not be described as zero-request or zero-effect.
-External staging would require its own explicit target authorization and policy;
-it is outside the initial local-only implementation.
+External staging requires its own explicit target authorization and policy. Since
+0.11.0 the runner has a remote mode for one pre-production host the user names;
+its conditions are in `skills/local-dast/references/remote.md`.
 
 ## Evidence, coverage, and cost
 

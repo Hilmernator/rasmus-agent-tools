@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bounded local HTTP assertions and ZAP analysis of recorded traffic. Python 3.10+."""
+"""Bounded HTTP assertions and ZAP analysis of recorded traffic, on loopback or one named HTTPS host. Python 3.10+."""
 
 import argparse
 import base64
@@ -13,6 +13,7 @@ from pathlib import Path, PurePosixPath
 import re
 import signal
 import socket
+import ssl
 import stat
 import subprocess
 import sys
@@ -30,6 +31,8 @@ METHODS = ("GET", "POST", "PUT", "PATCH", "DELETE")
 OPTIONAL = {"headers_env", "expect_json", "requires", "method", "json", "json_env", "session", "expect_text", "forbid_text"}
 RUN_SECONDS, REQUEST_SECONDS, INTERVAL = 60, 5, 0.5
 LABEL = re.compile(r"[a-z][a-z0-9-]{0,63}\Z")
+# A lowercase DNS name on port 443. The last label starts with a letter, so an IP address never matches.
+REMOTE = re.compile(r"https://(?=[a-z0-9.-]{4,253}\Z)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z][a-z0-9-]{0,61}[a-z0-9]\Z")
 
 
 def digest(path):
@@ -66,15 +69,21 @@ def sent_body(case):
     return json.dumps(data, allow_nan=False).encode()
 
 
-def validate_plan(plan, writes=False):
-    """Validate the entire plan before the first connection; never resolve a hostname."""
+def validate_plan(plan, writes=False, remote=None):
+    """Validate the entire plan before the first connection; never resolve a hostname. Returns (host, port)."""
     if not isinstance(plan, dict) or set(plan) != {"target", "cases"}:
         raise ValueError("Plan requires exactly target and cases")
-    if not isinstance(plan["target"], str) or not re.fullmatch(r"http://127\.0\.0\.1:[0-9]{1,5}", plan["target"]):
-        raise ValueError("Target must be an exact http://127.0.0.1:PORT origin")
-    port = urlsplit(plan["target"]).port
-    if not 1024 <= port <= 65535:
-        raise ValueError("Target port must be between 1024 and 65535")
+    if remote is not None:
+        # A deployed target is the one host named on the command line; a plan alone can never choose it.
+        if not isinstance(remote, str) or not REMOTE.fullmatch(remote) or plan["target"] != remote:
+            raise ValueError("A remote target must be one https://hostname origin, the same in the plan and in --remote")
+        origin = (remote.removeprefix("https://"), 443)
+    else:
+        if not isinstance(plan["target"], str) or not re.fullmatch(r"http://127\.0\.0\.1:[0-9]{1,5}", plan["target"]):
+            raise ValueError("Target must be an exact http://127.0.0.1:PORT origin")
+        origin = ("127.0.0.1", urlsplit(plan["target"]).port)
+        if not 1024 <= origin[1] <= 65535:
+            raise ValueError("Target port must be between 1024 and 65535")
     cases = plan["cases"]
     if not isinstance(cases, list) or not 1 <= len(cases) <= MAX_CASES:
         raise ValueError("Plan must contain 1 to 50 cases")
@@ -127,10 +136,10 @@ def validate_plan(plan, writes=False):
             if not isinstance(items, list) or not 1 <= len(items) <= 20 or any(not isinstance(item, str) or not 1 <= len(item) <= 256 for item in items):
                 raise ValueError("expect_text and forbid_text must list 1 to 20 short strings")
         names.add(name)
-    return port
+    return origin
 
 
-def request(port, case, timeout, cookies=None):
+def request(origin, case, timeout, cookies=None):
     headers = {"Accept-Encoding": "identity", "Connection": "close", "User-Agent": "rasmus-local-dast/0.1"}
     headers.update({key: os.environ[variable] for key, variable in case.get("headers_env", {}).items()})
     if cookies:
@@ -138,7 +147,12 @@ def request(port, case, timeout, cookies=None):
     payload = sent_body(case)
     if payload is not None:
         headers["Content-Type"] = "application/json"
-    connection = http.client.HTTPConnection("127.0.0.1", port, timeout=timeout)
+    host, port = origin
+    if host == "127.0.0.1":
+        connection = http.client.HTTPConnection(host, port, timeout=timeout)
+    else:
+        # The system trust store and the hostname check, as they are. A certificate that fails is a result to report.
+        connection = http.client.HTTPSConnection(host, port, timeout=timeout, context=ssl.create_default_context())
     timer = None
     expired = threading.Event()
     started = time.monotonic()
@@ -212,8 +226,8 @@ def remember_cookies(store, headers):
                 store.pop(name, None)
 
 
-def capture(plan, writes=False):
-    port = validate_plan(plan, writes)
+def capture(plan, writes=False, remote=None):
+    origin = validate_plan(plan, writes, remote)
     observations, entries, passed, sessions = [], [], set(), {}
     deadline = time.monotonic() + RUN_SECONDS
     for case in plan["cases"]:
@@ -230,7 +244,7 @@ def capture(plan, writes=False):
             continue
         try:
             store = sessions.setdefault(case["session"], {}) if "session" in case else None
-            status, headers, body, sent, payload = request(port, case, min(REQUEST_SECONDS, remaining), store)
+            status, headers, body, sent, payload = request(origin, case, min(REQUEST_SECONDS, remaining), store)
             if store is not None:
                 remember_cookies(store, headers)
             checks = {"status": status in case["expect_status"]}
@@ -255,6 +269,8 @@ def capture(plan, writes=False):
                 passed.add(case["id"])
             row["body_sha256"] = hashlib.sha256(body).hexdigest()
             entries.append(har_entry(plan["target"], case, status, headers, body, sent, payload))
+        except ssl.SSLCertVerificationError:
+            row.update(state="incomplete", gap="tls-certificate-not-verified")
         except (OSError, ValueError, RecursionError, http.client.HTTPException):
             # Exceptions may embed target data or credentials. Return only a fixed reason.
             row.update(state="incomplete", gap="request-failed-or-response-limit")
@@ -375,7 +391,7 @@ def analyze(archive, java, private, case_plan):
 
 
 def render(report, directory):
-    lines = ["# Local DAST observations", "", f"Status: {report['status']}", "",
+    lines = ["# DAST observations", "", f"Status: {report['status']}", f"Target: {report['target']}", "",
              "Passing assertions describe only the supplied cases. Scanner alerts remain unreviewed.", "",
              "| Case | Method | Result | HTTP status | Coverage gap |", "| --- | --- | --- | --- | --- |"]
     for row in report["cases"]:
@@ -389,8 +405,8 @@ def render(report, directory):
     os.chmod(directory / "review.md", 0o600)
 
 
-def run(plan, archive=None, java=None, writes=False):
-    validate_plan(plan, writes)
+def run(plan, archive=None, java=None, writes=False, remote=None):
+    validate_plan(plan, writes, remote)
     if archive:
         verify_archive(archive)
         if not java or not Path(java).is_absolute() or not Path(java).is_file() or not os.access(java, os.X_OK):
@@ -399,7 +415,7 @@ def run(plan, archive=None, java=None, writes=False):
     private = directory / "private"
     private.mkdir(mode=0o700)
     write_json(private / "plan.json", plan)
-    observations, har = capture(plan, writes)
+    observations, har = capture(plan, writes, remote)
     write_json(private / "traffic.har", har)
     findings = []
     zap = {"status": "skipped", "reason": "http-only-requested"}
@@ -410,12 +426,16 @@ def run(plan, archive=None, java=None, writes=False):
             zap = {"status": "incomplete", "reason": "analysis-failed-see-private-log"}
     incomplete = zap["status"] != "complete" or any("gap" in row for row in observations)
     failed = bool(findings) or any(row["state"] == "assertion-failed" for row in observations)
+    scope = (["No crawler, browser execution or active vulnerability scan. The TLS certificate was verified; the TLS configuration was not assessed.",
+              "The target is a deployed environment: every request had its real effect there, and nothing was isolated or reset."]
+             if remote else
+             ["No crawler, browser execution, active vulnerability scan or TLS.",
+              "Loopback scoping does not sandbox the application or prevent its outbound connections."])
     report = {"schema_version": 1, "status": "incomplete" if incomplete else "candidates" if failed else "no-candidates",
+              "target": "remote" if remote else "loopback",
               "cases": observations, "findings": findings, "zap": zap,
               "coverage_gaps": ["Only the explicitly listed requests were sent; redirects were not followed.",
-                                "No crawler, browser execution, active vulnerability scan or TLS.",
-                                "Authentication and access policy are covered only by explicit identity and access assertions.",
-                                "Loopback scoping does not sandbox the application or prevent its outbound connections."],
+                                "Authentication and access policy are covered only by explicit identity and access assertions.", *scope],
               "evidence": {"har_sha256": digest(private / "traffic.har"), "plan_sha256": digest(private / "plan.json")}}
     if zap["status"] != "complete":
         report["coverage_gaps"].append("ZAP passive analysis did not complete.")
@@ -436,6 +456,8 @@ def main():
     parser.add_argument("--java", help="Absolute path to a Java 17+ executable")
     parser.add_argument("--allow-writes", action="store_true",
                         help="Send the plan's POST, PUT, PATCH and DELETE cases; only for a disposable instance")
+    parser.add_argument("--remote", metavar="ORIGIN",
+                        help="Test this one https://hostname, a pre-production environment the user named, instead of a loopback port")
     args = parser.parse_args()
     if args.check:
         ready = False
@@ -453,7 +475,7 @@ def main():
     cases = plan.get("cases") if isinstance(plan, dict) else None
     if not args.allow_writes and isinstance(cases, list) and any(isinstance(c, dict) and c.get("method", "GET") != "GET" for c in cases):
         parser.error("The plan holds state-changing cases; they run only with --allow-writes")
-    directory, report = run(plan, args.zap_archive, args.java, args.allow_writes)
+    directory, report = run(plan, args.zap_archive, args.java, args.allow_writes, args.remote)
     print(json.dumps({"status": report["status"], "report": str(directory / "report.json"), "review": str(directory / "review.md")}))
     return {"no-candidates": 0, "candidates": 1, "incomplete": 2}[report["status"]]
 

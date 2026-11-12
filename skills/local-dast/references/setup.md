@@ -33,7 +33,7 @@ The placeholders are intentional: resolve them on the current machine. `--check`
 
 ## What has been run
 
-Measured on 2026-11-12 on macOS 26.3.1 with Python 3.13 and Homebrew's OpenJDK 21: the pinned archive passed the check, ZAP imported the recorded traffic of the test server (read cases and write cases with a request body) and reported its passive alerts, and the collection's DAST tests passed with none skipped. The loopback-only `sandbox-exec` profile in the skill was measured the same day: from inside it an outbound HTTPS request failed and a loopback request answered, and a server started inside it answered a client outside it on 127.0.0.1. Nothing has been measured on Linux, and no run has been made against a real application yet.
+Measured on 2026-11-12 on macOS 26.3.1 with Python 3.13 and Homebrew's OpenJDK 21: the pinned archive passed the check, ZAP imported the recorded traffic of the test server (read cases and write cases with a request body) and reported its passive alerts, and the collection's DAST tests passed with none skipped. The loopback-only `sandbox-exec` profile in the skill was measured the same day: from inside it an outbound HTTPS request failed and a loopback request answered, and a server started inside it answered a client outside it on 127.0.0.1. Remote mode was run the same day against a local TLS server only, with a throw-away certificate: an untrusted certificate stopped the case before any request, a trusted one let it pass, and ZAP read the HTTPS capture. Nothing has been measured on Linux, and no run has been made against a real application or a real deployed environment yet.
 
 ## Passive-analysis profile
 

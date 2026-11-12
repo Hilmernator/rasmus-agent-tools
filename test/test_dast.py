@@ -1,10 +1,12 @@
-"""Local DAST scope, evidence projection and real synthetic HTTP behavior."""
+"""DAST scope, evidence projection and real synthetic HTTP behavior, on loopback and over TLS."""
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import importlib.util
 import json
 import os
 from pathlib import Path
 import shutil
+import socket
+import ssl
 import subprocess
 import sys
 import tempfile
@@ -79,6 +81,10 @@ class Handler(BaseHTTPRequestHandler):
     do_PUT = do_PATCH = do_DELETE = do_POST
 
 
+REMOTE_HOST = "staging.example.test"  # .test is reserved and never resolves; the tests send it to a local server
+REMOTE = f"https://{REMOTE_HOST}"
+
+
 class DastTests(unittest.TestCase):
     def setUp(self):
         self.env = patch.dict(os.environ, {"DAST_PEER_AUTH": "peer", "DAST_OWNER_AUTH": "owner"})
@@ -95,6 +101,70 @@ class DastTests(unittest.TestCase):
         thread.start()
         self.addCleanup(lambda: (server.shutdown(), server.server_close(), thread.join()))
         return server, f"http://127.0.0.1:{server.server_port}"
+
+    def tls_server(self):
+        """The same server behind a throw-away certificate. Requests for REMOTE_HOST:443 are sent to it; nothing leaves this machine."""
+        openssl = shutil.which("openssl")
+        if not openssl:
+            self.skipTest("No openssl binary to make a throw-away certificate")
+        folder = Path(tempfile.mkdtemp())
+        self.addCleanup(lambda: shutil.rmtree(folder))
+        cert, key = folder / "cert.pem", folder / "key.pem"
+        subprocess.run([openssl, "req", "-x509", "-newkey", "rsa:2048", "-nodes", "-days", "2", "-keyout", str(key), "-out", str(cert),
+                        "-subj", f"/CN={REMOTE_HOST}", "-addext", f"subjectAltName=DNS:{REMOTE_HOST}"], check=True, capture_output=True)
+        server, _ = self.server()
+        context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+        context.load_cert_chain(cert, key)
+        server.socket = context.wrap_socket(server.socket, server_side=True)
+        connect = socket.create_connection
+
+        def local_only(address, *args, **kwargs):
+            self.assertEqual(address, (REMOTE_HOST, 443))
+            return connect(("127.0.0.1", server.server_port), *args, **kwargs)
+
+        redirect = patch.object(socket, "create_connection", local_only)
+        redirect.start()
+        self.addCleanup(redirect.stop)
+        return server, str(cert)
+
+    def test_a_remote_target_is_one_https_hostname_named_on_the_command_line(self):
+        self.assertEqual(dast.validate_plan(self.plan(REMOTE), remote=REMOTE), (REMOTE_HOST, 443))
+        with self.assertRaises(ValueError):
+            dast.validate_plan(self.plan(REMOTE))
+        with self.assertRaises(ValueError):
+            dast.validate_plan(self.plan(REMOTE), remote="https://other.example.test")
+        with self.assertRaises(ValueError):
+            dast.validate_plan(self.plan(), remote=REMOTE)
+        for origin in ["http://staging.example.test", "https://10.0.0.7", "https://127.0.0.1", "https://localhost", "https://staging.example.test:8443",
+                       "https://staging.example.test/", "https://user@staging.example.test", "https://Staging.example.test", "https://staging.example.test.",
+                       "https://-staging.example.test", "https://staging.example.123", "https://[::1]", "https://staging.example.test\n", ""]:
+            with self.subTest(origin=origin), self.assertRaises(ValueError):
+                dast.validate_plan(self.plan(origin), remote=origin)
+        path = Path(tempfile.mkdtemp()) / "plan.json"
+        self.addCleanup(lambda: shutil.rmtree(path.parent))
+        path.write_text(json.dumps(self.plan(REMOTE)))
+        result = subprocess.run([sys.executable, str(SCRIPT), str(path), "--http-only"], capture_output=True, text=True)
+        self.assertEqual((result.returncode, json.loads(result.stdout)["status"]), (2, "incomplete"))
+        self.assertNotIn(REMOTE_HOST, result.stdout + result.stderr)
+
+    def test_a_remote_run_verifies_the_certificate_and_says_what_it_is(self):
+        server, cert = self.tls_server()
+        with patch.object(dast, "INTERVAL", 0):
+            rows, har = dast.capture(self.plan(REMOTE), remote=REMOTE)
+            self.assertEqual([(row["state"], row["gap"]) for row in rows], [("incomplete", "tls-certificate-not-verified")])
+            self.assertEqual((har["log"]["entries"], server.paths), ([], []))
+            with patch.dict(os.environ, {"SSL_CERT_FILE": cert}):
+                directory, report = dast.run(self.plan(REMOTE), remote=REMOTE)
+        self.addCleanup(lambda: shutil.rmtree(directory))
+        self.assertEqual(([row["state"] for row in report["cases"]], server.paths), (["pass"], ["/"]))
+        self.assertEqual(report["target"], "remote")
+        gaps = " ".join(report["coverage_gaps"])
+        self.assertIn("deployed environment", gaps)
+        self.assertIn("TLS certificate was verified", gaps)
+        self.assertNotIn("Loopback", gaps)
+        self.assertIn("Target: remote", (directory / "review.md").read_text())
+        self.assertNotIn(REMOTE_HOST, (directory / "report.json").read_text() + (directory / "review.md").read_text())
+        self.assertIn(REMOTE + "/", (directory / "private/traffic.har").read_text())
 
     def test_scope_and_entire_plan_validate_before_network(self):
         for target in ["http://localhost:8000", "http://127.0.0.2:8000", "https://127.0.0.1:8000", "http://127.0.0.1:8000/", "http://127.0.0.1:8000@evil.invalid", "http://127.0.0.1:22"]:
@@ -219,6 +289,8 @@ class DastTests(unittest.TestCase):
         self.assertEqual((directory / "private").stat().st_mode & 0o777, 0o700)
         self.assertEqual((directory / "report.json").stat().st_mode & 0o777, 0o600)
         self.assertNotIn("canary", (directory / "review.md").read_text())
+        self.assertEqual(report["target"], "loopback")
+        self.assertIn("Loopback scoping", " ".join(report["coverage_gaps"]))
 
     def write_plan(self, target):
         def login(who):
@@ -293,6 +365,17 @@ class DastTests(unittest.TestCase):
         self.assertTrue(any(finding["rule"] == 10010 for finding in report["findings"]), report)
         self.assertEqual(server.paths, ["/"])
         self.assertTrue(all(finding["observed_cases"] == ["health"] for finding in report["findings"]))
+
+    @unittest.skipUnless(os.environ.get("AGENT_TOOLS_DAST_ZAP_ARCHIVE") and os.environ.get("AGENT_TOOLS_DAST_JAVA"), "Explicit pinned ZAP archive and Java fixture required")
+    def test_real_zap_reads_a_remote_capture_without_sending_anything(self):
+        server, cert = self.tls_server()
+        with patch.dict(os.environ, {"SSL_CERT_FILE": cert}):
+            directory, report = dast.run(self.plan(REMOTE), Path(os.environ["AGENT_TOOLS_DAST_ZAP_ARCHIVE"]), os.environ["AGENT_TOOLS_DAST_JAVA"], remote=REMOTE)
+        self.addCleanup(lambda: shutil.rmtree(directory))
+        self.assertEqual(report["zap"]["status"], "complete", directory)
+        self.assertEqual(server.paths, ["/"])
+        self.assertTrue(report["findings"], report)
+        self.assertTrue(all(finding["observed_cases"] == ["health"] for finding in report["findings"]), report)
 
     @unittest.skipUnless(os.environ.get("AGENT_TOOLS_DAST_ZAP_ARCHIVE") and os.environ.get("AGENT_TOOLS_DAST_JAVA"), "Explicit pinned ZAP archive and Java fixture required")
     def test_real_zap_reads_recorded_writes(self):

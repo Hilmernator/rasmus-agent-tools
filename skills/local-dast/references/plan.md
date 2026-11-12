@@ -1,6 +1,6 @@
 # Request plans and evidence
 
-The agent writes a plan after reading the relevant handlers. The plan is data; it cannot contain commands, launch hooks or external URLs. Keep it in a private temporary directory outside the target repo. Use synthetic IDs and expected values.
+The agent writes a plan after reading the relevant handlers. The plan is data; it cannot contain commands, launch hooks or external URLs. The one exception is the `target` of a [remote run](remote.md), which must equal the origin given to `--remote`. Keep it in a private temporary directory outside the target repo. Use synthetic IDs and expected values.
 
 ```json
 {
@@ -59,7 +59,7 @@ The example leaves out the owner's login and the owner's control read that its `
 
 A redirect is never followed. When the case lists the 3xx status as expected (a login that answers 303), the case passes and the report marks the redirect; an unexpected redirect is a failed assertion and a coverage gap.
 
-Limits are 50 requests, 60 seconds for capture, at most 5 seconds per request, one MiB per response, and at least 0.5 seconds between completed requests. ZAP has an additional 120-second process limit. These are bounded request observations, not a crawler. There is no automatic retry, redirect following, DNS, environment proxy use or browser execution, and no cookie is kept outside a named `session`. A new run is a new budget; do not repeatedly rerun an inconclusive plan to evade it.
+Limits are 50 requests, 60 seconds for capture, at most 5 seconds per request, one MiB per response, and at least 0.5 seconds between completed requests. ZAP has an additional 120-second process limit. These are bounded request observations, not a crawler. There is no automatic retry, redirect following, DNS (except to resolve the one host of a remote run), environment proxy use or browser execution, and no cookie is kept outside a named `session`. A new run is a new budget; do not repeatedly rerun an inconclusive plan to evade it.
 
 Run with the pinned archive, or explicitly use `--http-only` if ZAP is unavailable. The latter still evaluates cases but produces an incomplete result. Neither mode starts or stops the app, and its data changes only through the write cases the plan lists.
 

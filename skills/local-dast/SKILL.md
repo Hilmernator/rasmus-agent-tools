@@ -1,17 +1,19 @@
 ---
 name: local-dast
-description: Runtime security test (DAST) of a locally running web app or API the user owns. Sends a bounded plan of HTTP cases with assertions, including login sessions and state-changing requests against a disposable copy, runs ZAP passive analysis on the recorded traffic, investigates every candidate against the code, and returns a fix plan. Use whenever the user asks to test a running app, for dynamic testing or DAST, to check at runtime what one user or tenant can read or change of another's (IDOR, broken access control), or to replay security cases after a fix. It tests what its cases exercise and is not an autonomous active pentest; for defects in source use local-security-review, for missing controls use security-gap-analysis.
+description: Runtime security test (DAST) of a locally running web app or API the user owns, or of a pre-production deployment the user names. Sends a bounded plan of HTTP cases with assertions, including login sessions and state-changing requests against a disposable copy, runs ZAP passive analysis on the recorded traffic, investigates every candidate against the code, and returns a fix plan. Use whenever the user asks to test a running app, for dynamic testing or DAST, to check at runtime what one user or tenant can read or change of another's (IDOR, broken access control), to test that authentication holds on a staging or dev environment before release, or to replay security cases after a fix. It tests what its cases exercise and is not an autonomous active pentest; for defects in source use local-security-review, for missing controls use security-gap-analysis.
 ---
 
 # Local DAST
 
 Turn source-informed hypotheses into runtime evidence and a fix plan. Source review says what the code should do; this skill asks the running application and records what it did.
 
-The runner sends the requests a plan lists to one `http://127.0.0.1:PORT` origin, evaluates assertions, and imports the captured traffic into ZAP for passive analysis. It does not crawl, execute browser JavaScript, perform active injection scans, or automatically start the app. Describe that coverage accurately.
+The runner sends the requests a plan lists to one `http://127.0.0.1:PORT` origin (or, in remote mode, to one HTTPS host the user names), evaluates assertions, and imports the captured traffic into ZAP for passive analysis. It does not crawl, execute browser JavaScript, perform active injection scans, or automatically start the app. Describe that coverage accurately.
 
 Call the script by absolute path (`<skill-dir>/scripts/dast.py`). It needs Python 3.10+; if `python3` is older, use another interpreter (for example `uv run --python 3.12 python`). The Boundaries at the end hold for every step.
 
 ## 1. Prepare the local target
+
+To test a deployed pre-production environment, follow [remote mode](references/remote.md) in place of this step. The local target below is the default, and the first test of any app that can run locally.
 
 Read project instructions and inspect the relevant start command, routes and data flows. Choose the user's requested application; if unspecified, prefer a small owned app whose runtime behavior can be understood. Inspect changes before copying.
 
@@ -53,13 +55,13 @@ Create a JSON case plan using [the plan reference](references/plan.md). Start wi
 
 For multi-user apps, prioritize horizontal and tenant access, privileged endpoints, and server-side data filtering. With synthetic fixtures, assert both what the owner can see and what the peer must not see: read, list, change and delete each get an allowed control for the owner and a denied case for the peer. Cover expired sessions explicitly. For unauthenticated local tools, explain whether the threat is a local process, an untrusted browser origin, or a hypothetical external deployment.
 
-State-changing cases (`POST`, `PUT`, `PATCH`, `DELETE`) run only when the runner gets `--allow-writes`. Give it only for the disposable instance of step 1, with step 1's Done-when met. A write changes the instance's data, so order the cases so that each finds the state it expects, and reset the fixtures before another run.
+State-changing cases (`POST`, `PUT`, `PATCH`, `DELETE`) run only when the runner gets `--allow-writes`. Give it only for the disposable instance of step 1, with step 1's Done-when met, or in remote mode for an environment whose data the user has said may be changed. A write changes the instance's data, so order the cases so that each finds the state it expects, and reset the fixtures before another run.
 
 Done when each route marked for testing on the Routes list has at least one case, and each denied case depends on a control that proves the object exists and the identity is the one intended.
 
 ## 5. Run
 
-`scripts/dast.py <plan.json> --zap-archive <zip> --java <absolute-java-path> [--allow-writes]`
+`scripts/dast.py <plan.json> --zap-archive <zip> --java <absolute-java-path> [--allow-writes] [--remote https://<host>]`
 
 It prints paths to `report.json` and `review.md` in a new private temporary directory. Exit 0 = no candidates in this scope, 1 = candidates/assertion failures, 2 = incomplete. Continue investigating useful evidence from partial runs, preserving every gap.
 
@@ -91,6 +93,6 @@ This skill reviews by default. If asked to fix, apply the agreed fixes and regre
 
 - Every request to the target goes through the runner's plan, so the target check, the request budget and the private capture hold for all of them.
 - Keep reports private outside Git; the one file this skill writes in the source repository is `security/findings.csv`, through `ledger.py`, and it holds labels and one-line notes only. Retain evidence only as long as needed, and explicitly remove the run directory when the user no longer needs it. Never commit credentials, HAR, session state, downloaded scanners or scan reports.
-- Credentials are those of disposable test accounts in the disposable copy, passed in `DAST_` environment variables. Never use a real account's password, token or cookie, and never print a credential's value.
-- Test only an application the user owns or is trusted to test, on this machine. A deployed or shared instance is out of scope even when it is reachable.
+- Credentials are those of disposable test accounts in the disposable copy, or in remote mode of test accounts made for testing in that environment, passed in `DAST_` environment variables. Never use a real account's password, token or cookie, and never print a credential's value.
+- Test only an application the user owns or is trusted to test. The target is on this machine, or it is the one pre-production host the user named in their own words under [remote mode](references/remote.md). Production, and any instance shared with real users, is out of scope even when it is reachable.
 - Browser journeys, active ZAP scans, Schemathesis and Nuclei are future adapters, not current capabilities. Adding them requires enforced target/egress boundaries, scoped credentials, cancellation and budget tests, and fresh license/integrity review. Do not route around this runner's limits by quietly issuing a broader scan or enabling external callback services.
