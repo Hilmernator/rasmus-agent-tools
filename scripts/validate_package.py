@@ -8,6 +8,7 @@ EXPECTED = {
     'asd-ste100', 'code-validation', 'diagnosing-bugs',
     'doubt-driven-development', 'local-security-review', 'ponytail',
     'prototype', 'qa-only', 'tdd', 'interview-me', 'review-bugs', 'security-audit',
+    'security-gap-analysis', 'blueprint', 'local-dast',
 }
 
 
@@ -29,6 +30,8 @@ def validate(root):
         assert re.search(r'^name: ' + re.escape(path.parent.name) + r'$', header, re.M), path
         assert re.search(r'^description: .+', header, re.M), path
     for path in root.rglob('*'):
+        if 'node_modules' in path.parts:  # installed by npm, git-ignored, not part of the package
+            continue
         assert not path.is_symlink(), f'External dependency: {path}'
         if path.suffix != '.md':
             continue

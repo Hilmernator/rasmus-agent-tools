@@ -1,0 +1,4 @@
+interface:
+  display_name: "Local DAST"
+  short_description: "Test local apps with HTTP assertions and ZAP"
+  default_prompt: "Use $local-dast to test an isolated copy of this local app and produce an evidence-backed fix plan."
