@@ -168,7 +168,9 @@ def check():
     ready = all(item["status"] == "available" for item in checks.values())
     return {"status": "prerequisites-ready" if ready else "needs-setup", "checks": checks,
             "installation_tools": {tool: shutil.which(tool) for tool in ("uv", "npm")},
-            "next_step": "Ready to scan (--verify runs a functional self-test)" if ready else "Run security.py --setup (see references/setup.md)"}
+            "next_step": "Ready to scan (--verify runs a functional self-test)" if ready
+            else "Rerun with Python 3.10 or newer; setup cannot change the interpreter" if checks["python"]["status"] != "available"
+            else "Run security.py --setup (see references/setup.md)"}
 
 
 def fetch_rules(refresh=False):

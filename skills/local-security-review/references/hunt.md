@@ -6,10 +6,10 @@ Scanners match patterns in one file. Real incidents usually come from missing au
 
 For each route, handler, server action, RPC method, queue consumer, CLI command, file importer, webhook, IPC channel and workflow trigger on the list, ask:
 
-- **Who may call it, and is that enforced?** Missing authentication; authorization checked in the UI but not the handler; object IDs from the request used without an ownership check (IDOR); tenant ID taken from the client; admin routes reachable by normal users.
+- **Who may call it, and is that enforced?** Missing authentication; authorization checked in the UI but not the handler; object IDs from the request used without an ownership check (IDOR); tenant ID taken from the client; admin routes reachable by normal users; a write that copies the request's fields onto the record, so the caller sets one it may not (a role, an owner, an admin flag, a price). Compare the handlers of one object with each other: when delete asks for the owner and update only for the organisation, record the weaker one as `needs-review` with the question for the user. Only the user can say it is intended.
 - **Where does each input end up?** Filesystem paths, SQL/NoSQL queries, shell commands, HTML/templates, outgoing URLs (SSRF, redirects), deserializers, regexes, response headers, log lines, a model prompt.
 - **What can repeated or malformed calls do?** Unbounded body/upload sizes, missing rate limits on login/OTP/reset, panics or exceptions that crash the process, allocations sized by client input, race conditions on balances or quotas.
-- **What does it reveal?** Stack traces, internal paths, user enumeration, tokens in URLs or logs, verbose errors.
+- **What does it reveal?** Stack traces, internal paths, user enumeration, tokens in URLs or logs, verbose errors; a secret handed in the answer to a caller who has not proved they own it (a reset token returned to whoever asked for the reset); an answer that serialises the whole record where the caller may see part of it (a password hash, another user's email); a debug or diagnostic route that lists data.
 
 ## Entrypoints with their own questions
 
@@ -38,4 +38,4 @@ The scanners cover these three languages best, so their traps are listed. In any
 
 ## Recording
 
-Record only issues with a concrete location and a plausible attacker. Each gets an `AGENT-` entry in `agent_findings.json` and an assessment held to the same standard as scanner findings, including a local proof when feasible. Ideas you could not substantiate go in as `needs-review` with what is missing, not as confirmed issues. If a scanner already flagged the same root cause, assess it on that ID instead of duplicating it.
+Record only issues with a concrete location and a plausible attacker. Each gets an `AGENT-` entry in `agent_findings.json` and an assessment held to the same standard as scanner findings, including a local proof when feasible. Ideas you could not substantiate go in as `needs-review` with what is missing, not as confirmed issues. If a scanner already flagged the same root cause, assess it on that ID instead of duplicating it. A control that is absent at a place you can name (this login route has no attempt limit) is recorded here at `low`; that the project has no such control anywhere belongs to security-gap-analysis.

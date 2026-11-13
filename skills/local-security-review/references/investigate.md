@@ -32,7 +32,8 @@ directory) and asserts it is rejected, or a check against a locally started
 instance. Work in a temporary copy of the repository outside it (`cp -R`, or
 `git clone --local` plus copied uncommitted files) with synthetic data, so the user's
 tree, build output and data stay untouched. Never touch external hosts, real
-credentials, or user data. Record the test and its result in `proof`. If proving
+credentials, or user data. The test may hold the one boundary input that shows the flow; keep it in the test
+file and out of `evidence`. Record the test and its result in `proof`. If proving
 needs builds, services or time out of proportion, keep `likely` and say why. If a
 build needs dependencies that are not cached locally, ask the user once whether
 fetching them for the temporary copy is fine; otherwise prove at function level
@@ -40,7 +41,8 @@ fetching them for the temporary copy is fine; otherwise prove at function level
 third-party dependency is fine if it does not change the logic under test) or keep
 `likely`. Reusing dependencies the project already installed is fine when you copy
 them (an existing `node_modules`, or the project's virtualenv interpreter run with
-`-I` against the copied tree); never symlink into the user's tree. Check early whether
+`-I` against the copied tree, adding the copy's root to `sys.path` in the test, since
+`-I` leaves the script's folder off it); never symlink into the user's tree. Check early whether
 an offline build works, and note when you use existing build output that is older
 than the source.
 
@@ -55,6 +57,14 @@ than the source.
 
 "Intentional", "in tests" or "validated" alone is not a dismissal: name the guard or
 show the input is constant/synthetic.
+
+Some rules claim a weakness, not a flow: a weak cipher or hash, a cookie without its
+flags, a value that crosses a trust boundary, a hard-coded key. Such a finding is true
+when the code does what the rule says at that line, with or without a demonstrated
+exploit: give it `likely` or `confirmed` at `low` or `info` severity, and let the
+severity carry how little it matters here. It is `false-positive` only when the claim
+itself is false there (the hash is not used for security, the value is not a secret,
+the cookie holds nothing a script may not read), with the file and line that show it.
 
 Severity is your assessment, not the scanner's:
 
@@ -124,7 +134,9 @@ whole class in one `ids` entry. Split out any instance where the input differs.
 (`[{"path": "src/a.rs", "line": 12}]`); `confirmed`/`likely` need `preconditions`
 (attacker position and remaining assumptions, or "none"); `false-positive` needs
 `dismissal_reason`. Optional: `proof`, `verify` (how to check the fix, ideally a test
-name or command).
+name or command), and on an entry with `ids` a `title` for the issue in the fix plan
+(without it the heading is a list of rule names). Write these texts as plain prose:
+the renderer escapes markdown, so a code span comes out as `&#96;`.
 
 ```json
 [

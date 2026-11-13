@@ -13,7 +13,7 @@ The Boundaries at the end hold for every step.
 
 ## 1. Make sure the scanners are ready
 
-Run `python3 scripts/security.py --check`. If the status is not `prerequisites-ready`, tell the user in one sentence what will be downloaded (pinned scanner binaries, locked Python/npm packages, Semgrep rule packs and advisory databases into `~/.cache/rasmus-security`; nothing in the repository changes), get approval if the environment requires it, and run `python3 scripts/security.py --setup`. It installs only what is missing and verifies every engine. If a step fails, rerun after fixing the cause; see [setup](references/setup.md). Do not scan with missing engines and call the result complete.
+Run `python3 scripts/security.py --check`. If it reports `python: incompatible`, rerun it with a newer interpreter before anything else. If the status is then not `prerequisites-ready`, tell the user in one sentence what will be downloaded (pinned scanner binaries, locked Python/npm packages, Semgrep rule packs and advisory databases into `~/.cache/rasmus-security`; nothing in the repository changes), get approval if the environment requires it, and run `python3 scripts/security.py --setup`. It installs only what is missing and verifies every engine. If a step fails, rerun after fixing the cause; see [setup](references/setup.md). Do not scan with missing engines and call the result complete.
 
 Done when `--check` prints `prerequisites-ready`, or the user has chosen to go on without the engines that are missing and you have their names for the report.
 
@@ -34,7 +34,7 @@ Done when you hold the `report.json` path and know, for every engine, whether it
 
 ## 3. Map the target before judging findings
 
-Write `context.md` next to the report (short; a few bullet lists): what the system is, how it runs (server, CLI, library, desktop app, infra), its entrypoints and trust boundaries, where authentication and authorization happen, what sensitive data or capabilities it has, and what is exposed to the internet according to code, IaC and config. Do not open `.env*`, private keys or credential files while mapping; run `secret_probe.py --repo <root> --file <path>` on them instead. Every assessment refers back to this map. "Is this reachable by an attacker, and who is the attacker?" decides most findings.
+Write `context.md` next to the report (short; a few bullet lists): what the system is, how it runs (server, CLI, library, desktop app, infra), its entrypoints and trust boundaries, where authentication and authorization happen, what sensitive data or capabilities it has, and what is exposed to the internet according to code, IaC and config. Do not open `.env*`, private keys or credential files while mapping; run `secret_probe.py --repo <root> --file <path>` on them instead. Read ordinary source files normally, and name a secret you meet there by its variable and line, never by its value. Every assessment refers back to this map. "Is this reachable by an attacker, and who is the attacker?" decides most findings.
 
 If the repository has a `security/` folder from security-gap-analysis, start from it: `security/profile.md` is this map already, and the `boundary` rows of `security/inventory.csv` list the entrypoints with file and line. Check both against the code before you rely on them; they are as old as their last update.
 

@@ -31,7 +31,9 @@ def check():
             checks[name] = {"status": "needs-setup", "error": "Prerequisite check failed; run security.py --setup"}
         checks[name]["setup"] = "security.py --setup"
     return {"status": "prerequisites-ready" if all(c["status"] == "prerequisites-ready" for c in checks.values()) else "needs-setup",
-            "checks": checks, "note": "Read-only checks, not functional verification. No installation or download performed."}
+            "checks": checks, "note": "Read-only checks, not functional verification. No installation or download performed.",
+            # The one failure setup cannot repair, said first so it is not mistaken for a missing engine.
+            **({"next_step": "Rerun with Python 3.10 or newer; setup cannot change the interpreter"} if sys.version_info < (3, 10) else {})}
 
 
 SEMGREP_VERSION = "1.176.0"
