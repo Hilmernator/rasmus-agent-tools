@@ -65,7 +65,7 @@ SIGNALS = [
     ("sql", r"\b(SELECT\s.+\sFROM|INSERT\s+INTO|UPDATE\s.+\sSET|DELETE\s+FROM)\b|\.execute\(|\.raw\(|sqlx::query|rusqlite"),
     ("ai", r"anthropic|openai|langchain|llama_index|ollama|generativeai|bedrock|BedrockRuntime|\bmcp\b|McpServer"
            r"|\"claude\"|\"codex\"|from transformers|import transformers|import torch"),
-    ("auth", r"jwt\.|jsonwebtoken|jose\b|passport\.|Auth0|Cognito|OAuth|oidc|openid|[Aa]uthorization|Bearer|getServerSession"
+    ("auth", r"\b(request|req)\.headers\b|jwt\.|jsonwebtoken|jose\b|passport\.|Auth0|Cognito|OAuth|oidc|openid|[Aa]uthorization|Bearer|getServerSession"
              r"|NextAuth|msal|api[_-]?key|password|Set-Cookie|session\["),
     ("headers", r"Access-Control-Allow|Content-Security-Policy|\bcors\(|X-Frame-Options|Strict-Transport-Security"),
     ("env", r"env::var|process\.env|os\.environ|getenv\(|ENV\["),
@@ -78,7 +78,8 @@ SIGNALS = [
     ("cli", r"\benv::args(_os)?\(|\bclap::|derive\([^)]*\bParser\b|import argparse|argparse\.|sys\.argv|process\.argv|\bclick\.(command|group)"
             r"|\btyper\.|io::stdin\(|sys\.stdin|process\.stdin"),
     ("upload", r"\bmultipart\b|MultipartFile|\bmulter\b|UploadFile|formidable|busboy|\.extractall\(|tarfile\.open|zipfile\.ZipFile|ZipArchive"
-               r"|ZipInputStream|tar::Archive|\btar\s+-?x|\bunzip\b|[Cc]ontent-[Dd]isposition"),
+               r"|ZipInputStream|tar::Archive|\btar\s+-?x|\bunzip\b|[Cc]ontent-[Dd]isposition"
+               r"|\brequest\.files\b|\breq\.files?\b|\bsend_file\(|\bsend_from_directory\(|\bsendFile\("),
     ("store", r"localStorage|sessionStorage|document\.cookie|indexedDB|SecItem(Add|CopyMatching|Update)|\bKeychain"
               r"|SharedPreferences|UserDefaults|\bs3\.|put_object|PutObjectCommand|put_item|\bredis\b|mongodb|dynamodb(?!:)|DynamoDB"),
     ("pipeline", r"pull_request_target|workflow_run|\$\{\{\s*github\.(event|head_ref)|\$\{\{\s*secrets\.|permissions:\s*write-all"
@@ -529,6 +530,13 @@ def check(args):
                 errors.append(f"security/findings.csv: header must be {','.join(FINDING_FIELDS)}; write it only with ledger.py")
     if args.complete and total["unassessed"]:
         errors.append(f'{total["unassessed"]} requirements are unassessed')
+    if args.complete:
+        gaps = repo / "security/gaps.md"
+        text = gaps.read_text(errors="replace") if gaps.exists() else ""
+        unnamed = [r["id"] for r in rows if r["status"] in {"missing", "partial", "unverifiable"}
+                   and not re.search(rf"(?<![\w.]){re.escape(r['id'])}(?![\w]|\.\d)", text)]
+        if unnamed:
+            errors.append(f"security/gaps.md does not name {len(unnamed)} open rows: {', '.join(unnamed[:8])}{' …' if len(unnamed) > 8 else ''}")
     if ledgers:
         frows, irows = ledgers
         print(coverage_line(frows))

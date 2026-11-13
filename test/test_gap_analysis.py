@@ -86,6 +86,19 @@ class Rows(unittest.TestCase):
         self.assertEqual(code, 1)
         self.assertIn("70 requirements are unassessed", out)
 
+    def test_a_complete_analysis_names_every_open_row_in_gaps_md(self):
+        run("files", str(self.repo), "--mark", ".", "--status", "read")
+        run("inventory", str(self.repo))
+        first, second = [f'{r["standard"]}:{r["id"]}' for r in gap.load(self.repo)[:2]]
+        run("set", str(self.repo), first, "--status", "missing", "--notes", "No such control.")
+        run("set", str(self.repo), second, "--status", "unverifiable", "--notes", "Depends on hosting.")
+        self.assertNotIn("gaps.md", run("check", str(self.repo))[1])
+        self.assertIn("security/gaps.md does not name 2 open rows", run("check", str(self.repo), "--complete")[1])
+        (self.repo / "security/gaps.md").write_text(f"## {first.split(':')[1]}\nMissing.\n")
+        self.assertIn(f"security/gaps.md does not name 1 open rows: {second.split(':')[1]}", run("check", str(self.repo), "--complete")[1])
+        (self.repo / "security/gaps.md").write_text(f"## {first.split(':')[1]}, {second.split(':')[1]}\n")
+        self.assertNotIn("gaps.md", run("check", str(self.repo), "--complete")[1])
+
     def test_the_folder_holds_only_its_own_files(self):
         (self.repo / "security/notes-2026.md").write_text("x\n")
         (self.repo / "security/findings.csv").write_text("id,status\n")
@@ -178,6 +191,9 @@ class Signals(unittest.TestCase):
             ("src/main.rs", "let args: Vec<String> = std::env::args().collect();", "cli"),
             ("tool.py", "import argparse", "cli"),
             ("api.py", "async def put(file: UploadFile):", "upload"),
+            ("files.py", 'upload = request.files["file"]', "upload"),
+            ("files.py", "return send_file(os.path.join(base, name))", "upload"),
+            ("auth.py", 'role = request.headers.get("X-Acting-Role")', "auth"),
             ("unpack.py", "tarfile.open(path).extractall(dest)", "upload"),
             ("web/app.js", "localStorage.setItem('token', t)", "store"),
             (".github/workflows/ci.yml", "      - uses: actions/checkout@v4", "pipeline"),

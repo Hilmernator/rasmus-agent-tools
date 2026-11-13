@@ -37,7 +37,7 @@ Use the same level for ASVS and AISVS. Record the assumption behind the level in
 | --- | --- |
 | V1 Encoding and Sanitization | Untrusted input reaches an interpreter: HTML, SQL, shell, file paths, templates, regular expressions |
 | V2 Validation and Business Logic | Always |
-| V3 Web Frontend Security | A browser renders the product's UI |
+| V3 Web Frontend Security | A browser renders the product's UI. For an API without one, still assess V3.2.1, V3.4.1, V3.4.4 and V3.5: a browser can be pointed at any HTTP answer |
 | V4 API and Web Service | It serves HTTP APIs, GraphQL or WebSockets |
 | V5 File Handling | It accepts uploads, serves downloads, builds paths from input or extracts archives |
 | V6 Authentication | Anyone or anything authenticates, and for every networked service: no authentication is a gap |

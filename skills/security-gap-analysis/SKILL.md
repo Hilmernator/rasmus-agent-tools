@@ -10,7 +10,7 @@ Scanners and audits find defects in code that exists. This skill finds controls 
 Two failures make such an analysis worthless, and the script checks for both:
 
 - **A requirement marked met without proof.** Every `met` row needs `file:line` evidence that resolves, in a file that was read.
-- **Code nobody looked at.** Every file is listed and must be read, skimmed or skipped with a reason. Every line where input can enter or code acts outside the program is found by fixed patterns and must be placed. The model never decides what exists; it only decides what it means.
+- **Code nobody looked at.** Every file is listed and must be read, skimmed or skipped with a reason. Every line where input can enter or code acts outside the program is found by fixed patterns and must be placed. The patterns are a floor that does not depend on what the model notices; the full read in step 4 finds the boundary no pattern names, and such a line goes into the profile's Entry points all the same.
 
 A short honest list of gaps with a stated coverage is worth more than a long list of ticks.
 
@@ -73,12 +73,20 @@ Read the ways in and the outside effects first, then write `security/profile.md`
 - **Build and release**: how the product is built, tested and published; who can change a workflow; which secrets the pipeline holds (name them, never their values); where dependencies and tools come from and whether they are pinned.
 - **Outside the repository**: hosting, TLS termination, identity provider, WAF, secrets store, deployed cloud settings. Requirements that depend on these become `unverifiable`.
 
+When the owner's intended deployment differs from what the code does today (it binds loopback, and they will expose it), model the intended one and say so under Product.
+
 Place every inventory line:
 
 ```sh
 python3 <skill-dir>/scripts/gap.py inventory <repo> --mark --kind listen --path src/server.rs --status boundary
 python3 <skill-dir>/scripts/gap.py inventory <repo> --mark --path tests --status test --notes "Test fixtures."
 python3 <skill-dir>/scripts/gap.py inventory <repo> --mark --kind env --status internal --notes "Reads HOME for config paths only."
+```
+
+A later mark replaces an earlier one, so mark the wide selection first and its exceptions after, with `--lines` for part of a file:
+
+```sh
+python3 <skill-dir>/scripts/gap.py inventory <repo> --mark --kind auth --path src/auth.py --lines 1-15 --status internal --notes "Docstring and imports."
 ```
 
 `boundary` means untrusted input or an outside effect passes there. `internal` needs a reason why nothing untrusted reaches it. Read a line's context before marking it internal; a process started with a fixed name can still listen on a port or run a user-supplied script. The patterns favour recall, so some lines are lookalikes (a variable named like an API): mark those `internal` with that reason.
@@ -143,6 +151,8 @@ Evidence rules:
 python3 <skill-dir>/scripts/gap.py set <repo> asvs:V6.3.1 --status missing --notes "No attempt limit on POST /login (src/auth.rs:40)."
 ```
 
+`set` takes a chapter (`asvs:V6`), a section (`asvs:V6.5`) or one requirement, so a section the product has nothing of (no MFA, no XML) is one call with its reason. A requirement that is met by something being absent (no `eval`, no password hints) is `met` with the line that shows what is used in its place, or `not-applicable` when the product has no such feature at all.
+
 Done when `gap.py show <repo> --status unassessed` prints no rows.
 
 ## 6. Challenge
@@ -150,16 +160,18 @@ Done when `gap.py show <repo> --status unassessed` prints no rows.
 Requirements find a control where one exists. They are poor at finding the boundary that has none, and the first assessor trusts their own ticks. So make three independent passes. If a fresh-context subagent is available, use one for each; it gets only what is listed, not your reasoning.
 
 - **Every `met`** (`gap.py show <repo> --status met`): given the requirement text and the evidence, does the evidence prove it? Look for another route to the same resource, a configuration that disables it, an error path that skips it, code that runs only in tests. Downgrade when in doubt.
-- **Every boundary** (`gap.py inventory <repo> --list boundary`): for each line, name from the code who can reach it, what checks identity, what checks permission for the object asked for, what limits size, rate and cost, what validates the input before it reaches a sink, and what is logged. Each answer of "nothing" is a `missing` or `partial` row on the requirement that governs it, or a gap outside the selection.
+- **Every boundary** (`gap.py inventory <repo> --list boundary`): for each route or other distinct way in that the lines belong to, name from the code who can reach it, what checks identity, what checks permission for the object asked for, what limits size, rate and cost, what validates the input before it reaches a sink, and what is logged. Each answer of "nothing" is a `missing` or `partial` row on the requirement that governs it, or a gap outside the selection.
 - **Coverage**: given the profile, `inventory.csv`, the skimmed and skipped rows of `files.csv`, and the `not-applicable` rows: is a line marked `internal` actually reachable from outside? Does a skimmed or skipped file hold a control or a boundary? Is a chapter ruled out that the inventory contradicts?
+
+Without a subagent, make each pass from the row text and the cited lines alone, in another order than you assessed them, and say in `gaps.md` that the challenge was not independent.
 
 Act on every point a pass raises, then run that pass once more. Done when each pass raises nothing.
 
 ## 7. Write gaps.md
 
-Start with the date, the commit, the selection, the totals and the coverage line from `gap.py check`, and say plainly what was skimmed or skipped. Then for each `missing` and `partial` row, ordered by risk:
+Start with the date, the commit, the selection, the totals and the coverage line from `gap.py check`, and say plainly what was skimmed or skipped. Then one entry for each root cause, ordered by risk, so that what gives one user another's data stands above what is only undocumented:
 
-- The requirement ID and a one-line paraphrase.
+- Every requirement ID the cause leaves `missing` or `partial`, and a one-line paraphrase.
 - Why it matters for this product, using the profile: who could do what to which data.
 - Risk: high, medium or low, from exposure (who can reach it) and impact (what data or action).
 - The smallest fix, with the files to change.
@@ -172,7 +184,7 @@ End with two sections:
 - **Check outside the code**: the `unverifiable` rows grouped by where to check (hosting, identity provider, process), so someone can close them.
 - **Not covered**: what this analysis cannot show, so nobody reads it as more than it is. It reads source, so it says nothing about how the running application behaves, what is deployed, or known vulnerabilities in dependencies; name the skill or check that would (see "Working with the other security skills"), and name the standards from the profile's obligations that were not assessed.
 
-Done when every `missing` and `partial` row has an entry and every `unverifiable` row appears under Check outside the code.
+Done when every `missing` and `partial` row's ID stands in an entry and every `unverifiable` row's ID under Check outside the code; `gap.py check --complete` fails on an ID that `gaps.md` does not name.
 
 ## 8. Check and report
 
