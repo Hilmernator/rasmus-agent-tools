@@ -128,9 +128,9 @@ class Ledger(unittest.TestCase):
         with self.assertRaises(SystemExit):
             self.review((finding("SAST-0001", 2), LIKELY))
 
-    def dast(self, assessments):
+    def dast(self, assessments, observed=("anonymous-health",)):
         report = {"cases": [{"id": "anonymous-health", "state": "pass"}, {"id": "peer-cannot-read", "state": "assertion-failed"}],
-                  "zap": {"status": "complete"}, "findings": [{"id": "DAST-0001", "alert_ref": "10038-1", "observed_cases": ["anonymous-health"]}]}
+                  "zap": {"status": "complete"}, "findings": [{"id": "DAST-0001", "alert_ref": "10038-1", "observed_cases": list(observed)}]}
         (self.out / "report.json").write_text(json.dumps(report))
         (self.out / "assessments.json").write_text(json.dumps(assessments))
         return run("record", self.repo, self.out / "report.json", "--assessments", self.out / "assessments.json")[1]
@@ -141,6 +141,10 @@ class Ledger(unittest.TestCase):
         self.assertIn("peer-cannot-read", self.dast([confirmed]))
         out = self.dast([confirmed, {"id": "DAST-0001", "disposition": "false-positive", "basis": "code", "note": "Header is set by the proxy."}])
         self.assertIn("seen before: confirmed, basis test", out)
+        # ZAP reports a sample of a rule's instances, so the cases it names differ between runs of one plan. The rule is the row.
+        again = self.dast([confirmed, {"id": "DAST-0001", "disposition": "false-positive", "basis": "code", "note": "Header is set by the proxy."}],
+                          observed=["anonymous-health", "peer-cannot-read"])
+        self.assertIn("seen before: false-positive, basis code", again)
         self.assertEqual([(r["skill"], r["rule"], r["path"]) for r in self.rows()],
                          [("local-dast", "case:peer-cannot-read", ""), ("local-dast", "zap:10038-1", ""), ("local-security-review", "eval-used", "app.py")])
         self.review()

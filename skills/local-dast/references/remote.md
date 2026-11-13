@@ -38,6 +38,8 @@ Done when each identity has a case that proves who it is (for example `/me` with
 | Does the gateway expose only what it should? | Routes the code has but the deployment should not serve (internal, debug, health detail) | 403 or 404 |
 | Can one user change or delete another's data? Does a token die at logout? | Needs `--allow-writes`: the peer's `PUT`, `PATCH`, `DELETE`, each followed by the owner's read; logout, then the old token | 403 or 404 and the object unchanged; 401 after logout |
 
+When a gateway's JWT authorizer or an MCP gateway stands in front of the handlers, add the cases of [tokens and MCP](tokens-and-mcp.md): they ask what the table's second row cannot, whether a token made for another client, another audience or without the scope is refused.
+
 Give `--allow-writes` only when fact 4 is a yes, and list in the delivery what the cases created or changed, so the user can clean it up.
 
 Done when every protected route on the Routes list has its anonymous case, and each role boundary the code names has a denied case with its allowed control.

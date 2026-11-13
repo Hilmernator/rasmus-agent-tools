@@ -1,6 +1,6 @@
 {
   "name": "rasmus-agent-tools",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "Personal skills for iterative development, verification, security review, local runtime security testing, architecture pages, and clear technical writing.",
   "author": {
     "name": "Rasmus Hilmersson"

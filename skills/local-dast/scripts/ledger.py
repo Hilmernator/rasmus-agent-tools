@@ -123,8 +123,8 @@ def review_items(repo, doc):
 
 def dast_items(doc, assessments):
     """Candidates of local-dast: ZAP alerts and failed cases, keyed by rule and case labels only."""
-    items = {f["id"]: {"id": f["id"], "key": ("zap", f"zap:{f['alert_ref']}", "", ",".join(f["observed_cases"]))}
-             for f in doc["findings"]}
+    # A ZAP row is its rule. The cases an alert names are a sample that differs between runs of one plan, so they are not part of the key.
+    items = {f["id"]: {"id": f["id"], "key": ("zap", f"zap:{f['alert_ref']}", "", "")} for f in doc["findings"]}
     items.update({c["id"]: {"id": c["id"], "key": ("case", f"case:{c['id']}", "", "")}
                   for c in doc["cases"] if c["state"] == "assertion-failed"})
     for item in items.values():

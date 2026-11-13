@@ -28,9 +28,18 @@ ARCHIVE_SHA256 = "94c8f767b1c2e94f0db66b3ae56514d5e3f5a728ee1b6c798e0c8fe2d61fbf
 ADDONS = {"automation", "callhome", "commonlib", "network", "pscan", "pscanrules", "exim", "reports"}
 MAX_CASES, MAX_BODY, MAX_SENT = 50, 1024 * 1024, 64 * 1024
 METHODS = ("GET", "POST", "PUT", "PATCH", "DELETE")
-OPTIONAL = {"headers_env", "expect_json", "requires", "method", "json", "json_env", "session", "expect_text", "forbid_text"}
+OPTIONAL = {"headers_env", "expect_json", "requires", "method", "json", "json_env", "session", "expect_text", "forbid_text",
+            "expect_headers", "forbid_headers", "session_token", "same_as", "take"}
+# JSON-RPC methods that only read or shake hands, as MCP names them. A POST that carries one of these and nothing else needs no --allow-writes.
+RPC_READS = ("initialize", "ping", "tools/list", "resources/list", "prompts/list")
+HEADER_NAME = re.compile(r"[A-Za-z][A-Za-z0-9-]{0,63}\Z")
+TOKEN = re.compile(r"[\x21-\x7e]{1,8192}\Z")  # what may follow "Bearer " in a header: no space, no control character
 RUN_SECONDS, REQUEST_SECONDS, INTERVAL = 60, 5, 0.5
 LABEL = re.compile(r"[a-z][a-z0-9-]{0,63}\Z")
+NAME = re.compile(r"[a-z][a-z0-9_]{0,31}\Z")
+# A taken value fills one path segment: no slash, no leading dot, nothing a URL reads as structure.
+TAKEN = re.compile(r"[A-Za-z0-9_-][A-Za-z0-9._~-]{0,127}\Z")
+REFERENCE = re.compile(r"\{([^{}]*)\}")
 # A lowercase DNS name on port 443. The last label starts with a letter, so an IP address never matches.
 REMOTE = re.compile(r"https://(?=[a-z0-9.-]{4,253}\Z)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z][a-z0-9-]{0,61}[a-z0-9]\Z")
 
@@ -69,6 +78,74 @@ def sent_body(case):
     return json.dumps(data, allow_nan=False).encode()
 
 
+def changes_state(case):
+    """False for a GET, and for a POST whose whole body is one JSON-RPC request that only reads."""
+    if case.get("method", "GET") == "GET":
+        return False
+    body = case.get("json")
+    return not (case["method"] == "POST" and "json_env" not in case and isinstance(body, dict)
+                and set(body) <= {"jsonrpc", "id", "method", "params"} and body.get("jsonrpc") == "2.0"
+                and isinstance(body.get("method"), str) and body["method"] in RPC_READS)
+
+
+def holds(expected, actual):
+    """The answer has every field the case names, with the same type and value; an object is compared field by field."""
+    if isinstance(expected, dict):
+        return isinstance(actual, dict) and all(key in actual and holds(value, actual[key]) for key, value in expected.items())
+    return type(actual) is type(expected) and actual == expected
+
+
+def answer_json(headers, body):
+    """The JSON an answer carries. For text/event-stream (MCP's streamable HTTP) that is the data of the last event that has any."""
+    text = body.decode("utf-8")
+    if any(key.lower() == "content-type" and value.lower().startswith("text/event-stream") for key, value in headers):
+        events = [[line[5:].strip() for line in event.splitlines() if line.startswith("data:")] for event in re.split(r"\r?\n\r?\n", text)]
+        text = "\n".join(next((data for data in reversed(events) if data), []))
+    return json.loads(text)
+
+
+def dig(value, path):
+    """The value at the end of a path of field names and list positions, or None."""
+    for key in path:
+        if isinstance(key, str) and isinstance(value, dict):
+            value = value.get(key)
+        elif type(key) is int and isinstance(value, list) and key < len(value):
+            value = value[key]
+        else:
+            return None
+    return value
+
+
+def references(case):
+    """The names a case fills in: {name} anywhere in its path, and a JSON string that is {name} and nothing else."""
+    def strings(value):
+        if isinstance(value, dict):
+            for item in value.values():
+                yield from strings(item)
+        elif isinstance(value, list):
+            for item in value:
+                yield from strings(item)
+        elif isinstance(value, str) and REFERENCE.fullmatch(value):
+            yield value[1:-1]
+    return set(REFERENCE.findall(case["path"])) | set(strings(case.get("json")))
+
+
+def filled(case, values):
+    """The case as sent: every {name} replaced by the value an earlier answer gave. A JSON value keeps its type."""
+    def fill(value):
+        if isinstance(value, dict):
+            return {key: fill(item) for key, item in value.items()}
+        if isinstance(value, list):
+            return [fill(item) for item in value]
+        if isinstance(value, str) and REFERENCE.fullmatch(value):
+            return values[value[1:-1]]
+        return value
+    case = dict(case, path=REFERENCE.sub(lambda match: str(values[match.group(1)]), case["path"]))
+    if "json" in case:
+        case["json"] = fill(case["json"])
+    return case
+
+
 def validate_plan(plan, writes=False, remote=None):
     """Validate the entire plan before the first connection; never resolve a hostname. Returns (host, port)."""
     if not isinstance(plan, dict) or set(plan) != {"target", "cases"}:
@@ -87,7 +164,7 @@ def validate_plan(plan, writes=False, remote=None):
     cases = plan["cases"]
     if not isinstance(cases, list) or not 1 <= len(cases) <= MAX_CASES:
         raise ValueError("Plan must contain 1 to 50 cases")
-    names = set()
+    names, taken = set(), set()
     for case in cases:
         required = {"id", "path", "expect_status"}
         if not isinstance(case, dict) or not required <= case.keys() or set(case) - required - OPTIONAL:
@@ -99,20 +176,24 @@ def validate_plan(plan, writes=False, remote=None):
             raise ValueError("Case path must be origin-relative")
         if any(ord(c) < 33 or ord(c) > 126 for c in path) or "\\" in path or "#" in path:
             raise ValueError("Case path must be ASCII without whitespace, fragments or backslashes")
+        if "{" in REFERENCE.sub("", path) or "}" in REFERENCE.sub("", path) or references(case) - taken:
+            raise ValueError("A {name} in a path or as a JSON value must be taken by a preceding case")
         statuses = case["expect_status"]
         if not isinstance(statuses, list) or not statuses or any(type(n) is not int or not 100 <= n <= 599 for n in statuses):
             raise ValueError("expect_status must be a nonempty array of HTTP status codes")
         if "expect_json" in case and (not isinstance(case["expect_json"], dict) or not case["expect_json"]):
-            raise ValueError("expect_json must be a nonempty object of expected top-level fields")
+            raise ValueError("expect_json must be a nonempty object of expected fields")
         dependencies = case.get("requires", [])
         if not isinstance(dependencies, list) or any(not isinstance(n, str) or n not in names for n in dependencies):
             raise ValueError("requires must refer to preceding cases")
+        if "same_as" in case and (not isinstance(case["same_as"], str) or case["same_as"] not in names):
+            raise ValueError("same_as must name one preceding case")
         headers = case.get("headers_env", {})
         if not isinstance(headers, dict) or len(headers) > 10:
             raise ValueError("headers_env must map at most ten header names to environment variable names")
         lowered = set()
         for key, variable in headers.items():
-            if not isinstance(key, str) or not re.fullmatch(r"[A-Za-z][A-Za-z0-9-]{0,63}", key):
+            if not isinstance(key, str) or not HEADER_NAME.fullmatch(key):
                 raise ValueError("Invalid header name")
             if key.lower() in lowered | {"host", "connection", "content-length", "transfer-encoding", "accept-encoding", "proxy-authorization", "upgrade"}:
                 raise ValueError("Duplicate or transport-controlling header is not allowed")
@@ -121,7 +202,7 @@ def validate_plan(plan, writes=False, remote=None):
         method = case.get("method", "GET")
         if method not in METHODS:
             raise ValueError("method must be GET, POST, PUT, PATCH or DELETE")
-        if method != "GET" and not writes:
+        if changes_state(case) and not writes:
             raise ValueError("State-changing cases run only with --allow-writes")
         for field in ("json", "json_env"):
             if field in case and (method == "GET" or not isinstance(case[field], dict) or not case[field] or any(not isinstance(key, str) for key in case[field])):
@@ -135,17 +216,40 @@ def validate_plan(plan, writes=False, remote=None):
             items = case.get(field, ["x"])
             if not isinstance(items, list) or not 1 <= len(items) <= 20 or any(not isinstance(item, str) or not 1 <= len(item) <= 256 for item in items):
                 raise ValueError("expect_text and forbid_text must list 1 to 20 short strings")
+        for field in ("expect_headers", "forbid_headers"):
+            wanted = case.get(field, {"x": ""})
+            if not isinstance(wanted, dict) or not 1 <= len(wanted) <= 10 or any(
+                    not isinstance(key, str) or not HEADER_NAME.fullmatch(key) or not isinstance(part, str) or len(part) > 256
+                    or any(ord(c) < 32 or ord(c) > 126 for c in part) for key, part in wanted.items()):
+                raise ValueError("expect_headers and forbid_headers must map 1 to 10 header names to a short text, or to an empty text")
+        path_to_token = case.get("session_token", ["x"])
+        if ("session_token" in case and "session" not in case) or not isinstance(path_to_token, list) or not 1 <= len(path_to_token) <= 8 or any(
+                not isinstance(key, str) or not key for key in path_to_token):
+            raise ValueError("session_token must list 1 to 8 field names, on a case that has a session")
+        take = case.get("take", {"x": ["x"]})
+        if not isinstance(take, dict) or not 1 <= len(take) <= 4 or any(
+                not isinstance(key, str) or not NAME.fullmatch(key) or key in taken or not isinstance(where, list) or not 1 <= len(where) <= 8
+                or any(not (isinstance(step, str) and step) and not (type(step) is int and step >= 0) for step in where)
+                for key, where in take.items()):
+            raise ValueError("take must map 1 to 4 new names to a path of 1 to 8 field names or list positions")
+        taken.update(case.get("take", {}))
         names.add(name)
     return origin
 
 
-def request(origin, case, timeout, cookies=None):
+def request(origin, case, timeout, cookies=None, bearer=None, mcp_session=None):
     headers = {"Accept-Encoding": "identity", "Connection": "close", "User-Agent": "rasmus-local-dast/0.1"}
     headers.update({key: os.environ[variable] for key, variable in case.get("headers_env", {}).items()})
+    if bearer and "authorization" not in {key.lower() for key in headers}:  # a case's own Authorization header wins
+        headers["Authorization"] = "Bearer " + bearer
+    if mcp_session and "mcp-session-id" not in {key.lower() for key in headers}:
+        headers["Mcp-Session-Id"] = mcp_session
     if cookies:
         headers["Cookie"] = "; ".join(f"{name}={value}" for name, value in cookies.items())
     payload = sent_body(case)
     if payload is not None:
+        if len(payload) > MAX_SENT:  # a taken value can lengthen the body after the plan was checked
+            raise ValueError("Request body exceeds 64 KiB")
         headers["Content-Type"] = "application/json"
     host, port = origin
     if host == "127.0.0.1":
@@ -195,7 +299,7 @@ def har_entry(target, case, status, headers, body, sent, payload=None):
         return [{"name": key, "value": value} for key, value in items]
     posted = {"postData": {"mimeType": "application/json", "text": payload.decode("utf-8")}} if payload is not None else {}
     return {
-        "startedDateTime": datetime.now(timezone.utc).isoformat(), "time": 0,
+        "startedDateTime": datetime.now(timezone.utc).isoformat(), "time": 0, "comment": case["id"],
         "request": {"method": case.get("method", "GET"), "url": target + case["path"], "httpVersion": "HTTP/1.1",
                     "headers": fields(sent.items()), "queryString": [], "cookies": [], "headersSize": -1,
                     "bodySize": len(payload or b""), **posted},
@@ -228,7 +332,7 @@ def remember_cookies(store, headers):
 
 def capture(plan, writes=False, remote=None):
     origin = validate_plan(plan, writes, remote)
-    observations, entries, passed, sessions = [], [], set(), {}
+    observations, entries, passed, sessions, bearers, answers, mcp, values = [], [], set(), {}, {}, {}, {}, {}
     deadline = time.monotonic() + RUN_SECONDS
     for case in plan["cases"]:
         row = {"id": case["id"], "state": "not-run"}
@@ -238,36 +342,65 @@ def capture(plan, writes=False, remote=None):
         if any(name not in passed for name in case.get("requires", [])):
             row["gap"] = "prerequisite-failed"
             continue
+        if references(case) - values.keys():
+            row["gap"] = "value-not-taken"
+            continue
+        case = filled(case, values)
         remaining = deadline - time.monotonic()
         if remaining <= 0:
             row["gap"] = "request-budget-exhausted"
             continue
         try:
             store = sessions.setdefault(case["session"], {}) if "session" in case else None
-            status, headers, body, sent, payload = request(origin, case, min(REQUEST_SECONDS, remaining), store)
+            status, headers, body, sent, payload = request(origin, case, min(REQUEST_SECONDS, remaining), store, bearers.get(case.get("session")),
+                                                             mcp.get(case.get("session")))
             if store is not None:
                 remember_cookies(store, headers)
+                # MCP's streamable HTTP names its session in a response header, the way a cookie would. Same privacy as the token.
+                for key, value in headers:
+                    if key.lower() == "mcp-session-id" and TOKEN.fullmatch(value):
+                        mcp[case["session"]] = value
             checks = {"status": status in case["expect_status"]}
+            answers[case["id"]] = status, hashlib.sha256(body).hexdigest()
+            if "same_as" in case:
+                # Equal status and equal body. A case that got no answer is not "the same" as anything.
+                checks["same"] = answers.get(case["same_as"]) == answers[case["id"]]
             text = body.decode("utf-8", "replace")
             if "expect_text" in case:
                 checks["text"] = all(item in text for item in case["expect_text"])
             if "forbid_text" in case:
                 checks["absent"] = not any(item in text for item in case["forbid_text"])
-            if "expect_json" in case:
+            for field, check, wanted in (("expect_headers", "headers", True), ("forbid_headers", "headers_absent", False)):
+                if field in case:
+                    checks[check] = all(any(key.lower() == name.lower() and part.lower() in value.lower() for key, value in headers) is wanted
+                                        for name, part in case[field].items())
+            if "expect_json" in case or "session_token" in case or "take" in case:
                 try:
-                    actual = json.loads(body)
-                    checks["json"] = isinstance(actual, dict) and all(
-                        key in actual and type(actual[key]) is type(value) and actual[key] == value
-                        for key, value in case["expect_json"].items())
-                except (ValueError, UnicodeError):
-                    checks["json"] = False
+                    actual = answer_json(headers, body)
+                except ValueError:
+                    actual = None
+                if "expect_json" in case:
+                    checks["json"] = holds(case["expect_json"], actual)
+                if "session_token" in case:
+                    # The token stays in memory and reaches only later requests of this session and the private HAR.
+                    token = dig(actual, case["session_token"])
+                    checks["token"] = isinstance(token, str) and bool(TOKEN.fullmatch(token))
+                    if checks["token"]:
+                        bearers[case["session"]] = token
+                if "take" in case:
+                    # Like the token: in memory, into later requests and the private HAR, never into a report.
+                    found = {name: dig(actual, where) for name, where in case["take"].items()}
+                    checks["taken"] = all((type(value) is int and 0 <= value < 2 ** 53) or (isinstance(value, str) and TAKEN.fullmatch(value))
+                                          for value in found.values())
+                    if checks["taken"]:
+                        values.update(found)
             row.update(state="pass" if all(checks.values()) else "assertion-failed", status=status, checks=checks)
             if 300 <= status < 400:
                 # A redirect the case expects (a login that answers 303) is its result, not a gap.
                 row["redirect" if checks["status"] else "gap"] = "redirect-not-followed"
             if row["state"] == "pass":
                 passed.add(case["id"])
-            row["body_sha256"] = hashlib.sha256(body).hexdigest()
+            row["body_sha256"] = answers[case["id"]][1]
             entries.append(har_entry(plan["target"], case, status, headers, body, sent, payload))
         except ssl.SSLCertVerificationError:
             row.update(state="incomplete", gap="tls-certificate-not-verified")
@@ -393,9 +526,10 @@ def analyze(archive, java, private, case_plan):
 def render(report, directory):
     lines = ["# DAST observations", "", f"Status: {report['status']}", f"Target: {report['target']}", "",
              "Passing assertions describe only the supplied cases. Scanner alerts remain unreviewed.", "",
-             "| Case | Method | Result | HTTP status | Coverage gap |", "| --- | --- | --- | --- | --- |"]
+             "| Case | Method | Result | HTTP status | Failed checks | Coverage gap |", "| --- | --- | --- | --- | --- | --- |"]
     for row in report["cases"]:
-        lines.append(f"| {row['id']} | {row.get('method', 'GET')} | {row['state']} | {row.get('status', '—')} | {row.get('gap', row.get('redirect', '—'))} |")
+        failed = ", ".join(name for name, ok in row.get("checks", {}).items() if not ok) or "—"
+        lines.append(f"| {row['id']} | {row.get('method', 'GET')} | {row['state']} | {row.get('status', '—')} | {failed} | {row.get('gap', row.get('redirect', '—'))} |")
     lines += ["", "| Candidate | ZAP rule | Severity | Instances | Observed cases |", "| --- | --- | --- | --- | --- |"]
     for finding in report["findings"]:
         cases = ", ".join(finding["observed_cases"]) or "unmapped"
@@ -421,7 +555,9 @@ def run(plan, archive=None, java=None, writes=False, remote=None):
     zap = {"status": "skipped", "reason": "http-only-requested"}
     if archive:
         try:
-            findings, zap = analyze(archive, java, private, plan)
+            # ZAP names an alert's URL as it was sent; map it to a case through the paths the capture filled in.
+            sent = {entry["comment"]: entry["request"]["url"][len(plan["target"]):] for entry in har["log"]["entries"]}
+            findings, zap = analyze(archive, java, private, {**plan, "cases": [{**case, "path": sent.get(case["id"], case["path"])} for case in plan["cases"]]})
         except (OSError, ValueError, KeyError, TypeError, RecursionError, zipfile.BadZipFile):
             zap = {"status": "incomplete", "reason": "analysis-failed-see-private-log"}
     incomplete = zap["status"] != "complete" or any("gap" in row for row in observations)
@@ -439,7 +575,7 @@ def run(plan, archive=None, java=None, writes=False, remote=None):
               "evidence": {"har_sha256": digest(private / "traffic.har"), "plan_sha256": digest(private / "plan.json")}}
     if zap["status"] != "complete":
         report["coverage_gaps"].append("ZAP passive analysis did not complete.")
-    if any("method" in row for row in observations):
+    if any(changes_state(case) for case in plan["cases"]):
         report["coverage_gaps"].append("State-changing requests were sent; reset the instance's data before another run.")
     write_json(directory / "report.json", report)
     render(report, directory)
@@ -455,7 +591,7 @@ def main():
     group.add_argument("--http-only", action="store_true", help="Explicitly skip ZAP; result remains incomplete")
     parser.add_argument("--java", help="Absolute path to a Java 17+ executable")
     parser.add_argument("--allow-writes", action="store_true",
-                        help="Send the plan's POST, PUT, PATCH and DELETE cases; only for a disposable instance")
+                        help="Send the plan's state-changing cases (POST, PUT, PATCH, DELETE; a JSON-RPC read needs no flag); only where data may be changed")
     parser.add_argument("--remote", metavar="ORIGIN",
                         help="Test this one https://hostname, a pre-production environment the user named, instead of a loopback port")
     args = parser.parse_args()
@@ -473,7 +609,7 @@ def main():
         parser.error("Plan exceeds 256 KiB")
     plan = json.loads(args.plan.read_text())
     cases = plan.get("cases") if isinstance(plan, dict) else None
-    if not args.allow_writes and isinstance(cases, list) and any(isinstance(c, dict) and c.get("method", "GET") != "GET" for c in cases):
+    if not args.allow_writes and isinstance(cases, list) and any(isinstance(c, dict) and changes_state(c) for c in cases):
         parser.error("The plan holds state-changing cases; they run only with --allow-writes")
     directory, report = run(plan, args.zap_archive, args.java, args.allow_writes, args.remote)
     print(json.dumps({"status": report["status"], "report": str(directory / "report.json"), "review": str(directory / "review.md")}))
